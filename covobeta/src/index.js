@@ -47,7 +47,11 @@ const firebaseConfig = {
 // Initialize firebase instance
 firebase.initializeApp(firebaseConfig, "index");
 // Initialize Cloud Firestore through Firebase
-firebase.firestore();
+//firebase.firestore();
+
+const firestore = firebase.firestore();
+const settings = { /* your settings... */ timestampsInSnapshots: true };
+firestore.settings(settings);
 
 /*Loading from LocalStorage happens during
     creation of the Redux store.*/

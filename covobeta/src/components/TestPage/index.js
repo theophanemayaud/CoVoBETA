@@ -9,7 +9,8 @@ import "./TestPage.css";
 
 //Temporary or unclassified imports
 //import AddTrip from "../AddTrip";
-import CoVoTripsFromContext from "./Tests/CoVoTripsFromContext.js";
+//import CoVoTripsFromContext from "./Tests/CoVoTripsFromContext.js";
+import CoVoTrips from "./Tests/CoVoTrips";
 
 //Descriptions of props, what it does, and what it affects
 //Beginning of implementation
@@ -18,7 +19,8 @@ class TestPage extends Component {
     return (
       <div className="test-page">
         {/*<AddTrip />*/}
-        <CoVoTripsFromContext />
+        {/*<CoVoTripsFromContext />*/}
+        <CoVoTrips />
       </div>
     );
   }

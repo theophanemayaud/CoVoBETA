@@ -4,6 +4,7 @@
 
 * Now will work on pushing to firebase.
   * worked a little on javascript firestore/firebase in db, it loads.
+  * (added start coding mac file to open terminals and atom)
 * Working on AddTrip which should upload trip to cloud from Props
   * will work with [redux-firestore](https://github.com/CoVoCre/redux-firestore) and [react-redux-firebase](https://github.com/CoVoCre/react-redux-firebase), must add these to redux store creation process
   * added TestPage and also to router in order to render components in developpment there

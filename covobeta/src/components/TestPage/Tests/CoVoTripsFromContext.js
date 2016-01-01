@@ -14,7 +14,9 @@ import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import { MuiThemeProvider, createMuiTheme } from "material-ui";
 
 //CoVo javascript imports
-
+import {setCoVoArrivalPlace
+,
+setCovoDeparturePlace, setSubDepartureRdvPoint,setDepartureTimestamp} from "../../../actions";
 //Content imports
 
 //Temporary or unclassified imports
@@ -132,16 +134,16 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     onCovoArrivalPlaceChange: event => {
-      //      dispatch(setCoVoArrivalPlace(event.target.value));
+            dispatch(setCoVoArrivalPlace(event.target.value));
     },
     onCovoDeparturePlaceChange: event => {
-      //      dispatch(setCovoDeparturePlace(event.target.value));
+            dispatch(setCovoDeparturePlace(event.target.value));
     },
     onSubDepartureRdvPointChange: event => {
-      //      dispatch(setSubDepartureRdvPoint(event.target.value));
+            dispatch(setSubDepartureRdvPoint(event.target.value));
     },
     onDepartureTimestampChange: date => {
-      //      dispatch(setDepartureTimestamp(date));
+            dispatch(setDepartureTimestamp(date));
     }
   };
 };

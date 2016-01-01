@@ -13,11 +13,15 @@ class CoVoTrips extends Component {
   }
 
   render() {
+    console.log("In CoVoTrips with props :");
+    console.log(this.props);
+
     return (
       <div>
         {this.props.covo_trips.map(covo_trip => (
           <div key={covo_trip.id}>{JSON.stringify(covo_trip)}</div>
         ))}
+        <div>Yes !!!</div>
       </div>
     );
   }
