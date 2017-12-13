@@ -1,7 +1,22 @@
 {
-  "name": "covobeta",
-  "version": "0.1.0",
+  "name": "CoVo",
+  "version": "0.0.1",
+  "description": "Site de covoyajage en cours de construction",
+  "main": "app.js",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoVoCre/CoVoBETA.git"
+  },
+  "author": "CoVo Creator",
+  "license": "SEE LICENSE IN 'license.file'",
+  "bugs": {
+    "url": "https://github.com/CoVoCre/CoVoBETA/issues"
+  },
+  "homepage": "https://github.com/CoVoCre/CoVoBETA#readme",
+  "engines": {
+    "node": ">=6.11.1"
+  },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -12,5 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
