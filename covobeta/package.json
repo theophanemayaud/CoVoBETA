@@ -1,9 +1,8 @@
 {
-<<<<<<< HEAD
   "name": "CoVo",
   "version": "0.0.1",
   "description": "Site de covoyajage en cours de construction",
-  "main": "app.js",
+  "main": "index.js",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,11 +17,6 @@
   "engines": {
     "node": ">=6.11.1"
   },
-=======
-  "name": "covobeta",
-  "version": "0.1.0",
-  "private": true,
->>>>>>> 66e161b35238d98851603254fdb1bc35924b03ba
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -33,13 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-<<<<<<< HEAD
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
   }
 }
-=======
-  }
-}
->>>>>>> 66e161b35238d98851603254fdb1bc35924b03ba
