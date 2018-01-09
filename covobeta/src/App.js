@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from "./components/Footer/Footer.js";
 import logo from "./logo.png";
 import "./App.css";
 
@@ -13,6 +14,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <Footer />
       </div>
     );
   }
