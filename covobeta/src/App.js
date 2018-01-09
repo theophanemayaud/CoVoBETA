@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import HeaderBar from "./components/HeaderBar/HeaderBar.js";
 import Footer from "./components/Footer/Footer.js";
-import logo from "./logo.png";
 import "./App.css";
 
 class App extends Component {
