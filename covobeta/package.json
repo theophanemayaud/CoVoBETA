@@ -18,16 +18,27 @@
     "node": ">=6.11.1"
   },
   "dependencies": {
+<<<<<<< HEAD
     "material-ui": "^1.0.0-beta.29",
     "material-ui-icons": "^1.0.0-beta.17",
+=======
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.2",
+>>>>>>> 9ffda28bf6bc964ba395ecb9314df52b3b4074fa
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "typeface-roboto": "^0.0.50"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-css":
+      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
