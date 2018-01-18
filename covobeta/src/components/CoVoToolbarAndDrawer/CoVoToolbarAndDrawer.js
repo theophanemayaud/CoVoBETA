@@ -42,8 +42,8 @@ class CoVoToolbarAndDrawer extends Component {
             </ToolbarSection>
 
             <ToolbarSection align="end">
-              <div>Dropdown </div>
-              <div>Some things </div>
+              <Icon name="language" />
+              <Icon name="perm_identity" />
             </ToolbarSection>
           </ToolbarRow>
         </Toolbar>;
@@ -54,18 +54,21 @@ class CoVoToolbarAndDrawer extends Component {
           }}
         >
           <DrawerHeader>
-            <DrawerHeaderContent>Directions</DrawerHeaderContent>
+            <DrawerHeaderContent>CoVo</DrawerHeaderContent>
           </DrawerHeader>
           <DrawerContent>
             <Navigation>
               <a href="#" selected>
-                <Icon name="directions_bus" />Bus
+                <Icon name="stars" />Empty demo
               </a>
               <a href="#">
-                <Icon name="directions_railway" />Railway
+                <Icon name="start_rate" />N2
               </a>
               <a href="#">
-                <Icon name="directions_bike" />Bike
+                <Icon name="star_half" />N3
+              </a>
+              <a href="#">
+                <Icon name="start_border" />N4
               </a>
             </Navigation>
           </DrawerContent>
