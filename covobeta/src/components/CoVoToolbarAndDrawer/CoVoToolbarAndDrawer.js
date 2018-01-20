@@ -37,11 +37,7 @@ class CoVoToolbarAndDrawer extends Component {
               </IconButton>
             </ToolbarSection>
 
-            <ToolbarSection>
-              <ToolbarTitle className="mdc-theme--secondary-dark">
-                CoVo
-              </ToolbarTitle>
-            </ToolbarSection>
+            <ToolbarSection>CoVo</ToolbarSection>
 
             <ToolbarSection align="end">
               <Icon name="language" />
