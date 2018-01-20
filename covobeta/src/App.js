@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import { Content, Button } from "react-mdc-web/lib";
+import { Button } from "rmwc/Button";
 
 import CoVoToolbarAndDrawer from "./components/CoVoToolbarAndDrawer/CoVoToolbarAndDrawer.js";
 import Footer from "./components/Footer/Footer.js";
@@ -11,20 +11,21 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="covo-web-app">
-          <CoVoToolbarAndDrawer />
-
-          {/* Adjust top margin for fixed toolbar */}
-          <Content fixed>
-            <p className="App-intro">
+        <div id="covo-web-app">
+          <div id="covo-header">
+            {" "}
+            <CoVoToolbarAndDrawer />
+          </div>
+          <div id="covo-page-content">
+            <p className="app-intro">
               Yes, this website exists but it is not yet ready !!! We are busy
               making it great, so it can help everyone out there who needs to go
               about freely. Well, but of course, who needs this, really ?
             </p>
-            <Button raised className="mdc-theme--secondary-bg">
+            <Button raised theme="mdc-theme--secondary-bg">
               Default
             </Button>
-          </Content>
+          </div>
           <Footer />
         </div>
       </Router>

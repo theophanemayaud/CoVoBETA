@@ -5,13 +5,13 @@ import {
   ToolbarRow,
   ToolbarSection,
   ToolbarTitle,
-  Drawer,
-  DrawerHeader,
-  DrawerHeaderContent,
-  DrawerContent,
-  Navigation,
-  Icon
-} from "react-mdc-web/lib";
+  ToolbarMenuIcon,
+  ToolbarIcon,
+  ToolbarFixedAdjust
+} from "rmwc/Toolbar";
+import { Icon } from "rmwc/Icon";
+import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
+import { ListItem, ListItemText } from "rmwc/List";
 
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
@@ -24,10 +24,10 @@ class CoVoToolbarAndDrawer extends Component {
   };
   render() {
     return (
-      <div className="covo-toolbar-and-drawer">
+      <header className="covo-toolbar-and-drawer">
         <Toolbar fixed>
           <ToolbarRow>
-            <ToolbarSection align="start">
+            <ToolbarSection alignStart>
               <IconButton color="contrast" aria-label="Menu">
                 <MenuIcon
                   onClick={() => {
@@ -37,41 +37,51 @@ class CoVoToolbarAndDrawer extends Component {
               </IconButton>
             </ToolbarSection>
 
-            <ToolbarSection>CoVo</ToolbarSection>
+            <ToolbarSection>
+              <ToolbarTitle>CoVo</ToolbarTitle>
+            </ToolbarSection>
 
-            <ToolbarSection align="end">
+            <ToolbarSection alignEnd>
               <Icon name="language" />
               <Icon name="perm_identity" />
             </ToolbarSection>
           </ToolbarRow>
-        </Toolbar>;
+        </Toolbar>
+        <ToolbarFixedAdjust />
         <Drawer
+          temporary
           open={this.state.isOpen}
           onClose={() => {
             this.setState({ isOpen: false });
           }}
         >
-          <DrawerHeader>
-            <DrawerHeaderContent>CoVo</DrawerHeaderContent>
-          </DrawerHeader>
+          <DrawerHeader>CoVo</DrawerHeader>
           <DrawerContent>
-            <Navigation>
-              <a href="#" selected>
-                <Icon name="stars" />Empty demo
-              </a>
-              <a href="#">
-                <Icon name="start_rate" />N2
-              </a>
-              <a href="#">
-                <Icon name="star_half" />N3
-              </a>
-              <a href="#">
-                <Icon name="start_border" />N4
-              </a>
-            </Navigation>
+            <ListItem>
+              <ListItemText>
+                <a href="#" selected>
+                  <Icon name="stars" />Empty demo
+                </a>
+              </ListItemText>
+              <ListItemText>
+                <a href="#">
+                  <Icon name="start_rate" />N2
+                </a>
+              </ListItemText>
+              <ListItemText>
+                <a href="#">
+                  <Icon name="star_half" />N3
+                </a>
+              </ListItemText>
+              <ListItemText>
+                <a href="#">
+                  <Icon name="start_border" />N4
+                </a>
+              </ListItemText>
+            </ListItem>
           </DrawerContent>
         </Drawer>
-      </div>
+      </header>
     );
   }
 }

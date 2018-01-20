@@ -3,4 +3,24 @@ $mdc-theme-primary: #1db6e7;
 $mdc-theme-secondary: #fe70c4;
 $mdc-theme-background: #b0b0b0;
 
-@import "material-components-web/material-components-web";
+@import "@material/theme/mdc-theme.scss";
+
+#covo-web-app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+#covo-page-content {
+  margin: 0;
+  padding: 1px;
+  height: 100%;
+  margin-bottom: 50px;
+}
+
+#covo-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px; /* Height of the footer */
+  background: #b0b0b0;
+}
