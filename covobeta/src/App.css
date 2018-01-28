@@ -342,11 +342,6 @@
   background-color: #fe29a7 !important;
   background-color: var(--mdc-theme-secondary-dark, #fe29a7) !important; }
 
-#covo-web-app {
-  margin: 0;
-  padding: 0;
-  height: 100%; }
-
 #covo-page-content {
   margin: 0;
   padding: 1px;
