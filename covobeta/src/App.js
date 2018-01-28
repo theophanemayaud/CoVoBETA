@@ -17,13 +17,11 @@ class App extends Component {
             <CoVoToolbarAndDrawer />
           </div>
           <div id="covo-page-content">
-            <Elevation z="10">
-              <p className="app-intro">
-                Yes, this website exists but it is not yet ready !!! We are busy
-                making it great, so it can help everyone out there who needs to
-                go about freely. Well, but of course, who needs this, really ?
-              </p>
-            </Elevation>
+            <p className="app-intro">
+              Yes, this website exists but it is not yet ready !!! We are busy
+              making it great, so it can help everyone out there who needs to go
+              about freely. Well, but of course, who needs this, really ?
+            </p>
             <Button raised theme="mdc-theme--secondary-bg">
               Default
             </Button>
@@ -37,7 +35,9 @@ class App extends Component {
               Default
             </Button>
           </div>
-          <Footer />
+          <div className="covo-footer">
+            <Footer />
+          </div>
         </div>
       </Router>
     );
