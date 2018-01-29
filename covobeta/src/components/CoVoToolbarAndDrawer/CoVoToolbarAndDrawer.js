@@ -24,7 +24,7 @@ class CoVoToolbarAndDrawer extends Component {
   };
   render() {
     return (
-      <header className="covo-toolbar-and-drawer">
+      <div className="covo-toolbar-and-drawer">
         <Toolbar fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
@@ -81,7 +81,7 @@ class CoVoToolbarAndDrawer extends Component {
             </ListItem>
           </DrawerContent>
         </Drawer>
-      </header>
+      </div>
     );
   }
 }
