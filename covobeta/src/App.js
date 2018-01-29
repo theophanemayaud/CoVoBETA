@@ -8,6 +8,8 @@ import CoVoToolbarAndDrawer from "./components/CoVoToolbarAndDrawer/CoVoToolbarA
 import Footer from "./components/Footer/Footer.js";
 import "./App.css";
 
+import BigTextTest from "./components/BigTextTest/BigTextTest.js";
+
 class App extends Component {
   render() {
     return (
@@ -25,17 +27,9 @@ class App extends Component {
             <Button raised theme="mdc-theme--secondary-bg">
               Default
             </Button>
-            <Button raised theme="mdc-theme--secondary-bg">
-              Default
-            </Button>
-            <Button raised theme="mdc-theme--secondary-bg">
-              Default
-            </Button>
-            <Button raised theme="mdc-theme--secondary-bg">
-              Default
-            </Button>
+            <BigTextTest />
           </div>
-          <div className="covo-footer">
+          <div id="covo-footer">
             <Footer />
           </div>
         </div>

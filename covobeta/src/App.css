@@ -342,16 +342,33 @@
   background-color: #fe29a7 !important;
   background-color: var(--mdc-theme-secondary-dark, #fe29a7) !important; }
 
-#covo-page-content {
-  margin: 0;
-  padding: 1px;
+#covo-web-app {
   height: 100%;
-  margin-bottom: 50px; }
+  width: 100%; }
+
+#covo-header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 60px;
+  right: 0px;
+  overflow: hidden; }
+
+#covo-page-content {
+  position: absolute;
+  top: 65px;
+  bottom: 30px;
+  left: 0px;
+  right: 0px;
+  overflow: auto; }
 
 #covo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  bottom: 0px;
   height: 30px;
-  /* Height of the footer */
-  background: #b0b0b0; }
+  left: 0px;
+  right: 0px;
+  background: #6cf; }
