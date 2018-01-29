@@ -1,4 +1,27 @@
-.covo-toolbar {
+#covo-toolbar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 60px;
+  right: 0px;
+  overflow: hidden;
 }
-.covo-footer {
+#covo-page-content {
+  position: absolute;
+  top: 65px;
+  bottom: 30px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+}
+#covo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+  height: 30px;
+  left: 0px;
+  right: 0px;
+  background: #6cf;
 }
