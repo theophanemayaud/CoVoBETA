@@ -9,17 +9,17 @@ import {
   CoVoPageContent,
   CoVoFooter
 } from "./components/CoVoLayout";
-import Footer from "./components/Footer/Footer.js";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <CoVoToolbar />
-        <CoVoPageContent> There goes the content !</CoVoPageContent>
-        <CoVoFooter />
-        {/*{" "}
+        <div>
+          <CoVoToolbar />
+          <CoVoPageContent> There goes the content !</CoVoPageContent>
+          <CoVoFooter />
+          {/*{" "}
         <div id="covo-web-app">
           <div id="covo-header">
             <CoVoToolbarAndDrawer />
@@ -38,6 +38,7 @@ class App extends Component {
             <Footer />
           </div>
         </div>*/}
+        </div>
       </Router>
     );
   }
