@@ -39,5 +39,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "firebase-tools": "^3.17.4"
+  }
 }
