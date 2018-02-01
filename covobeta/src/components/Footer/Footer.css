@@ -1,0 +1,16 @@
+a {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
+  border-bottom: 1px solid white; }
+
+a:link {
+  color: white; }
+
+a:visited {
+  color: white; }
+
+a:hover {
+  color: black;
+  text-decoration-color: black;
+  border-bottom: 1px solid black; }

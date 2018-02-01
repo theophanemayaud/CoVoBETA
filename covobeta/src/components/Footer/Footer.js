@@ -6,7 +6,9 @@ class Footer extends Component {
     return (
       <div>
         <div align="center">
-          <a href="/">CoVo 0.1.0 </a>
+          <a href="/">
+            <div className="homepage-link">CoVo 0.1.0 </div>
+          </a>
         </div>
       </div>
     );

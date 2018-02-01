@@ -9,7 +9,9 @@ import {
   ToolbarIcon,
   ToolbarFixedAdjust
 } from "rmwc/Toolbar";
+import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
 import { Icon } from "rmwc/Icon";
+import { Ripple } from "rmwc/Ripple";
 import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
 import { ListItem, ListItemText } from "rmwc/List";
 
@@ -20,7 +22,8 @@ import "./CoVoToolbarAndDrawer.css";
 
 class CoVoToolbarAndDrawer extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    menuIsOpen: false
   };
   render() {
     return (
@@ -28,22 +31,59 @@ class CoVoToolbarAndDrawer extends Component {
         <Toolbar fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
-              <IconButton color="contrast" aria-label="Menu">
-                <MenuIcon
-                  onClick={() => {
-                    this.setState({ isOpen: !this.state.isOpen });
-                  }}
-                />
-              </IconButton>
+              <Ripple unbounded>
+                <IconButton color="contrast" aria-label="Menu">
+                  <MenuIcon
+                    onClick={() => {
+                      this.setState({ isOpen: !this.state.isOpen });
+                    }}
+                  />
+                </IconButton>
+              </Ripple>
             </ToolbarSection>
-
             <ToolbarSection>
-              <ToolbarTitle>CoVo</ToolbarTitle>
+              <Ripple unbounded>
+                <div>
+                  <a
+                    className="no-decoration-link"
+                    href="#"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <img
+                      className="toolbar-covo-logo"
+                      border="0"
+                      alt="CoVoLogo"
+                      src={"images/logo.png"}
+                    />
+                  </a>
+                </div>
+              </Ripple>
             </ToolbarSection>
 
             <ToolbarSection alignEnd>
-              <Icon name="language" />
-              <Icon name="perm_identity" />
+              <MenuAnchor>
+                <SimpleMenu
+                  open={this.state.menuIsOpen}
+                  onClose={() => this.setState({ menuIsOpen: false })}
+                >
+                  <MenuItem>Not</MenuItem>
+                  <MenuItem>Yet</MenuItem>
+                  <MenuItem>In</MenuItem>
+                  <MenuItem>Working</MenuItem>
+                  <MenuItem>State</MenuItem>
+                </SimpleMenu>
+
+                <ToolbarIcon
+                  strategy="ligature"
+                  onClick={() =>
+                    this.setState({ menuIsOpen: !this.state.menuIsOpen })
+                  }
+                >
+                  language
+                </ToolbarIcon>
+              </MenuAnchor>
+
+              <ToolbarIcon strategy="ligature">perm_identity</ToolbarIcon>
             </ToolbarSection>
           </ToolbarRow>
         </Toolbar>
@@ -59,13 +99,25 @@ class CoVoToolbarAndDrawer extends Component {
           <DrawerContent>
             <ListItem>
               <ListItemText>
-                <a href="#" selected>
-                  <Icon name="stars" />Empty demo
-                </a>
+                <a href="#" selected /> N1
+                <Icon strategy="ligature">stars</Icon>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Pizza</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Icecream</ListItemText>
+            </ListItem>
+          </DrawerContent>
+        </Drawer>
+        {/*            <ListItem>
+              <ListItemText>
+
               </ListItemText>
               <ListItemText>
                 <a href="#">
-                  <Icon name="start_rate" />N2
+                  <Icon strategy="ligature">start_rate</Icon>
                 </a>
               </ListItemText>
               <ListItemText>
@@ -80,7 +132,7 @@ class CoVoToolbarAndDrawer extends Component {
               </ListItemText>
             </ListItem>
           </DrawerContent>
-        </Drawer>
+        </Drawer>*/}
       </div>
     );
   }
