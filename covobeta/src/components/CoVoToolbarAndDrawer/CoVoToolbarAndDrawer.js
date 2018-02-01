@@ -11,7 +11,6 @@ import {
 } from "rmwc/Toolbar";
 import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
 import { Icon } from "rmwc/Icon";
-import { Ripple } from "rmwc/Ripple";
 import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
 import { ListItem, ListItemText } from "rmwc/List";
 
@@ -31,33 +30,27 @@ class CoVoToolbarAndDrawer extends Component {
         <Toolbar fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
-              <Ripple unbounded>
-                <IconButton color="contrast" aria-label="Menu">
-                  <MenuIcon
-                    onClick={() => {
-                      this.setState({ isOpen: !this.state.isOpen });
-                    }}
-                  />
-                </IconButton>
-              </Ripple>
+              <IconButton color="contrast" aria-label="Menu">
+                <MenuIcon
+                  onClick={() => {
+                    this.setState({ isOpen: !this.state.isOpen });
+                  }}
+                />
+              </IconButton>
             </ToolbarSection>
             <ToolbarSection>
-              <Ripple unbounded>
-                <div>
-                  <a
-                    className="no-decoration-link"
-                    href="#"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <img
-                      className="toolbar-covo-logo"
-                      border="0"
-                      alt="CoVoLogo"
-                      src={"images/logo.png"}
-                    />
-                  </a>
-                </div>
-              </Ripple>
+              <a
+                className="no-decoration-link"
+                href="#"
+                style={{ textDecoration: "none" }}
+              >
+                <img
+                  className="toolbar-covo-logo"
+                  border="0"
+                  alt="CoVoLogo"
+                  src={"images/logo.png"}
+                />
+              </a>
             </ToolbarSection>
 
             <ToolbarSection alignEnd>
@@ -82,7 +75,6 @@ class CoVoToolbarAndDrawer extends Component {
                   language
                 </ToolbarIcon>
               </MenuAnchor>
-
               <ToolbarIcon strategy="ligature">perm_identity</ToolbarIcon>
             </ToolbarSection>
           </ToolbarRow>
