@@ -29,7 +29,7 @@ jobs:
            command: sudo cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
       - restore_cache:
           keys:
-            - master-cache-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
+            - covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
 #            - master-cache-{{ arch }}-{{ .Branch }}
 #            - master-cache
       - run: cd covobeta && yarn install
@@ -39,7 +39,7 @@ jobs:
 #              key: v1-dependencies-{{ checksum "package.json" }}
       #build and see what happens... !!! !!!
       - save_cache:
-          key: master-cache-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
+          key: covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
           paths:
             - covobeta/node_modules
       - run: cd covobeta && CI="" && yarn build
