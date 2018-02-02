@@ -1,5 +1,7 @@
 # CoVoBETA
 
+[![CircleCI](https://circleci.com/gh/CoVoCre/CoVoBETA/tree/master.svg?style=svg)](https://circleci.com/gh/CoVoCre/CoVoBETA/tree/master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you'll find some useful info, mostly for myself at first.
