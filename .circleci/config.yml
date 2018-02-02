@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     docker:
       # specify the version you desire here
       - image: circleci/node:9.4.0
@@ -58,7 +58,7 @@ jobs:
 
     build_and_deploy:
       jobs:
-        - build-and-deploy
+        - build_and_deploy-job
 #        - deploy-job:
 #            requires:
 #              - build-job
