@@ -32,7 +32,7 @@ jobs:
 #              key: v1-dependencies-{{ checksum "package.json" }}
 
       #build and see what happens... !!!
-      - run: cd covobeta && yarn build
+      - run: cd covobeta && CI="" && yarn build
       - run:
            name: Deploy Master to Firebase
            command: cd covobeta && ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
