@@ -11,29 +11,38 @@ import {
 } from "rmwc/Toolbar";
 import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
 import { Icon } from "rmwc/Icon";
-import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
-import { ListItem, ListItemText } from "rmwc/List";
 
 import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
 
+import CoVoDrawer from "./../CoVoDrawer/CoVoDrawer.js";
 import "./CoVoToolbarAndDrawer.css";
 
 class CoVoToolbarAndDrawer extends Component {
   state = {
-    isOpen: false,
+    drawerIsOpen: false,
     menuIsOpen: false
   };
+  changeDrawerState = () => {
+    this.setState({ drawerIsOpen: false });
+    console.log(
+      "Drawer state change happened, state : " + this.state.drawerIsOpen
+    );
+  };
+
   render() {
     return (
       <div className="covo-toolbar-and-drawer">
         <Toolbar fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
-              <IconButton color="contrast" aria-label="Menu">
+              <IconButton color="default" aria-label="Menu">
                 <MenuIcon
                   onClick={() => {
-                    this.setState({ isOpen: !this.state.isOpen });
+                    this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
+                    console.log(
+                      "clicked on drawer button :" + this.state.drawerIsOpen
+                    );
                   }}
                 />
               </IconButton>
@@ -80,51 +89,10 @@ class CoVoToolbarAndDrawer extends Component {
           </ToolbarRow>
         </Toolbar>
         <ToolbarFixedAdjust />
-        <Drawer
-          temporary
-          open={this.state.isOpen}
-          onClose={() => {
-            this.setState({ isOpen: false });
-          }}
-        >
-          <DrawerHeader>CoVo</DrawerHeader>
-          <DrawerContent>
-            <ListItem>
-              <ListItemText>
-                <a href="#" selected /> N1
-                <Icon strategy="ligature">stars</Icon>
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>Pizza</ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>Icecream</ListItemText>
-            </ListItem>
-          </DrawerContent>
-        </Drawer>
-        {/*            <ListItem>
-              <ListItemText>
-
-              </ListItemText>
-              <ListItemText>
-                <a href="#">
-                  <Icon strategy="ligature">start_rate</Icon>
-                </a>
-              </ListItemText>
-              <ListItemText>
-                <a href="#">
-                  <Icon name="star_half" />N3
-                </a>
-              </ListItemText>
-              <ListItemText>
-                <a href="#">
-                  <Icon name="start_border" />N4
-                </a>
-              </ListItemText>
-            </ListItem>
-          </DrawerContent>
-        </Drawer>*/}
+        <CoVoDrawer
+          drawerState={this.state.drawerIsOpen}
+          onDrawerClose={this.changeDrawerState}
+        />
       </div>
     );
   }
