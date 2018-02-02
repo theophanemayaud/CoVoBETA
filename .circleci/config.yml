@@ -27,12 +27,21 @@ jobs:
       - run:
            name: Switch timezone to Paris
            command: sudo cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
+      - restore_cache:
+          keys:
+            - master-cache-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
+#            - master-cache-{{ arch }}-{{ .Branch }}
+#            - master-cache
       - run: cd covobeta && yarn install
 #          - save_cache:
 #              paths:
 #                - node_modules
 #              key: v1-dependencies-{{ checksum "package.json" }}
       #build and see what happens... !!!
+      - save_cache:
+          key: master-cache-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
+          paths:
+            - covobeta/node_modules
       - run: cd covobeta && CI="" && yarn build
       - run:
            name: Deploy Master to Firebase
