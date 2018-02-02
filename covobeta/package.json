@@ -41,7 +41,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "create-timestamp":
-      "current_date=$(date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json"
+      "bash && current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit"
   },
   "devDependencies": {
     "firebase-tools": "^3.17.4"
