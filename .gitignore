@@ -1,16 +1,17 @@
 # personnal igores :
 /covobeta/src/**/*.css
+/covobeta/src/timestamp.json
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+/covobeta/node_modules
 
 # testing
 /coverage
 
 # production
-/build
+/covobeta/build
 
 # misc
 .DS_Store

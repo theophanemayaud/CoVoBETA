@@ -15,5 +15,10 @@ a:hover {
   text-decoration-color: black;
   border-bottom: 1px solid black;
 }
-footer {
+#footer-timestamp {
+  color: rgb(69, 69, 69);
+  font-size: 0.8em;
+  position: absolute;
+  bottom: 7px;
+  right: 5px;
 }
