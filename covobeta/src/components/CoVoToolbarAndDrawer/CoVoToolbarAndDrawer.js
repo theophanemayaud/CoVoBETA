@@ -16,6 +16,7 @@ import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
 
 import CoVoDrawer from "./../CoVoDrawer/CoVoDrawer.js";
+import LoginAndOtherDropdown from "./../LoginAndOtherDropdown";
 import "./CoVoToolbarAndDrawer.css";
 
 class CoVoToolbarAndDrawer extends Component {
@@ -84,7 +85,7 @@ class CoVoToolbarAndDrawer extends Component {
                   language
                 </ToolbarIcon>
               </MenuAnchor>
-              <ToolbarIcon strategy="ligature">perm_identity</ToolbarIcon>
+              <LoginAndOtherDropdown />
             </ToolbarSection>
           </ToolbarRow>
         </Toolbar>

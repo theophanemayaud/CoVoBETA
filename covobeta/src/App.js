@@ -10,6 +10,8 @@ import {
 } from "./components/CoVoLayout";
 import "./App.css";
 
+import SignInLogic from "./components/SignInLogic";
+
 class App extends Component {
   render() {
     return (
@@ -25,6 +27,7 @@ class App extends Component {
             <Button raised theme="mdc-theme--secondary-bg">
               Default
             </Button>
+            <SignInLogic />
           </CoVoPageContent>
           <CoVoFooter />
         </div>

@@ -18,32 +18,32 @@
     "node": ">=6.11.1"
   },
   "dependencies": {
+    "firebase": "^4.9.1",
     "material-ui": "^1.0.0-beta.29",
     "material-ui-icons": "^1.0.0-beta.17",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-firebaseui": "^1.0.10",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "rmwc": "^1.0.2",
     "typeface-roboto": "^0.0.50"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all create-timestamp build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "create-timestamp":
-      "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'"
+    "create-timestamp": "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'"
   },
   "devDependencies": {
-    "firebase-tools": "^3.17.4"
+    "firebase-tools": "^3.17.4",
+    "flow-bin": "^0.64.0"
   }
 }
