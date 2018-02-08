@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-import CoVoToolbarAndDrawer from "../CoVoToolbarAndDrawer/CoVoToolbarAndDrawer.js";
+import CoVoToolbarAndDrawer from "../CoVoToolbarAndDrawer";
 import Footer from "../Footer/Footer.js";
 import "./CoVoLayout.css";
 

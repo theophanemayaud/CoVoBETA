@@ -4,18 +4,12 @@ import {
   Toolbar,
   ToolbarRow,
   ToolbarSection,
-  ToolbarTitle,
-  ToolbarMenuIcon,
   ToolbarIcon,
   ToolbarFixedAdjust
 } from "rmwc/Toolbar";
 import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
-import { Icon } from "rmwc/Icon";
 
-import IconButton from "material-ui/IconButton";
-import MenuIcon from "material-ui-icons/Menu";
-
-import CoVoDrawer from "./../CoVoDrawer/CoVoDrawer.js";
+import CoVoDrawer from "./../CoVoDrawer";
 import LoginAndOtherDropdown from "./../LoginAndOtherDropdown";
 import "./CoVoToolbarAndDrawer.css";
 
@@ -26,9 +20,6 @@ class CoVoToolbarAndDrawer extends Component {
   };
   changeDrawerState = () => {
     this.setState({ drawerIsOpen: false });
-    console.log(
-      "Drawer state change happened, state : " + this.state.drawerIsOpen
-    );
   };
 
   render() {
@@ -42,16 +33,13 @@ class CoVoToolbarAndDrawer extends Component {
                 use="menu"
                 onClick={() => {
                   this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
-                  console.log(
-                    "clicked on drawer button :" + this.state.drawerIsOpen
-                  );
                 }}
               />
             </ToolbarSection>
             <ToolbarSection>
               <a
                 className="no-decoration-link"
-                href="#"
+                href="/"
                 style={{ textDecoration: "none" }}
               >
                 <img

@@ -29,7 +29,7 @@ class TestingPopover extends React.Component {
 
   render() {
     return (
-      <div style={{ position: "absolute", top:"200px", right:"100px"  }}>
+      <div style={{ position: "absolute", top: "200px", right: "100px" }}>
         <Button
           ref={node => {
             this.button = node;
@@ -53,9 +53,7 @@ class TestingPopover extends React.Component {
             horizontal: "right"
           }}
         >
-          <div style={{ width: "250px" }}>
-            <SignInLogic/>
-          </div>
+          <div style={{ width: "250px" }}>{/*<SignInLogic/>*/}</div>
         </Popover>
       </div>
     );

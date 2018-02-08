@@ -45,7 +45,12 @@ export default class SignInLogic extends React.Component {
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
       {
         provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        defaultCountry: "Fr"
+        defaultCountry: "Fr",
+        recaptchaParameters: {
+          type: "image", // 'audio'
+          size: "compact", // 'invisible' or 'compact'
+          badge: "bottomleft" //' bottomright' or 'inline' applies to invisible.
+        }
       }
     ],
     // Required to enable one-tap sign-up credential helper.
@@ -68,12 +73,7 @@ export default class SignInLogic extends React.Component {
   render() {
     if (!this.state.signedIn) {
       return (
-        <div
-          className="focus-test"
-          onClick={() => {
-            console.log("test this focus");
-          }}
-        >
+        <div>
           <FirebaseAuth
             uiConfig={this.uiConfig}
             firebaseAuth={firebase.auth()}
@@ -82,7 +82,7 @@ export default class SignInLogic extends React.Component {
       );
     }
     return (
-      <div onClick={this.handleClickToStopPropagation}>
+      <div style={{ margin: "10px" }}>
         <p>You are now signed-in!</p>
         <Button raised onClick={this.signOut}>
           Sign Out

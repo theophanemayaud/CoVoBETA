@@ -1,38 +1,55 @@
 import React, { Component } from "react";
 
-import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
 import { ToolbarIcon } from "rmwc/Toolbar";
-import IconButton from "./../IconButton";
 import "./LoginAndOtherDropdown.css";
+
+//Stuff for popover
+import Popover from "material-ui/Popover";
+import { findDOMNode } from "react-dom";
 
 import SignInLogic from "./../SignInLogic";
 
 class LoginAndOtherDropdown extends Component {
   state = {
-    menuIsOpen: false
+    menuIsOpen: false,
+    anchorEl: null
   };
 
   handleClick = event => {
     this.setState({
-      menuIsOpen: true
+      menuIsOpen: true,
+      anchorEl: findDOMNode(this.button)
     });
   };
   render() {
     return (
-      <MenuAnchor>
-        <SimpleMenu
+      <div>
+        <Popover
           open={this.state.menuIsOpen}
+          anchorEl={this.state.anchorEl}
+          anchorReference="anchorEl"
           onClose={evt => this.setState({ menuIsOpen: false })}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
         >
-          {/*<SignInLogic />*/}
-        </SimpleMenu>
-
+          <div>
+            <div style={{ width: "300px" }}>
+              <SignInLogic />
+            </div>
+          </div>
+        </Popover>
         <ToolbarIcon
           strategy="ligature"
           use="more_vert"
           onClick={evt => this.setState({ menuIsOpen: !this.state.menuIsOpen })}
         />
-      </MenuAnchor>
+      </div>
     );
   }
 }

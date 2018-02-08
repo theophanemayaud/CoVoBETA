@@ -8,9 +8,6 @@ import "./CoVoDrawer.css";
 
 class CoVoDrawer extends Component {
   render() {
-    console.log(
-      "Welcome into CoVoDrawer with drawerState : " + this.props.drawerState
-    );
     return (
       <Drawer
         temporary
@@ -21,7 +18,6 @@ class CoVoDrawer extends Component {
         <DrawerContent>
           <ListItem>
             <ListItemText>
-              <a href="#" selected /> N1
               <Icon strategy="ligature">stars</Icon>
             </ListItemText>
           </ListItem>

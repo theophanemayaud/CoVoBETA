@@ -2,6 +2,7 @@
 import * as React from "react";
 import Button from "rmwc/Button";
 import Icon from "rmwc/Icon";
+import { Ripple } from "rmwc/Ripple";
 
 type IconButtonPropsT = {
   /* The icon to use*/

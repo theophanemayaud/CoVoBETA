@@ -11,8 +11,6 @@ import {
 import "./App.css";
 
 //temp imports for working stuff out
-import SignInLogic from "./components/SignInLogic";
-import TestingPopover from "./components/TestingPopover";
 
 class App extends Component {
   render() {
@@ -29,8 +27,6 @@ class App extends Component {
             <Button raised theme="mdc-theme--secondary-bg">
               Default
             </Button>
-            {/*<SignInLogic />*/}
-            <TestingPopover />
           </CoVoPageContent>
           <CoVoFooter />
         </div>
