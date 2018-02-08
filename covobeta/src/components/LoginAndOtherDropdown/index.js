@@ -5,9 +5,17 @@ import { ToolbarIcon } from "rmwc/Toolbar";
 import IconButton from "./../IconButton";
 import "./LoginAndOtherDropdown.css";
 
+import SignInLogic from "./../SignInLogic";
+
 class LoginAndOtherDropdown extends Component {
   state = {
     menuIsOpen: false
+  };
+
+  handleClick = event => {
+    this.setState({
+      menuIsOpen: true
+    });
   };
   render() {
     return (
@@ -16,9 +24,7 @@ class LoginAndOtherDropdown extends Component {
           open={this.state.menuIsOpen}
           onClose={evt => this.setState({ menuIsOpen: false })}
         >
-          <MenuItem>Cookies</MenuItem>
-          <MenuItem>Pizza</MenuItem>
-          <MenuItem>Icecream</MenuItem>
+          {/*<SignInLogic />*/}
         </SimpleMenu>
 
         <ToolbarIcon

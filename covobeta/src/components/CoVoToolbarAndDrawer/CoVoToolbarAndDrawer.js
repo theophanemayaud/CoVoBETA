@@ -37,16 +37,16 @@ class CoVoToolbarAndDrawer extends Component {
         <Toolbar fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
-              <IconButton color="default" aria-label="Menu">
-                <MenuIcon
-                  onClick={() => {
-                    this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
-                    console.log(
-                      "clicked on drawer button :" + this.state.drawerIsOpen
-                    );
-                  }}
-                />
-              </IconButton>
+              <ToolbarIcon
+                strategy="ligature"
+                use="menu"
+                onClick={() => {
+                  this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
+                  console.log(
+                    "clicked on drawer button :" + this.state.drawerIsOpen
+                  );
+                }}
+              />
             </ToolbarSection>
             <ToolbarSection>
               <a

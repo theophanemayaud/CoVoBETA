@@ -2,12 +2,17 @@
 import React from "react";
 import { FirebaseAuth } from "react-firebaseui";
 import firebase from "firebase";
+import firebaseui from "firebaseui";
+import { Button } from "rmwc/Button";
 
 // Configure Firebase.
 const config = {
-  apiKey: "AIzaSyAeue-AsYu76MMQlTOM-KlbYBlusW9c1FM",
-  authDomain: "myproject-1234.firebaseapp.com"
-  // ...
+  apiKey: "AIzaSyBhsbQQtqfo-oV62KsU1M-idl1z_gAgS1A",
+  authDomain: "covo-firebase.firebaseapp.com",
+  databaseURL: "https://covo-firebase.firebaseio.com",
+  projectId: "covo-firebase",
+  storageBucket: "covo-firebase.appspot.com",
+  messagingSenderId: "866606382146"
 };
 firebase.initializeApp(config);
 
@@ -20,11 +25,33 @@ export default class SignInLogic extends React.Component {
   uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: "popup",
-    // We will display Google and Facebook as auth providers.
+    signInSuccessUrl: "#",
     signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
+      {
+        // Google provider must be enabled in Firebase Console to support one-tap
+        // sign-up.
+        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        // Required to enable this provider in one-tap sign-up.
+        authMethod: "https://accounts.google.com",
+        // Required to enable ID token credentials for this provider.
+        // This can be obtained from the Credentials page of the Google APIs
+        // console.
+        clientId:
+          "866606382146-i2quruh3lpudcdoal537s6cnfaljae7s.apps.googleusercontent.com"
+      },
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      {
+        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        defaultCountry: "Fr"
+      }
     ],
+    // Required to enable one-tap sign-up credential helper.
+    /* Disabled untill production credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,*/
+    credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+
     // Sets the `signedIn` state property to `true` once signed in.
     callbacks: {
       signInSuccess: () => {
@@ -33,12 +60,20 @@ export default class SignInLogic extends React.Component {
       }
     }
   };
+  signOut = () => {
+    this.setState({ signedIn: false });
+    console.log("Signed out!!!");
+  };
 
   render() {
     if (!this.state.signedIn) {
       return (
-        <div>
-          <p>Please sign-in:</p>
+        <div
+          className="focus-test"
+          onClick={() => {
+            console.log("test this focus");
+          }}
+        >
           <FirebaseAuth
             uiConfig={this.uiConfig}
             firebaseAuth={firebase.auth()}
@@ -47,8 +82,11 @@ export default class SignInLogic extends React.Component {
       );
     }
     return (
-      <div>
+      <div onClick={this.handleClickToStopPropagation}>
         <p>You are now signed-in!</p>
+        <Button raised onClick={this.signOut}>
+          Sign Out
+        </Button>
       </div>
     );
   }
