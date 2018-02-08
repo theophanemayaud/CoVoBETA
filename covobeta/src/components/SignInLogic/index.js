@@ -27,7 +27,7 @@ export default class SignInLogic extends React.Component {
         JSON.stringify(this.state)
     );
     var tempsignInLogicState = JSON.parse(
-      localStorage.getItem("signInLogicState") || ""
+      localStorage.getItem("signInLogicState") || "{}"
     );
     console.log(
       "In componentDidMount tempsignInLogicState=" +
