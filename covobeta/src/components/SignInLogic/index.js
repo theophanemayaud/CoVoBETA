@@ -19,22 +19,48 @@ firebase.initializeApp(config);
 export default class SignInLogic extends React.Component {
   state = {
     signedIn: false, // Local signed-in state.
-    userName: null
+    displayName: null,
+    email: null,
+    emailVerified: null,
+    phoneNumber: null,
+    photoURL: null,
+    uid: null,
+    accessToken: null,
+    providerData: null
   };
   componentDidMount() {
-    console.log(
-      "In componentDidMount before localStorage init, this.state: " +
-        JSON.stringify(this.state)
-    );
     var tempsignInLogicState = JSON.parse(
       localStorage.getItem("signInLogicState") || "{}"
     );
-    console.log(
-      "In componentDidMount tempsignInLogicState=" +
-        JSON.stringify(tempsignInLogicState)
-    );
+
     this.setState(tempsignInLogicState);
+
+    //now set stuff to get names and all
+
+    firebase.auth().onAuthStateChanged(
+      user => {
+        if (user) {
+          // User is signed in.
+          user.getIdToken().then(accessToken => {
+            this.setState({
+              displayName: user.displayName,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              phoneNumber: user.phoneNumber,
+              photoURL: user.photoURL,
+              uid: user.uid,
+              accessToken: accessToken,
+              providerData: user.providerData
+            });
+          });
+        }
+      },
+      function(error) {
+        console.log(error);
+      }
+    );
   }
+
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -79,12 +105,6 @@ export default class SignInLogic extends React.Component {
           "signInLogicState",
           JSON.stringify({ signedIn: true })
         );
-        console.log(
-          "signInSuccess callback, localStorage signInLogicState: " +
-            JSON.stringify(
-              JSON.parse(localStorage.getItem("signInLogicState") || "{}")
-            )
-        );
         return false; // Avoid redirects after sign-in.
       }
     }
@@ -94,12 +114,6 @@ export default class SignInLogic extends React.Component {
     localStorage.setItem(
       "signInLogicState",
       JSON.stringify({ signedIn: false })
-    );
-    console.log(
-      "Signed out!!! with localStorage state being : " +
-        JSON.stringify(
-          JSON.parse(localStorage.getItem("signInLogicState") || "{}")
-        )
     );
   };
 
@@ -115,8 +129,24 @@ export default class SignInLogic extends React.Component {
       );
     }
     return (
-      <div style={{ margin: "10px" }}>
-        <p>You are now signed-in!</p>
+      <div style={{ margin: "10px", width: "95%", wordWrap: "break-word" }}>
+        <img
+          className="user-picture"
+          border="0"
+          alt={this.state.displayName}
+          src={
+            this.state.photoURL ||
+            "https://cdn.onlinewebfonts.com/svg/img_299586.png"
+          }
+          style={{ width: "20px", margin: "10px" }}
+        />
+        {this.state.displayName} <br />
+        Email : {this.state.email} <br />
+        Email status : {this.state.emailVerified} <br />
+        Phone number : {this.state.phoneNumber} <br />
+        UID : {this.state.uid} <br />
+        {/*  accessToken : {this.state.accessToken} <br />
+    providerData {JSON.stringify(this.state.providerData)} <br />*/}
         <Button raised onClick={this.signOut}>
           Sign Out
         </Button>
