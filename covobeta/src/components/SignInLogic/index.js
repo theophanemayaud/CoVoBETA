@@ -7,12 +7,12 @@ import { Button } from "rmwc/Button";
 
 // Configure Firebase.
 const config = {
-  apiKey: "AIzaSyBhsbQQtqfo-oV62KsU1M-idl1z_gAgS1A",
-  authDomain: "covo-firebase.firebaseapp.com",
-  databaseURL: "https://covo-firebase.firebaseio.com",
-  projectId: "covo-firebase",
-  storageBucket: "covo-firebase.appspot.com",
-  messagingSenderId: "866606382146"
+  apiKey: "AIzaSyCYpY7U9OHt3KWPuUr9Bsxp7MlX4JPJ9AY",
+  authDomain: "covo-io.firebaseapp.com",
+  databaseURL: "https://covo-io.firebaseio.com",
+  projectId: "covo-io",
+  storageBucket: "covo-io.appspot.com",
+  messagingSenderId: "701812569579"
 };
 firebase.initializeApp(config);
 
