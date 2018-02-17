@@ -18,7 +18,13 @@ class CoVoDrawer extends Component {
         <DrawerContent>
           <ListItem>
             <ListItemText>
-              <Icon strategy="ligature">stars</Icon>
+              <a
+                className="no-decoration-link"
+                href="/forum"
+                style={{ textDecoration: "none" }}
+              >
+                Forum
+              </a>
             </ListItemText>
           </ListItem>
           <ListItem>
