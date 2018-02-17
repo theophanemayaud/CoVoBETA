@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 
+//Installed dependencies imports
 import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
 import { ListItem, ListItemText } from "rmwc/List";
 import { Icon } from "rmwc/Icon";
+import { Link } from "react-router-dom";
 
+//CoVo components imports
+
+//Content imports
 import "./CoVoDrawer.css";
 
+//Temporary or unclassified imports
+
+//Beginning of implementation
 class CoVoDrawer extends Component {
   render() {
     return (
@@ -18,17 +26,17 @@ class CoVoDrawer extends Component {
         <DrawerContent>
           <ListItem>
             <ListItemText>
-              <a
-                className="no-decoration-link"
-                href="/forum"
-                style={{ textDecoration: "none" }}
-              >
-                Forum
-              </a>
+              <Link to="/" onClick={this.props.onDrawerClose}>
+                Home
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem>
-            <ListItemText>Pizza</ListItemText>
+            <ListItemText>
+              <Link to="/forum" onClick={this.props.onDrawerClose}>
+                Forum
+              </Link>
+            </ListItemText>
           </ListItem>
           <ListItem>
             <ListItemText>Icecream</ListItemText>

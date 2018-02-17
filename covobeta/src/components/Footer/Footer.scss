@@ -1,19 +1,17 @@
-a {
+.homepage-link {
   color: white;
   text-decoration: underline;
   text-decoration-color: white;
-  border-bottom: 1px solid white;
 }
-a:link {
+.homepage-link:link {
   color: white;
 }
-a:visited {
+.homepage-link:visited {
   color: white;
 }
-a:hover {
+.homepage-link:hover {
   color: black;
   text-decoration-color: black;
-  border-bottom: 1px solid black;
 }
 #footer-timestamp {
   color: rgb(69, 69, 69);

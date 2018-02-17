@@ -24,7 +24,7 @@ class CoVoToolbarAndDrawer extends Component {
 
   render() {
     return (
-      <div className="covo-toolbar-and-drawer">
+      <div id="covo-toolbar-and-drawer">
         <Toolbar fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
@@ -43,7 +43,7 @@ class CoVoToolbarAndDrawer extends Component {
                 style={{ textDecoration: "none" }}
               >
                 <img
-                  className="toolbar-covo-logo"
+                  id="toolbar-covo-logo"
                   border="0"
                   alt="CoVoLogo"
                   src={"images/logo.png"}
