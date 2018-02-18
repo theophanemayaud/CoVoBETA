@@ -6,12 +6,12 @@ import { Button } from "rmwc/Button";
 //CoVo components imports
 
 //Content imports
-import "./CoVoHomePage.css";
+import "./HomePage.css";
 
 //Temporary or unclassified imports
 
 //Beginning of implementation
-class CoVoHomePage extends Component {
+class HomePage extends Component {
   render() {
     return (
       <div className="covo-home-page">
@@ -28,4 +28,4 @@ class CoVoHomePage extends Component {
   }
 }
 
-export default CoVoHomePage;
+export default HomePage;

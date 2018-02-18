@@ -1,19 +1,19 @@
-.homepage-link {
+#covo-footer .homepage-link {
   color: white;
   text-decoration: underline;
   text-decoration-color: white;
 }
-.homepage-link:link {
+#covo-footer .homepage-link:link {
   color: white;
 }
-.homepage-link:visited {
+#covo-footer .homepage-link:visited {
   color: white;
 }
-.homepage-link:hover {
+#covo-footer .homepage-link:hover {
   color: black;
   text-decoration-color: black;
 }
-#footer-timestamp {
+#covo-footer #footer-timestamp {
   color: rgb(69, 69, 69);
   font-size: 0.8em;
   position: absolute;

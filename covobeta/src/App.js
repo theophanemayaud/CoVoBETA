@@ -9,7 +9,7 @@ import {
   CoVoPageContent,
   CoVoFooter
 } from "./components/CoVoLayout";
-import CoVoHomePage from "./components/CoVoHomePage";
+import HomePage from "./components/HomePage";
 import CoVoForum from "./components/CoVoForum";
 import PageNotFound from "./components/PageNotFound";
 
@@ -27,7 +27,7 @@ class App extends Component {
           <CoVoToolbar />
           <CoVoPageContent>
             <Switch>
-              <Route path="/" exact component={CoVoHomePage} />
+              <Route path="/" exact component={HomePage} />
               <Route path="/forum" component={CoVoForum} />
               <Route component={PageNotFound} />
             </Switch>

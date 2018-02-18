@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+//Installed dependencies imports
 import {
   Toolbar,
   ToolbarRow,
@@ -8,11 +9,18 @@ import {
   ToolbarFixedAdjust
 } from "rmwc/Toolbar";
 import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
+import { Link } from "react-router-dom";
 
+//CoVo components imports
 import CoVoDrawer from "./../CoVoDrawer";
 import LoginAndOtherDropdown from "./../LoginAndOtherDropdown";
+
+//Content imports
 import "./CoVoToolbarAndDrawer.css";
 
+//Temporary or unclassified imports
+
+//Beginning of implementation
 class CoVoToolbarAndDrawer extends Component {
   state = {
     drawerIsOpen: false,
@@ -37,9 +45,9 @@ class CoVoToolbarAndDrawer extends Component {
               />
             </ToolbarSection>
             <ToolbarSection>
-              <a
+              <Link
                 className="no-decoration-link"
-                href="/"
+                to="/"
                 style={{ textDecoration: "none" }}
               >
                 <img
@@ -48,7 +56,7 @@ class CoVoToolbarAndDrawer extends Component {
                   alt="CoVoLogo"
                   src={"images/logo.png"}
                 />
-              </a>
+              </Link>
             </ToolbarSection>
 
             <ToolbarSection alignEnd>
