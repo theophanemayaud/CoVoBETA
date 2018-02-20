@@ -20,7 +20,7 @@ class HomePage extends Component {
           making it great, so it can help everyone out there who needs to go
           about freely. Well, but of course, who needs this, really ?
         </p>
-        <Button raised theme="mdc-theme--secondary-bg">
+        <Button raised className="mdc-theme--secondary-bg		">
           Default
         </Button>
       </div>

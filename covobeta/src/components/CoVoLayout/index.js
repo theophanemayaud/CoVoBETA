@@ -1,7 +1,7 @@
 import React from "react";
 
 import CoVoToolbarAndDrawer from "../CoVoToolbarAndDrawer";
-import Footer from "../Footer/Footer.js";
+import Footer from "../Footer";
 import "./CoVoLayout.css";
 
 export function CoVoToolbar(props) {
@@ -12,9 +12,11 @@ export function CoVoToolbar(props) {
     </header>
   );
 }
+
 export function CoVoPageContent(props) {
   return <div id="covo-page-content">{props.children}</div>;
 }
+
 export function CoVoFooter(props) {
   return (
     <div id="covo-footer">

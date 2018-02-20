@@ -12,8 +12,8 @@ Below you'll find some useful info, mostly for myself at first.
 * [Router component for react](#router-component-for-react)
 * [Code snippets](#code-snippets)
   * [Template component](#template-component)
-
-## Images in react
+* [Redux in CoVo](#redux-in-covo)
+  ## Images in react
 
 Either require first like `import logo from "./../../logo.png";'`
 Or also just do like `src={"images/logo.png"}` so just the brackets.
@@ -50,7 +50,7 @@ import React, { Component } from "react";
 
 //Installed dependencies imports
 
-//CoVo components imports
+//CoVo javascript imports
 
 //Content imports
 import "./EmptyComponent.css";
@@ -66,3 +66,7 @@ class EmptyComponent extends Component {
 
 export default EmptyComponent;
 ```
+
+## Redux in CoVo
+
+Based on https://redux.js.org/introduction/examples#todos-with-undo

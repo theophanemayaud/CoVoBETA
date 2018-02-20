@@ -1,17 +1,17 @@
 #covo-footer .homepage-link {
-  color: white;
+  color: black;
   text-decoration: underline;
-  text-decoration-color: white; }
+  text-decoration-color: black; }
 
 #covo-footer .homepage-link:link {
-  color: white; }
+  color: black; }
 
 #covo-footer .homepage-link:visited {
-  color: white; }
+  color: black; }
 
 #covo-footer .homepage-link:hover {
   color: black;
-  text-decoration-color: black; }
+  text-decoration-color: white; }
 
 #covo-footer #footer-timestamp {
   color: #454545;

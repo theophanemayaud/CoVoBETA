@@ -1,11 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import "./firebaseui-overrides.global.css"; // Import globally.
-import "material-components-web/dist/material-components-web.min.css";
-import "typeface-roboto";
-import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
 
+//Installed dependencies imports
+import ReactDOM from "react-dom";
+
+//Installed dependencies imports
+
+//Content imports
+import "./index.css";
+import "typeface-roboto";
+
+/**CoVo javascript imports
+ ** (has to be after content imports here
+ ** because of material-components-web css) **/
+import registerServiceWorker from "./registerServiceWorker";
+import App from "./App";
+
+//Temporary or unclassified imports
+
+//Beginning of implementation
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
