@@ -8,7 +8,7 @@ import {
   ToolbarIcon,
   ToolbarFixedAdjust
 } from "rmwc/Toolbar";
-import { SimpleMenu, MenuItem, MenuAnchor } from "rmwc/Menu";
+import { Menu, MenuItem, MenuAnchor } from "rmwc/Menu";
 import { Link } from "react-router-dom";
 
 //CoVo components imports
@@ -61,7 +61,7 @@ class CoVoToolbarAndDrawer extends Component {
 
             <ToolbarSection alignEnd>
               <MenuAnchor>
-                <SimpleMenu
+                <Menu
                   open={this.state.menuIsOpen}
                   onClose={() => this.setState({ menuIsOpen: false })}
                 >
@@ -70,7 +70,7 @@ class CoVoToolbarAndDrawer extends Component {
                   <MenuItem>In</MenuItem>
                   <MenuItem>Working</MenuItem>
                   <MenuItem>State</MenuItem>
-                </SimpleMenu>
+                </Menu>
 
                 <ToolbarIcon
                   strategy="ligature"
