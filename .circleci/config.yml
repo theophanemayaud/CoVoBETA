@@ -15,9 +15,6 @@ jobs:
       # - image: circleci/mongo:3.4.4
 
     working_directory: ~/tmp/covo
-    branches:
-        only:
-          - master
     steps:
       - checkout
       # Download and cache dependencies
