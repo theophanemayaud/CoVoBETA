@@ -16,8 +16,8 @@ jobs:
 
     working_directory: ~/tmp/covo
     branches:
-          only:
-            - master
+      only:
+        - master
     steps:
       - checkout
       # Download and cache dependencies
