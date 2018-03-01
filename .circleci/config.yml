@@ -47,8 +47,8 @@ jobs:
            name: Deploy Master to Firebase
            command: cd covobeta && ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
-workflows:
-  version: 2
-  firebase_deploy:
-    jobs:
-      - build_and_deploy
+#workflows:
+#  version: 2
+#  firebase_deploy:
+#    jobs:
+#      - build_and_deploy
