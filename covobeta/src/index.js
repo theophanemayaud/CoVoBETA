@@ -4,6 +4,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 //Installed dependencies imports
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 //Content imports
 import "./index.css";
@@ -14,9 +16,17 @@ import "typeface-roboto";
  ** because of material-components-web css) **/
 import registerServiceWorker from "./registerServiceWorker";
 import App from "./App";
+import reducer from "./reducers";
 
 //Temporary or unclassified imports
 
 //Beginning of implementation
-ReactDOM.render(<App />, document.getElementById("root"));
+const store = createStore(reducer);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();
