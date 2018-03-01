@@ -3,16 +3,15 @@
  */
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
-export const SET_DRAWER_STATE = "SET_DRAWER_STATE";
-export const SET_LOGIN_DROPDOWN_STATE = "SET_LOGIN_DROPDOWN_STATE";
+export const TOGGLE_DRAWER = "TOGGLE_DRAWER";
+export const TOGGLE_LOGIN_DROPDOWN = "TOGGLE_LOGIN_DROPDOWN";
 
 /*
  * other constants
  */
-export const VisibilityFilters = {
-  SHOW_ALL: "SHOW_ALL",
-  SHOW_COMPLETED: "SHOW_COMPLETED",
-  SHOW_ACTIVE: "SHOW_ACTIVE"
+export const uiThings = {
+  TOGGLE_DRAWER: "TOGGLE_DRAWER",
+  TOGGLE_LOGIN_DROPDOWN: "TOGGLE_LOGIN_DROPDOWN"
 };
 
 /*
@@ -26,10 +25,10 @@ export function setUserEmail(email) {
   return { type: SET_USER_EMAIL, email };
 }
 
-export function setDrawerState(openState) {
-  return { type: SET_DRAWER_STATE, openState };
+export function setDrawerState(isOpen) {
+  return { type: SET_DRAWER_STATE, isOpen };
 }
 
-export function setLoginDropdownState(openState) {
-  return { type: SET_LOGIN_DROPDOWN_STATE, openState };
+export function setLoginDropdownState(isOpen) {
+  return { type: TOGGLE_LOGIN_DROPDOWN, isOpen };
 }
