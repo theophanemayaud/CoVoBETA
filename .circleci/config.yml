@@ -17,30 +17,26 @@ jobs:
     working_directory: ~/tmp/covo
     steps:
       - checkout
-      # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#          - v1-dependencies-{{ checksum "package.json" }}
-#          # fallback to using the latest cache if no exact match is found
-#          - v1-dependencies-
       - run:
            name: Switch timezone to Paris
            command: sudo cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
+      # Download and cache dependencies
       - restore_cache:
           keys:
             - covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
 #            - master-cache-{{ arch }}-{{ .Branch }}
 #            - master-cache
+
       - run: cd covobeta && yarn install
-#          - save_cache:
-#              paths:
-#                - node_modules
-#              key: v1-dependencies-{{ checksum "package.json" }}
-      #build and see what happens... !!! !!!
+
+      #save installs to cache for future use
       - save_cache:
           key: covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
           paths:
             - covobeta/node_modules
+
+      #build and see what happens... !!! !!!
       - run: cd covobeta && CI="" && yarn build
       - run:
            name: Deploy Master to Firebase
