@@ -2,8 +2,7 @@ import { combineReducers } from "redux";
 
 //import todos from './todos'
 //import visibilityFilter from './visibilityFilter'
-import { SET_USER_NAME, SET_USER_EMAIL } from "../actions";
-import uiThings from "../actions";
+import { uiThings, SET_USER_NAME, SET_USER_EMAIL } from "../actions";
 
 var initialState = {
   uiState: {

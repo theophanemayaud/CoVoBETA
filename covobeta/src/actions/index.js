@@ -26,7 +26,7 @@ export function setUserEmail(email) {
 }
 
 export function setDrawerState(isOpen) {
-  return { type: SET_DRAWER_STATE, isOpen };
+  return { type: TOGGLE_DRAWER, isOpen };
 }
 
 export function setLoginDropdownState(isOpen) {
