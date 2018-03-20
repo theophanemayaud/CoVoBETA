@@ -27,12 +27,10 @@ function uiState(state = initialState.uiState, action) {
       return Object.assign({}, state, {
         isDrawerOpen: action.isOpen
       });
-      break;
     case uiThings.TOGGLE_LOGIN_DROPDOWN:
       return Object.assign({}, state, {
         isLoginDropdownOpen: action.isOpen
       });
-      break;
     default:
       return state;
   }

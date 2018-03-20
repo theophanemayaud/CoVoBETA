@@ -32,28 +32,24 @@ class CoVoDrawer extends Component {
             </Link>
           </DrawerHeader>
           <DrawerContent>
-            <ListItem>
-              <ListItemText>
-                <Link
-                  className="black-link"
-                  to="/"
-                  onClick={this.props.onDrawerClose}
-                >
-                  Home
-                </Link>
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>
-                <Link
-                  className="black-link"
-                  to="/forum"
-                  onClick={this.props.onDrawerClose}
-                >
-                  Forum
-                </Link>
-              </ListItemText>
-            </ListItem>
+            <Link
+              className="black-link"
+              to="/"
+              onClick={this.props.onDrawerClose}
+            >
+              <ListItem>
+                <ListItemText>Home </ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              className="black-link"
+              to="/forum"
+              onClick={this.props.onDrawerClose}
+            >
+              <ListItem>
+                <ListItemText>Forum</ListItemText>
+              </ListItem>
+            </Link>
           </DrawerContent>
         </Drawer>
       </div>

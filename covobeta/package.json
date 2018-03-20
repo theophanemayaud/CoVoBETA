@@ -50,8 +50,7 @@
     "eject": "react-scripts eject",
     "create-timestamp":
       "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'",
-    "create-timestamp-win":
-      "SET \"current_date=%date% %time%\" &&  set current_date={\"latest\":\"%current_date%\"} && echo %current_date% > src/timestamp.json"
+    "create-timestamp-win": "date-time-stamp.bat"
   },
   "devDependencies": {
     "firebase-tools": "^3.17.4",
