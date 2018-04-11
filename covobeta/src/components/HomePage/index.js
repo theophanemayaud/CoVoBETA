@@ -61,6 +61,7 @@ class HomePage extends Component {
             <PlacesAutocomplete inputProps={inputProps2} />
             <button type="submit">Submit</button>
           </form>
+          OK
         </div>
       </div>
     );
