@@ -14,7 +14,7 @@ class CoVoForum extends Component {
   render() {
     return (
       <div className="covo-forum">
-        <p>This it the foru page and it will be implemented soon i promise</p>
+        <p>This it the forum page and it will be implemented soon, I promise</p>
       </div>
     );
   }
