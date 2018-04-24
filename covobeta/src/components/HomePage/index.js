@@ -6,8 +6,10 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import { connect } from "react-redux";
 
 //CoVo components imports
+import { setFromAddress } from "../../actions";
 
 //Content imports
 import "./HomePage.css";
@@ -16,35 +18,14 @@ import "./HomePage.css";
 
 //Beginning of implementation
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      address1: "Paris, France",
-      address2: "Beijing, China"
-    };
-    this.onChange1 = address1 => this.setState({ address1 });
-    this.onChange2 = address2 => this.setState({ address2 });
-  }
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-
-    geocodeByAddress(this.state.address)
+  handleSelect = address => {
+    geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log("Success", latLng))
       .catch(error => console.error("Error", error));
   };
 
   render() {
-    const inputProps1 = {
-      value: this.state.address1,
-      onChange: this.onChange1
-    };
-    const inputProps2 = {
-      value: this.state.address2,
-      onChange: this.onChange2
-    };
-
     return (
       <div className="covo-home-page">
         <p className="app-intro">
@@ -56,15 +37,61 @@ class HomePage extends Component {
           Default
         </Button>
         <div>
-          <form onSubmit={this.handleFormSubmit}>
-            <PlacesAutocomplete inputProps={inputProps1} />
-            <PlacesAutocomplete inputProps={inputProps2} />
-            <button type="submit">Submit</button>
-          </form>
+          <PlacesAutocomplete
+            value={this.props.fromAddress}
+            onChange={this.props.fromAddressChange}
+            onSelect={this.handleSelect}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: "Search Places ...",
+                    className: "location-search-input"
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? "suggestion-item--active"
+                      : "suggestion-item";
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: "#f12e2e", cursor: "pointer" }
+                      : { backgroundColor: "#4ccaf2", cursor: "pointer" };
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
+        </div>
+        <div>
+          <button onClick={() => console.log(this.props)}>Log props</button>
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  fromAddress: state.utils.fromAddress,
+  toAddress: state.utils.toAddress
+});
+const mapDispatchToProps = dispatch => {
+  return {
+    fromAddressChange: address => {
+      dispatch(setFromAddress(address));
+    }
+  };
+};
 
-export default HomePage;
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

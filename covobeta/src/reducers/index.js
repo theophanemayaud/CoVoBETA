@@ -2,7 +2,12 @@ import { combineReducers } from "redux";
 
 //import todos from './todos'
 //import visibilityFilter from './visibilityFilter'
-import { uiThings, SET_USER_NAME, SET_USER_EMAIL } from "../actions";
+import {
+  uiThings,
+  SET_USER_NAME,
+  SET_USER_EMAIL,
+  SET_FROM_ADDRESS
+} from "../actions";
 
 var initialState = {
   uiState: {
@@ -13,7 +18,10 @@ var initialState = {
     userName: null,
     userEmail: null
   },
-  utils: null
+  utils: {
+    toAddress: "",
+    fromAddress: ""
+  }
 };
 
 function uiState(state = initialState.uiState, action) {
@@ -53,6 +61,10 @@ function userInfoAndSettings(state = initialState.userInfoAndSettings, action) {
 
 function utils(state = initialState.utils, action) {
   switch (action.type) {
+    case SET_FROM_ADDRESS:
+      return Object.assign({}, state, {
+        fromAddress: action.address
+      });
     default:
       return state;
   }

@@ -5,6 +5,7 @@ export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const TOGGLE_DRAWER = "TOGGLE_DRAWER";
 export const TOGGLE_LOGIN_DROPDOWN = "TOGGLE_LOGIN_DROPDOWN";
+export const SET_FROM_ADDRESS = "SET_FROM_ADDRESS";
 
 /*
  * other constants
@@ -31,4 +32,8 @@ export function setDrawerState(isOpen) {
 
 export function setLoginDropdownState(isOpen) {
   return { type: TOGGLE_LOGIN_DROPDOWN, isOpen };
+}
+
+export function setFromAddress(address) {
+  return { type: SET_FROM_ADDRESS, address };
 }
