@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "firebase-tools": "^3.17.4",
-    "flow-bin": "^0.64.0"
+    "flow-bin": "^0.64.0",
+    "redux-devtools-extension": "^2.13.2"
   }
 }

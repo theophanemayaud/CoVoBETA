@@ -10,10 +10,12 @@ import {
 } from "rmwc/Toolbar";
 import { Menu, MenuItem, MenuAnchor } from "rmwc/Menu";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 //CoVo components imports
 import CoVoDrawer from "./../CoVoDrawer";
 import LoginAndOtherDropdown from "./../LoginAndOtherDropdown";
+import { toggleDrawerState, toggleLangMenu } from "../../actions";
 
 //Content imports
 import "./CoVoToolbarAndDrawer.css";
@@ -22,14 +24,6 @@ import "./CoVoToolbarAndDrawer.css";
 
 //Beginning of implementation
 class CoVoToolbarAndDrawer extends Component {
-  state = {
-    drawerIsOpen: false,
-    menuIsOpen: false
-  };
-  changeDrawerState = () => {
-    this.setState({ drawerIsOpen: false });
-  };
-
   render() {
     return (
       <div id="covo-toolbar-and-drawer">
@@ -40,7 +34,7 @@ class CoVoToolbarAndDrawer extends Component {
                 strategy="ligature"
                 use="menu"
                 onClick={() => {
-                  this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
+                  this.props.toggleDrawer(this.props.drawerIsOpen);
                 }}
               />
             </ToolbarSection>
@@ -62,8 +56,10 @@ class CoVoToolbarAndDrawer extends Component {
             <ToolbarSection alignEnd>
               <MenuAnchor>
                 <Menu
-                  open={this.state.menuIsOpen}
-                  onClose={() => this.setState({ menuIsOpen: false })}
+                  open={this.props.langMenuIsOpen}
+                  onClose={() => {
+                    this.props.toggleLang(true);
+                  }}
                 >
                   <MenuItem>Not</MenuItem>
                   <MenuItem>Yet</MenuItem>
@@ -75,7 +71,7 @@ class CoVoToolbarAndDrawer extends Component {
                 <ToolbarIcon
                   strategy="ligature"
                   onClick={() =>
-                    this.setState({ menuIsOpen: !this.state.menuIsOpen })
+                    this.props.toggleLang(this.props.langMenuIsOpen)
                   }
                 >
                   language
@@ -87,12 +83,30 @@ class CoVoToolbarAndDrawer extends Component {
         </Toolbar>
         <ToolbarFixedAdjust />
         <CoVoDrawer
-          drawerState={this.state.drawerIsOpen}
-          onDrawerClose={this.changeDrawerState}
+          drawerState={this.props.drawerIsOpen}
+          onDrawerClose={() => {
+            this.props.toggleDrawer(true);
+          }}
         />
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  drawerIsOpen: state.uiState.drawerIsOpen,
+  langMenuIsOpen: state.uiState.langMenuIsOpen
+});
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleDrawer: isOpen => {
+      dispatch(toggleDrawerState(isOpen));
+    },
+    toggleLang: isOpen => {
+      dispatch(toggleLangMenu(isOpen));
+    }
+  };
+};
 
-export default CoVoToolbarAndDrawer;
+export default connect(mapStateToProps, mapDispatchToProps)(
+  CoVoToolbarAndDrawer
+);
