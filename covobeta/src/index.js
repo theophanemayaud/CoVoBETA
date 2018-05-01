@@ -4,9 +4,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 //Installed dependencies imports
-import { createStore } from "redux";
-import { devToolsEnhancer } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
+import { save, load } from "redux-localstorage-simple";
 
 //Content imports
 import "./index.css";
@@ -22,11 +23,17 @@ import reducer from "./reducers";
 //Temporary or unclassified imports
 
 //Beginning of implementation
-const store = createStore(
-  reducer,
-  /* preloadedState, */ devToolsEnhancer()
-  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
-);
+/*    Saving to LocalStorage is achieved using Redux
+    middleware. The 'save' method is called by Redux
+    each time an action is handled by your reducer. */
+
+const createStoreWithMiddleware = applyMiddleware(
+  save() // Saving done here
+)(createStore);
+
+/*Loading from LocalStorage happens during
+    creation of the Redux store.*/
+const store = createStoreWithMiddleware(reducer, load(), composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>

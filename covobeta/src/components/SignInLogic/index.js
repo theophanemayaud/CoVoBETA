@@ -29,7 +29,7 @@ const config = {
 firebase.initializeApp(config);
 
 class SignInLogic extends React.Component {
-  state = {
+  /*  state = {
     signedIn: false, // Local signed-in state.
     displayName: null,
     email: null,
@@ -39,7 +39,7 @@ class SignInLogic extends React.Component {
     uid: null,
     accessToken: null,
     providerData: null
-  };
+  };*/
   componentDidMount() {
     /*var tempsignInLogicState = JSON.parse(
       localStorage.getItem("signInLogicState") || "{}"
@@ -178,8 +178,7 @@ const mapStateToProps = state => ({
   phoneNumber: state.userInfoAndSettings.phoneNumber,
   photoURL: state.userInfoAndSettings.photoURL,
   uid: state.userInfoAndSettings.uid,
-  accessToken: state.userInfoAndSettings.accessToken,
-  providerData: state.userInfoAndSettings.providerData
+  accessToken: state.userInfoAndSettings.accessToken
 });
 const mapDispatchToProps = dispatch => {
   return {
@@ -192,8 +191,7 @@ const mapDispatchToProps = dispatch => {
         phoneNumber: null,
         photoURL: null,
         uid: null,
-        accessToken: null,
-        providerData: null
+        accessToken: null
       };
       dispatch(setUserInfoAndSettings(user));
     },
@@ -201,7 +199,16 @@ const mapDispatchToProps = dispatch => {
       dispatch(setUserSignedState(isSignedIn));
     },
     setUserInfoAndSettings: user => {
-      dispatch(setUserInfoAndSettings(user));
+      var newUser = {
+        displayName: user.displayName,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        phoneNumber: user.phoneNumber,
+        photoURL: user.photoURL,
+        uid: user.uid,
+        accessToken: user.accessToken
+      };
+      dispatch(setUserInfoAndSettings(newUser));
     }
   };
 };

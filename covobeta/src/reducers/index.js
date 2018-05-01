@@ -23,8 +23,7 @@ var initialState = {
     phoneNumber: null,
     photoURL: null,
     uid: null,
-    accessToken: null,
-    providerData: null
+    accessToken: null
   },
   utils: {
     toAddress: "",

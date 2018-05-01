@@ -2024,6 +2024,10 @@ cliui@^3.0.3, cliui@^3.2.0:
     strip-ansi "^3.0.1"
     wrap-ansi "^2.0.0"
 
+clone-function@>=1.0.1:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/clone-function/-/clone-function-1.0.6.tgz#428471937750bca9c48ecbfbc16f6e232f74a03d"
+
 clone@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.3.tgz#298d7e2231660f40c003c2ed3140decf3f53085f"
@@ -6277,6 +6281,10 @@ object-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
+object-foreach@>=0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/object-foreach/-/object-foreach-0.1.2.tgz#d7421c5b40e3b6a3ef57ac624368d21d8f8d2dec"
+
 object-hash@^1.1.4:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.2.0.tgz#e96af0e96981996a1d47f88ead8f74f1ebc4422b"
@@ -6284,6 +6292,13 @@ object-hash@^1.1.4:
 object-keys@^1.0.8:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
+
+object-merge@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/object-merge/-/object-merge-2.5.1.tgz#077e8915ce38ea7294788448c5dd339e34df4227"
+  dependencies:
+    clone-function ">=1.0.1"
+    object-foreach ">=0.1.2"
 
 object.omit@^2.0.0:
   version "2.0.1"
@@ -7553,6 +7568,12 @@ reduce-function-call@^1.0.1:
 redux-devtools-extension@^2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
+
+redux-localstorage-simple@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/redux-localstorage-simple/-/redux-localstorage-simple-2.0.0.tgz#dd5fc755e59d7e784c320616d8c6d741bcc1dfe8"
+  dependencies:
+    object-merge "2.5.1"
 
 redux@^3.7.2:
   version "3.7.2"
