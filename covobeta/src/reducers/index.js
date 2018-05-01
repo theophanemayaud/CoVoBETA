@@ -4,8 +4,8 @@ import { combineReducers } from "redux";
 //import visibilityFilter from './visibilityFilter'
 import {
   uiThings,
-  SET_USER_NAME,
-  SET_USER_EMAIL,
+  SET_USER_INFO_AND_SETTINGS,
+  SET_USER_SIGNED_STATE,
   SET_FROM_ADDRESS
 } from "../actions";
 
@@ -16,8 +16,15 @@ var initialState = {
     loginPopoverIsOpen: false
   },
   userInfoAndSettings: {
-    userName: null,
-    userEmail: null
+    signedIn: false, // Local signed-in state.
+    displayName: null,
+    email: null,
+    emailVerified: null,
+    phoneNumber: null,
+    photoURL: null,
+    uid: null,
+    accessToken: null,
+    providerData: null
   },
   utils: {
     toAddress: "",
@@ -51,14 +58,10 @@ function uiState(state = initialState.uiState, action) {
 
 function userInfoAndSettings(state = initialState.userInfoAndSettings, action) {
   switch (action.type) {
-    case SET_USER_NAME:
-      return Object.assign({}, state, {
-        userName: action.name
-      });
-    case SET_USER_EMAIL:
-      return Object.assign({}, state, {
-        userEmail: action.email
-      });
+    case SET_USER_INFO_AND_SETTINGS:
+      return Object.assign({}, state, action.user);
+    case SET_USER_SIGNED_STATE:
+      return Object.assign({}, state, { signedIn: action.isSignedIn });
     default:
       return state;
   }

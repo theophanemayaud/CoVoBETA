@@ -7,6 +7,8 @@ export const TOGGLE_DRAWER = "TOGGLE_DRAWER";
 export const TOGGLE_LANG_MENU = "TOGGLE_LANG_MENU";
 export const SET_FROM_ADDRESS = "SET_FROM_ADDRESS";
 export const TOGGLE_LOGIN_POPOVER = "TOGGLE_LOGIN_POPOVER";
+export const SET_USER_INFO_AND_SETTINGS = "SET_USER_INFO_AND_SETTINGS";
+export const SET_USER_SIGNED_STATE = "SET_USER_SIGNED_STATE";
 
 /*
  * other constants
@@ -42,4 +44,12 @@ export function setFromAddress(address) {
 
 export function toggleLoginPopover(isOpen) {
   return { type: TOGGLE_LOGIN_POPOVER, isOpen };
+}
+
+export function setUserInfoAndSettings(user) {
+  return { type: SET_USER_INFO_AND_SETTINGS, user };
+}
+
+export function setUserSignedState(isSignedIn) {
+  return { type: SET_USER_SIGNED_STATE, isSignedIn };
 }

@@ -1,11 +1,23 @@
-// Import FirebaseAuth and firebase.
 import React from "react";
+
+//Installed dependencies imports
+import { connect } from "react-redux";
+//// Import FirebaseAuth and firebase.
 import { FirebaseAuth } from "react-firebaseui";
 import firebase from "firebase";
 import firebaseui from "firebaseui";
 import { Button } from "rmwc/Button";
 
-// Configure Firebase.
+//CoVo javascript imports
+import { setUserInfoAndSettings, setUserSignedState } from "./../../actions";
+
+//Content imports
+
+//Temporary or unclassified imports
+
+//Beginning of implementation
+
+//// Configure Firebase.
 const config = {
   apiKey: "AIzaSyCYpY7U9OHt3KWPuUr9Bsxp7MlX4JPJ9AY",
   authDomain: "covo-io.firebaseapp.com",
@@ -16,7 +28,7 @@ const config = {
 };
 firebase.initializeApp(config);
 
-export default class SignInLogic extends React.Component {
+class SignInLogic extends React.Component {
   state = {
     signedIn: false, // Local signed-in state.
     displayName: null,
@@ -29,11 +41,11 @@ export default class SignInLogic extends React.Component {
     providerData: null
   };
   componentDidMount() {
-    var tempsignInLogicState = JSON.parse(
+    /*var tempsignInLogicState = JSON.parse(
       localStorage.getItem("signInLogicState") || "{}"
     );
 
-    this.setState(tempsignInLogicState);
+    this.setState(tempsignInLogicState);*/
 
     //now set stuff to get names and all
 
@@ -41,7 +53,7 @@ export default class SignInLogic extends React.Component {
       user => {
         if (user) {
           // User is signed in.
-          user.getIdToken().then(accessToken => {
+          /*user.getIdToken().then(accessToken => {
             this.setState({
               displayName: user.displayName,
               email: user.email,
@@ -53,6 +65,8 @@ export default class SignInLogic extends React.Component {
               providerData: user.providerData
             });
           });
+        }*/
+          this.props.setUserInfoAndSettings(user);
         }
       },
       function(error) {
@@ -100,25 +114,26 @@ export default class SignInLogic extends React.Component {
     // Sets the `signedIn` state property to `true` once signed in.
     callbacks: {
       signInSuccess: () => {
-        this.setState({ signedIn: true });
+        /*this.setState({ signedIn: true });
         localStorage.setItem(
           "signInLogicState",
           JSON.stringify({ signedIn: true })
-        );
+        );*/
+        this.props.setUserSignedState(true);
         return false; // Avoid redirects after sign-in.
       }
     }
   };
   signOut = () => {
-    this.setState({ signedIn: false });
-    localStorage.setItem(
+    this.props.signOut();
+    /*localStorage.setItem(
       "signInLogicState",
       JSON.stringify({ signedIn: false })
-    );
+    );*/
   };
 
   render() {
-    if (!this.state.signedIn) {
+    if (!this.props.signedIn) {
       return (
         <div>
           <FirebaseAuth
@@ -133,24 +148,62 @@ export default class SignInLogic extends React.Component {
         <img
           className="user-picture"
           border="0"
-          alt={this.state.displayName}
+          alt={this.props.displayName}
           src={
-            this.state.photoURL ||
+            this.props.photoURL ||
             "https://cdn.onlinewebfonts.com/svg/img_299586.png"
           }
           style={{ width: "20px", margin: "10px" }}
         />
-        {this.state.displayName} <br />
-        Email : {this.state.email} <br />
-        Email status : {this.state.emailVerified} <br />
-        Phone number : {this.state.phoneNumber} <br />
-        UID : {this.state.uid} <br />
+        {this.props.displayName} <br />
+        Email : {this.props.email} <br />
+        Email status : {this.props.emailVerified} <br />
+        Phone number : {this.props.phoneNumber} <br />
+        UID : {this.props.uid} <br />
         {/*  accessToken : {this.state.accessToken} <br />
     providerData {JSON.stringify(this.state.providerData)} <br />*/}
-        <Button raised onClick={this.signOut}>
+        <Button raised onClick={this.props.signOut}>
           Sign Out
         </Button>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  signedIn: state.userInfoAndSettings.signedIn, // Local signed-in state.
+  displayName: state.userInfoAndSettings.displayName,
+  email: state.userInfoAndSettings.email,
+  emailVerified: state.userInfoAndSettings.emailVerified,
+  phoneNumber: state.userInfoAndSettings.phoneNumber,
+  photoURL: state.userInfoAndSettings.photoURL,
+  uid: state.userInfoAndSettings.uid,
+  accessToken: state.userInfoAndSettings.accessToken,
+  providerData: state.userInfoAndSettings.providerData
+});
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => {
+      var user = {
+        signedIn: null,
+        displayName: null,
+        email: null,
+        emailVerified: null,
+        phoneNumber: null,
+        photoURL: null,
+        uid: null,
+        accessToken: null,
+        providerData: null
+      };
+      dispatch(setUserInfoAndSettings(user));
+    },
+    setUserSignedState: isSignedIn => {
+      dispatch(setUserSignedState(isSignedIn));
+    },
+    setUserInfoAndSettings: user => {
+      dispatch(setUserInfoAndSettings(user));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInLogic);

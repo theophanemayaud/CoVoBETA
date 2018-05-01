@@ -50,6 +50,11 @@ Here are some code samples to copy and paste in order to save time re thinking t
 ```js
 import React, { Component } from "react";
 
+//Installed dependencies imports
+
+//CoVo javascript imports
+
+//Content imports
 import "./EmptyComponent.css";
 
 //Temporary or unclassified imports
