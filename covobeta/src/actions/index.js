@@ -6,13 +6,15 @@ export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const TOGGLE_DRAWER = "TOGGLE_DRAWER";
 export const TOGGLE_LANG_MENU = "TOGGLE_LANG_MENU";
 export const SET_FROM_ADDRESS = "SET_FROM_ADDRESS";
+export const TOGGLE_LOGIN_POPOVER = "TOGGLE_LOGIN_POPOVER";
 
 /*
  * other constants
  */
 export const uiThings = {
   TOGGLE_DRAWER: "TOGGLE_DRAWER",
-  TOGGLE_LANG_MENU: "TOGGLE_LANG_MENU"
+  TOGGLE_LANG_MENU: "TOGGLE_LANG_MENU",
+  TOGGLE_LOGIN_POPOVER: "TOGGLE_LOGIN_POPOVER"
 };
 
 /*
@@ -36,4 +38,8 @@ export function toggleLangMenu(isOpen) {
 
 export function setFromAddress(address) {
   return { type: SET_FROM_ADDRESS, address };
+}
+
+export function toggleLoginPopover(isOpen) {
+  return { type: TOGGLE_LOGIN_POPOVER, isOpen };
 }

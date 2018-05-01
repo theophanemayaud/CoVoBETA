@@ -12,7 +12,9 @@ Below you'll find some useful info, mostly for myself at first.
 * [Router component for react](#router-component-for-react)
 * [Code snippets](#code-snippets)
   * [Template component](#template-component)
+  * [Reference commit in .md](#commit-md)
 * [Redux in CoVo](#redux-in-covo)
+
   ## Images in react
 
 Either require first like `import logo from "./../../logo.png";'`
@@ -48,11 +50,6 @@ Here are some code samples to copy and paste in order to save time re thinking t
 ```js
 import React, { Component } from "react";
 
-//Installed dependencies imports
-
-//CoVo javascript imports
-
-//Content imports
 import "./EmptyComponent.css";
 
 //Temporary or unclassified imports
@@ -66,6 +63,15 @@ class EmptyComponent extends Component {
 
 export default EmptyComponent;
 ```
+
+### Reference commit in .md
+
+```txt
+([26931592](https://github.com/CoVoCre/CoVoBETA/commit/269315926b50fdb199967e17aa3292e051a81444))
+```
+
+devient
+([26931592](https://github.com/CoVoCre/CoVoBETA/commit/269315926b50fdb199967e17aa3292e051a81444))
 
 ## Redux in CoVo
 

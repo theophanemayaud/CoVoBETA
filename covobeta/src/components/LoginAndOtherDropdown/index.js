@@ -1,34 +1,29 @@
 import React, { Component } from "react";
 
+//Installed dependencies imports
 import { ToolbarIcon } from "rmwc/Toolbar";
-import "./LoginAndOtherDropdown.css";
-
-//Stuff for popover
+import { connect } from "react-redux";
+////Stuff for popover
 import Popover from "material-ui/Popover";
 import { findDOMNode } from "react-dom";
 
+//CoVo javascript imports
+import { toggleLoginPopover } from "./../../actions";
 import SignInLogic from "./../SignInLogic";
 
-class LoginAndOtherDropdown extends Component {
-  state = {
-    menuIsOpen: false,
-    anchorEl: null
-  };
+//Content imports
+import "./LoginAndOtherDropdown.css";
 
-  handleClick = event => {
-    this.setState({
-      menuIsOpen: true,
-      anchorEl: findDOMNode(this.button)
-    });
-  };
+//Temporary or unclassified imports
+
+//Beginning of implementation
+class LoginAndOtherDropdown extends Component {
   render() {
     return (
       <div>
         <Popover
-          open={this.state.menuIsOpen}
-          anchorEl={this.state.anchorEl}
-          anchorReference="anchorEl"
-          onClose={evt => this.setState({ menuIsOpen: false })}
+          open={this.props.loginPopoverIsOpen}
+          onClose={() => this.props.toggleLoginPopover(true)}
           anchorOrigin={{
             vertical: "top",
             horizontal: "right"
@@ -47,11 +42,26 @@ class LoginAndOtherDropdown extends Component {
         <ToolbarIcon
           strategy="ligature"
           use="more_vert"
-          onClick={evt => this.setState({ menuIsOpen: !this.state.menuIsOpen })}
+          onClick={() =>
+            this.props.toggleLoginPopover(this.props.loginPopoverIsOpen)
+          }
         />
       </div>
     );
   }
 }
 
-export default LoginAndOtherDropdown;
+const mapStateToProps = state => ({
+  loginPopoverIsOpen: state.uiState.loginPopoverIsOpen
+});
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleLoginPopover: isOpen => {
+      dispatch(toggleLoginPopover(isOpen));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  LoginAndOtherDropdown
+);

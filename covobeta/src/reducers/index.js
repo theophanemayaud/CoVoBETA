@@ -12,7 +12,8 @@ import {
 var initialState = {
   uiState: {
     drawerIsOpen: false,
-    langMenuIsOpen: false
+    langMenuIsOpen: false,
+    loginPopoverIsOpen: false
   },
   userInfoAndSettings: {
     userName: null,
@@ -38,6 +39,10 @@ function uiState(state = initialState.uiState, action) {
     case uiThings.TOGGLE_LANG_MENU:
       return Object.assign({}, state, {
         langMenuIsOpen: !action.isOpen
+      });
+    case uiThings.TOGGLE_LOGIN_POPOVER:
+      return Object.assign({}, state, {
+        loginPopoverIsOpen: !action.isOpen
       });
     default:
       return state;
