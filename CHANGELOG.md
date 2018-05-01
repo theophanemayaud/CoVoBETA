@@ -1,4 +1,6 @@
-* Updated SignInLogic to redux state, but removed the localstorage for now. Upon reload, user gets signed out. ([](https://github.com/CoVoCre/CoVoBETA/commit/))
+* Working
+
+* Updated SignInLogic to redux state, but removed the localstorage for now. Upon reload, user gets signed out. ([0e0fc16a](https://github.com/CoVoCre/CoVoBETA/commit/0e0fc16a0473bcf612cb9d5f12d8a7a6132c2cba))
 
 * Updated LoginAndOtherDropdown to redux state ([7ea6f5dd](https://github.com/CoVoCre/CoVoBETA/commit/7ea6f5dd3a4f97681fba80181ab4c9fed89a79f9))
 
