@@ -5,7 +5,6 @@ import { ToolbarIcon } from "rmwc/Toolbar";
 import { connect } from "react-redux";
 ////Stuff for popover
 import Popover from "material-ui/Popover";
-import { findDOMNode } from "react-dom";
 
 //CoVo javascript imports
 import { toggleLoginPopover } from "./../../actions";
