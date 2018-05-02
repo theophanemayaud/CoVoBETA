@@ -1,8 +1,10 @@
+# Time of elements is from oldest at the bottom to newset at the top
+
 * Working on AddTrip which should upload trip to cloud from Props
 
-# :arrow_up: v0.0.2 Starting work on adding trip
+## :arrow_up: v0.0.2 Starting work on adding trip
 
-# :arrow_down: v0.0.1 Finished work on adding redux state as state
+## :arrow_down: v0.0.1 Finished work on adding redux state as state
 
 * Added localstorage storing and loading of redux state upon each change.
   Had to reimplement some of signInLogicState update user state to only update the redux state's existing params, and not keep on adding and adding because the whole user was being merged. Also had to change to composeWithDevTools ([26ca821c](https://github.com/CoVoCre/CoVoBETA/commit/26ca821c10de4f959d5e71eccfeaec8cc8f00088))
@@ -15,4 +17,4 @@
 
 Updated to react-places-autocomplete v7.0.1
 
-# :arrow_up: v0.0.1 Started to work on adding redux state as state
+## :arrow_up: v0.0.1 Started to work on adding redux state as state
