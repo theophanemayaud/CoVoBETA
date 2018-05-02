@@ -59,6 +59,7 @@ import "./EmptyComponent.css";
 
 //Temporary or unclassified imports
 
+//Descriptions of props, what it does, and what it affects
 //Beginning of implementation
 class EmptyComponent extends Component {
   render() {

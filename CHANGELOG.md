@@ -1,3 +1,9 @@
+* Working on AddTrip which should upload trip to cloud from Props
+
+# :arrow_up: v0.0.2 Starting work on adding trip
+
+# :arrow_down: v0.0.1 Finished work on adding redux state as state
+
 * Added localstorage storing and loading of redux state upon each change.
   Had to reimplement some of signInLogicState update user state to only update the redux state's existing params, and not keep on adding and adding because the whole user was being merged. Also had to change to composeWithDevTools ([26ca821c](https://github.com/CoVoCre/CoVoBETA/commit/26ca821c10de4f959d5e71eccfeaec8cc8f00088))
 
@@ -8,3 +14,5 @@
 * Added redux-devtools-extension to inspect redux state in chrome with devtolls redux extension ([26931592](https://github.com/CoVoCre/CoVoBETA/commit/269315926b50fdb199967e17aa3292e051a81444))
 
 Updated to react-places-autocomplete v7.0.1
+
+# :arrow_up: v0.0.1 Started to work on adding redux state as state
