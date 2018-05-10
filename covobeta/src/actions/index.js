@@ -10,6 +10,13 @@ export const TOGGLE_LOGIN_POPOVER = "TOGGLE_LOGIN_POPOVER";
 export const SET_USER_INFO_AND_SETTINGS = "SET_USER_INFO_AND_SETTINGS";
 export const SET_USER_SIGNED_STATE = "SET_USER_SIGNED_STATE";
 
+//New trip info
+export const SET_NEW_COVO_ARRIVAL_PLACE = "SET_NEW_COVO_ARRIVAL_PLACE";
+export const SET_NEW_COVO_DEPARTURE_PLACE = "SET_NEW_COVO_DEPARTURE_PLACE";
+export const SET_NEW_SUB_DEPARTURE_RDV_POINT =
+  "SET_NEW_SUB_DEPARTURE_RDV_POINT";
+export const SET_NEW_DEPARTURE_TIMESTAMP = "SET_NEW_DEPARTURE_TIMESTAMP";
+
 /*
  * other constants
  */
@@ -52,4 +59,18 @@ export function setUserInfoAndSettings(user) {
 
 export function setUserSignedState(isSignedIn) {
   return { type: SET_USER_SIGNED_STATE, isSignedIn };
+}
+
+//New trip info
+export function setCoVoArrivalPlace(covoArrivalPlace) {
+  return { type: SET_NEW_COVO_ARRIVAL_PLACE, covoArrivalPlace };
+}
+export function setCovoDeparturePlace(covoDeparturePlace) {
+  return { type: SET_NEW_COVO_DEPARTURE_PLACE, covoDeparturePlace };
+}
+export function setSubDepartureRdvPoint(subDepartureRdvPoint) {
+  return { type: SET_NEW_SUB_DEPARTURE_RDV_POINT, subDepartureRdvPoint };
+}
+export function setDepartureTimestamp(departureTimestamp) {
+  return { type: SET_NEW_DEPARTURE_TIMESTAMP, departureTimestamp };
 }

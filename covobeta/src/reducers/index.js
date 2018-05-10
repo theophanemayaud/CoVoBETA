@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+// component for firestore in state
+import { firestoreReducer } from "redux-firestore";
 
 //import todos from './todos'
 //import visibilityFilter from './visibilityFilter'
@@ -6,7 +8,12 @@ import {
   uiThings,
   SET_USER_INFO_AND_SETTINGS,
   SET_USER_SIGNED_STATE,
-  SET_FROM_ADDRESS
+  SET_FROM_ADDRESS,
+  //newTripInfo related
+  SET_NEW_COVO_DEPARTURE_PLACE,
+  SET_NEW_COVO_ARRIVAL_PLACE,
+  SET_NEW_SUB_DEPARTURE_RDV_POINT,
+  SET_NEW_DEPARTURE_TIMESTAMP
 } from "../actions";
 
 var initialState = {
@@ -24,6 +31,12 @@ var initialState = {
     photoURL: null,
     uid: null,
     accessToken: null
+  },
+  newTripInfo: {
+    covoArrivalPlace: "",
+    covoDeparturePlace: "",
+    subDepartureRdvPoint: "",
+    departureTimestamp: new Date()
   },
   utils: {
     toAddress: "",
@@ -65,6 +78,28 @@ function userInfoAndSettings(state = initialState.userInfoAndSettings, action) {
       return state;
   }
 }
+function newTripInfo(state = initialState.newTripInfo, action) {
+  switch (action.type) {
+    case SET_NEW_COVO_ARRIVAL_PLACE:
+      return Object.assign({}, state, {
+        covoArrivalPlace: action.covoArrivalPlace
+      });
+    case SET_NEW_COVO_DEPARTURE_PLACE:
+      return Object.assign({}, state, {
+        covoDeparturePlace: action.covoDeparturePlace
+      });
+    case SET_NEW_SUB_DEPARTURE_RDV_POINT:
+      return Object.assign({}, state, {
+        subDepartureRdvPoint: action.subDepartureRdvPoint
+      });
+    case SET_NEW_DEPARTURE_TIMESTAMP:
+      return Object.assign({}, state, {
+        departureTimestamp: action.departureTimestamp
+      });
+    default:
+      return state;
+  }
+}
 
 function utils(state = initialState.utils, action) {
   switch (action.type) {
@@ -80,6 +115,8 @@ function utils(state = initialState.utils, action) {
 const covoReducers = combineReducers({
   uiState,
   userInfoAndSettings,
-  utils
+  newTripInfo,
+  utils,
+  firestore: firestoreReducer
 });
 export default covoReducers;

@@ -17,6 +17,7 @@ import PageNotFound from "./components/PageNotFound";
 import "./App.css";
 
 //Temporary or unclassified imports
+import TestPage from "./components/TestPage";
 
 //Beginning of implementation
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={HomePage} />
               <Route path="/forum" exact component={CoVoForum} />
+              <Route path="/test" exact component={TestPage} />
               <Route component={PageNotFound} />
             </Switch>
           </CoVoPageContent>

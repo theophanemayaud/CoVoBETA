@@ -8,6 +8,10 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import { save, load } from "redux-localstorage-simple";
+////stuff for firebase
+import { reduxFirestore } from "redux-firestore";
+import firebase from "firebase";
+import "firebase/firestore";
 
 //Content imports
 import "./index.css";
@@ -26,15 +30,37 @@ import reducer from "./reducers";
 /*    Saving to LocalStorage is achieved using Redux
     middleware. The 'save' method is called by Redux
     each time an action is handled by your reducer. */
-
+/*
 const createStoreWithMiddleware = applyMiddleware(
   save() // Saving done here
-)(createStore);
+)(createStore);*/
+
+//Stuff for firebase (firestore)
+const firebaseConfig = {
+  apiKey: "AIzaSyCYpY7U9OHt3KWPuUr9Bsxp7MlX4JPJ9AY",
+  authDomain: "covo-io.firebaseapp.com",
+  databaseURL: "https://covo-io.firebaseio.com",
+  projectId: "covo-io",
+  storageBucket: "covo-io.appspot.com",
+  messagingSenderId: "701812569579"
+}; // config from Firebase Console
+// Initialize firebase instance
+firebase.initializeApp(firebaseConfig, "index");
+// Initialize Cloud Firestore through Firebase
+firebase.firestore();
 
 /*Loading from LocalStorage happens during
     creation of the Redux store.*/
-const store = createStoreWithMiddleware(reducer, load(), composeWithDevTools());
-
+//const store = createStoreWithMiddleware(reducer, load(), composeWithDevTools());
+const store = createStore(
+  reducer,
+  load(),
+  composeWithDevTools(
+    applyMiddleware(save()),
+    reduxFirestore(firebase) // firebase instance as first argument
+    // other store enhancers if any
+  )
+);
 ReactDOM.render(
   <Provider store={store}>
     <App />

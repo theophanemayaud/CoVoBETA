@@ -1,6 +1,12 @@
 # Time of elements is from oldest at the bottom to newset at the top
 
+## :arrow_down:
+
 * Working on AddTrip which should upload trip to cloud from Props
+  * will work with [redux-firestore](https://github.com/CoVoCre/redux-firestore) and [react-redux-firebase](https://github.com/CoVoCre/react-redux-firebase), must add these to redux store creation process
+    * added TestPage and also to router in order to render components in developpment there
+    * mod redux state to include tripsInfo, added reducer and action
+    * adding four fields to add trip, will want to add one as a date-time picker
 
 ## :arrow_up: v0.0.2 Starting work on adding trip
 
