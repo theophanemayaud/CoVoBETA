@@ -6,6 +6,12 @@ import { connect } from "react-redux";
 import { TextField } from "rmwc/TextField";
 import { Button } from "rmwc/Button";
 //date time picker
+import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
+import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
+import TimePicker from "material-ui-pickers/TimePicker";
+import DatePicker from "material-ui-pickers/DatePicker";
+import DateTimePicker from "material-ui-pickers/DateTimePicker";
+import { MuiThemeProvider, createMuiTheme } from "material-ui";
 
 //CoVo javascript imports
 import {
@@ -41,10 +47,45 @@ as well as where it might also be saved*/
  ** Pushes info to the cloud
  **/
 //Beginning of implementation
+const materialTheme = createMuiTheme({
+  overrides: {
+    MuiPickersToolbar: {
+      toolbar: {
+        backgroundColor: "#1db6e7"
+      }
+    },
+    MuiPickersCalendarHeader: {
+      switchHeader: {
+        backgroundColor: "#gggggg",
+        color: "white"
+      }
+    },
+
+    MuiPickersDay: {
+      day: {
+        color: "#1db6e7"
+      },
+      selected: {
+        backgroundColor: "#ffffff"
+      },
+      current: {
+        color: "#fe70c4"
+      }
+    },
+    MuiPickersModal: {
+      dialogAction: {
+        "& > button": {
+          color: "#fe70c4"
+        }
+      }
+    }
+  }
+});
+
 class AddTrip extends Component {
   saveToFirestore = () => {
     console.log("In saveToFirestore with value :");
-    console.log(this.state);
+    console.log(this.props.newTripInfo);
   };
 
   render() {
@@ -68,12 +109,22 @@ class AddTrip extends Component {
           onChange={this.props.onSubDepartureRdvPointChange}
           label="Precise RDV point"
         />
-        <TextField
-          outlined
-          value={this.props.newTripInfo.departureTimestamp}
-          onChange={this.props.onDepartureTimestampChange}
-          label="Time of departure"
-        />
+        <MuiThemeProvider theme={materialTheme}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DateTimePicker
+              autoOk
+              ampm={false}
+              disablePast
+              autoSubmit
+              value={this.props.newTripInfo.departureTimestamp}
+              onChange={this.props.onDepartureTimestampChange}
+              label="Moment of departure"
+              showTodayButton
+              outlined
+              TextFieldComponent={TextField}
+            />
+          </MuiPickersUtilsProvider>
+        </MuiThemeProvider>
         <Button raised onClick={this.saveToFirestore}>
           Save to firestore
         </Button>
@@ -98,8 +149,8 @@ const mapDispatchToProps = dispatch => {
     onSubDepartureRdvPointChange: event => {
       dispatch(setSubDepartureRdvPoint(event.target.value));
     },
-    onDepartureTimestampChange: event => {
-      dispatch(setDepartureTimestamp(event.target.value));
+    onDepartureTimestampChange: date => {
+      dispatch(setDepartureTimestamp(date));
     }
   };
 };
