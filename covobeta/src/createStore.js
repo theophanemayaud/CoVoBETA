@@ -1,3 +1,9 @@
+import { createStore, compose } from "redux";
+import rootReducer from "./reducer";
+import { reduxFirestore } from "redux-firestore";
+import firebase from "firebase";
+import "firebase/firestore";
+
 //Stuff for firebase (firestore)
 const firebaseConfig = {
   apiKey: "AIzaSyCYpY7U9OHt3KWPuUr9Bsxp7MlX4JPJ9AY",
@@ -8,9 +14,9 @@ const firebaseConfig = {
   messagingSenderId: "701812569579"
 }; // config from Firebase Console
 // Initialize firebase instance
-firebase.initializeApp(firebaseConfig, "firestore");
-// Initialize Cloud Firestore through Firebase
-firebase.firestore();
+const firestore = firebase.firestore();
+const settings = { /* your settings... */ timestampsInSnapshots: true };
+firestore.settings(settings);
 
 /*Loading from LocalStorage happens during
     creation of the Redux store.*/
