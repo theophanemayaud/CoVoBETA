@@ -22,7 +22,7 @@ import "typeface-roboto";
  ** because of material-components-web css) **/
 import registerServiceWorker from "./registerServiceWorker";
 import App from "./App";
-import reducer from "./reducers";
+import rootReducer from "./reducers";
 
 //Temporary or unclassified imports
 
@@ -53,11 +53,18 @@ firebase.firestore();
     creation of the Redux store.*/
 //const store = createStoreWithMiddleware(reducer, load(), composeWithDevTools());
 const store = createStore(
-  reducer,
-  load(),
+  rootReducer,
+  load({
+    states: ["uiState", "userInfoAndSettings", "newTripInfo", "utils"]
+  }),
   composeWithDevTools(
-    applyMiddleware(save()),
-    reduxFirestore(firebase) // firebase instance as first argument
+    reduxFirestore(firebase),
+    applyMiddleware(
+      save({
+        states: ["uiState", "userInfoAndSettings", "newTripInfo", "utils"]
+      })
+    )
+    // firebase instance as first argument
     // other store enhancers if any
   )
 );

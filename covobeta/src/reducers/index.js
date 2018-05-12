@@ -112,11 +112,11 @@ function utils(state = initialState.utils, action) {
   }
 }
 
-const covoReducers = combineReducers({
+const rootReducer = combineReducers({
   uiState,
   userInfoAndSettings,
   newTripInfo,
   utils,
   firestore: firestoreReducer
 });
-export default covoReducers;
+export default rootReducer;

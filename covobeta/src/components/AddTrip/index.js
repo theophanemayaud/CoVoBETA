@@ -20,6 +20,7 @@ import {
   setSubDepartureRdvPoint,
   setDepartureTimestamp
 } from "../../actions";
+import db from "../db";
 
 //Content imports
 import "./AddTrip.css";
@@ -87,6 +88,17 @@ class AddTrip extends Component {
     console.log("In saveToFirestore with value :");
     console.log(this.props.newTripInfo);
   };
+  loadTrips = () => {
+    db
+      .collection("covo_trips")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          console.log(doc.id + " => ");
+          console.log(doc.data());
+        });
+      });
+  };
 
   render() {
     return (
@@ -128,6 +140,17 @@ class AddTrip extends Component {
         <Button raised onClick={this.saveToFirestore}>
           Save to firestore
         </Button>
+        <div>
+          <Button raised onClick={this.loadTrips}>
+            Load Trips
+          </Button>
+          <div>Loaded trips : {this.props.firestore.covo_trips}</div>
+        </div>
+        <div>
+          <Button raised onClick={() => console.log(this.props)}>
+            Log props
+          </Button>
+        </div>
       </div>
     );
   }
@@ -135,7 +158,8 @@ class AddTrip extends Component {
 
 const mapStateToProps = state => ({
   newTripInfo: state.newTripInfo,
-  firestore: state.firestore
+  firestore: state.firestore,
+  covo_trips: state.firestore.ordered.covo_places
 });
 
 const mapDispatchToProps = dispatch => {
