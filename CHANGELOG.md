@@ -3,8 +3,12 @@
 ## :arrow_down: v0.0.2 Starting work on adding trip
 
 * Now will work on pushing to firebase.
+
   * worked a little on javascript firestore/firebase in db, it loads.
   * (added start coding mac file to open terminals and atom)
+  * in order to use firestore functions from state, need to use const {firestore} = this.context.store, why i don't know ??? Also, there needs to be PropTypes and static contextTypes = {store: PropTypes.object.isRequired};
+  * found a way to display first loaded trip uid, approx duration and time of departure
+
 * Working on AddTrip which should upload trip to cloud from Props
   * will work with [redux-firestore](https://github.com/CoVoCre/redux-firestore) and [react-redux-firebase](https://github.com/CoVoCre/react-redux-firebase), must add these to redux store creation process
   * added TestPage and also to router in order to render components in developpment there

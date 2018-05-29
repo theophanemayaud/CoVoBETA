@@ -18,8 +18,9 @@ class TestPage extends Component {
   render() {
     return (
       <div className="test-page">
-        {/*<AddTrip />*/}
+        {/*<CoVoTrips />*/}
         {/*<CoVoTripsFromContext />*/}
+        {/*<AddTrip />*/}
         <CoVoTrips />
       </div>
     );

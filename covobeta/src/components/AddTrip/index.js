@@ -12,6 +12,7 @@ import TimePicker from "material-ui-pickers/TimePicker";
 import DatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import { MuiThemeProvider, createMuiTheme } from "material-ui";
+import materialTheme from "./materialTheme";
 
 //CoVo javascript imports
 import {
@@ -48,7 +49,7 @@ as well as where it might also be saved*/
  ** Pushes info to the cloud
  **/
 //Beginning of implementation
-const materialTheme = createMuiTheme({
+/*const materialTheme = createMuiTheme({
   overrides: {
     MuiPickersToolbar: {
       toolbar: {
@@ -81,9 +82,12 @@ const materialTheme = createMuiTheme({
       }
     }
   }
-});
+});*/
 
 class AddTrip extends Component {
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
   saveToFirestore = () => {
     console.log("In saveToFirestore with value :");
     console.log(this.props.newTripInfo);
@@ -101,6 +105,8 @@ class AddTrip extends Component {
   };
 
   render() {
+    const { firestore } = this.context.store;
+
     return (
       <div className="add-trip">
         <TextField
@@ -137,7 +143,7 @@ class AddTrip extends Component {
             />
           </MuiPickersUtilsProvider>
         </MuiThemeProvider>
-        <Button raised onClick={this.saveToFirestore}>
+        <Button raised onClick={() => firestore.get("covo_trips")}>
           Save to firestore
         </Button>
         <div>

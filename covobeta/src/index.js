@@ -72,6 +72,7 @@ const store = createStore(
     // other store enhancers if any
   )
 );
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
