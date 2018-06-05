@@ -12,28 +12,37 @@ class CoVoTrips extends Component {
     firestore.get("covo_trips");*/
     // does not work    this.context.store.get("covo_trips");
   }
-
+  tripDate(departure_timestamp) {
+    var date_and_time = new Date(departure_timestamp.seconds * 1000);
+    var date_and_time_string = date_and_time.toString();
+    return date_and_time_string;
+  }
   render() {
     console.log("In CoVoTrips render");
     console.log(this.props);
+
     const { firestore } = this.context.store;
     const CovoTripsShown = firestore => {
       if (typeof this.props.covo_trips !== "undefined") {
-        // the variable is defined
-        const depart_date = new Date(
-          this.props.covo_trips[0].departure_timestamp.seconds * 1000
-        );
         return (
           <div>
-            <div>Trip uid : {JSON.stringify(this.props.covo_trips[0].id)}</div>
-            <div>
-              Trip approx duration :
-              {JSON.stringify(this.props.covo_trips[0].approx_hours_duration)}
-            </div>
-            <div>
-              Trip time of departure :
-              {depart_date.toString()}
-            </div>
+            <hr />
+            {this.props.covo_trips.map((covo_trip, index) => (
+              <div key={covo_trip.id}>
+                <div>
+                  Trip {index + 1} Id : {JSON.stringify(covo_trip.id)}
+                </div>
+                <div>
+                  Trip approx duration :
+                  {JSON.stringify(covo_trip.approx_hours_duration)}
+                </div>
+                <div>
+                  Trip time of departure :
+                  {this.tripDate(covo_trip.departure_timestamp)}
+                </div>
+                <hr />
+              </div>
+            ))}
           </div>
         );
       } else {
