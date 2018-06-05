@@ -51,17 +51,12 @@ class CoVoTrips extends Component {
     };
     return (
       <div>
-        {/*{this.props.covo_trips.map(covo_trip => (
-          <div key={covo_trip.id}>{JSON.stringify(covo_trip)}</div>
-        ))}*/}
         <Button raised onClick={() => console.log(this.props)}>
           Log Props
         </Button>
         <Button raised onClick={() => firestore.get("covo_trips")}>
           Get covo_trips
         </Button>
-        <div>Yes !!!</div>
-
         <CovoTripsShown firestore={firestore} />
       </div>
     );

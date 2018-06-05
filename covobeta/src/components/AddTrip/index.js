@@ -21,7 +21,7 @@ import {
   setSubDepartureRdvPoint,
   setDepartureTimestamp
 } from "../../actions";
-import db from "../db";
+import DisplayTrips from "./DisplayTrips.js";
 
 //Content imports
 import "./AddTrip.css";
@@ -49,41 +49,6 @@ as well as where it might also be saved*/
  ** Pushes info to the cloud
  **/
 //Beginning of implementation
-/*const materialTheme = createMuiTheme({
-  overrides: {
-    MuiPickersToolbar: {
-      toolbar: {
-        backgroundColor: "#1db6e7"
-      }
-    },
-    MuiPickersCalendarHeader: {
-      switchHeader: {
-        backgroundColor: "#gggggg",
-        color: "white"
-      }
-    },
-
-    MuiPickersDay: {
-      day: {
-        color: "#1db6e7"
-      },
-      selected: {
-        backgroundColor: "#ffffff"
-      },
-      current: {
-        color: "#fe70c4"
-      }
-    },
-    MuiPickersModal: {
-      dialogAction: {
-        "& > button": {
-          color: "#fe70c4"
-        }
-      }
-    }
-  }
-});*/
-
 class AddTrip extends Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
@@ -91,17 +56,6 @@ class AddTrip extends Component {
   saveToFirestore = () => {
     console.log("In saveToFirestore with value :");
     console.log(this.props.newTripInfo);
-  };
-  loadTrips = () => {
-    db
-      .collection("covo_trips")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          console.log(doc.id + " => ");
-          console.log(doc.data());
-        });
-      });
   };
 
   render() {
@@ -143,14 +97,20 @@ class AddTrip extends Component {
             />
           </MuiPickersUtilsProvider>
         </MuiThemeProvider>
-        <Button raised onClick={() => firestore.get("covo_trips")}>
+        <Button raised onClick={this.saveToFirestore}>
           Save to firestore
         </Button>
         <div>
-          <Button raised onClick={this.loadTrips}>
+          <Button
+            raised
+            onClick={() => {
+              firestore.get("covo_trips");
+              console.log("Loading covo_trips");
+            }}
+          >
             Load Trips
           </Button>
-          <div>Loaded trips : {this.props.firestore.covo_trips}</div>
+          <div>Loaded trips : {DisplayTrips(this.props.covo_trips)}</div>
         </div>
         <div>
           <Button raised onClick={() => console.log(this.props)}>
@@ -164,8 +124,7 @@ class AddTrip extends Component {
 
 const mapStateToProps = state => ({
   newTripInfo: state.newTripInfo,
-  firestore: state.firestore,
-  covo_trips: state.firestore.ordered.covo_places
+  covo_trips: state.firestore.ordered.covo_trips
 });
 
 const mapDispatchToProps = dispatch => {

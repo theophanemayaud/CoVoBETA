@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import "./TestPage.css";
 
 //Temporary or unclassified imports
-//import AddTrip from "../AddTrip";
+import AddTrip from "../AddTrip";
 //import CoVoTripsFromContext from "./Tests/CoVoTripsFromContext.js";
 import CoVoTrips from "./Tests/CoVoTrips";
 
@@ -18,10 +18,13 @@ class TestPage extends Component {
   render() {
     return (
       <div className="test-page">
+        <div>Test content beneath</div>
+        <hr />
+        <hr />
         {/*<CoVoTrips />*/}
         {/*<CoVoTripsFromContext />*/}
         {/*<AddTrip />*/}
-        <CoVoTrips />
+        <AddTrip />
       </div>
     );
   }
