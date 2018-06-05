@@ -8,7 +8,7 @@
   * (added start coding mac file to open terminals and atom)
   * in order to use firestore functions from state, need to use const {firestore} = this.context.store, why i don't know ??? Also, there needs to be PropTypes and static contextTypes = {store: PropTypes.object.isRequired};
   * found a way to display first loaded trip uid, approx duration and time of departure 152817699257cf3eee095d26c520ff40a1a074d8 ([15281769](https://github.com/CoVoCre/CoVoBETA/commit/152817699257cf3eee095d26c520ff40a1a074d8))
-  * fetching and displaying of firestore trips working in /TestPage/Tests/CoVoTrips.js ! ([](https://github.com/CoVoCre/CoVoBETA/commit/))
+  * fetching and displaying of firestore trips working in /TestPage/Tests/CoVoTrips.js ! ([0a45452a](https://github.com/CoVoCre/CoVoBETA/commit/0a45452a17342383ffeee8d55c43c8a9eb393d54))
 
 * Working on AddTrip which should upload trip to cloud from Props
   * will work with [redux-firestore](https://github.com/CoVoCre/redux-firestore) and [react-redux-firebase](https://github.com/CoVoCre/react-redux-firebase), must add these to redux store creation process
