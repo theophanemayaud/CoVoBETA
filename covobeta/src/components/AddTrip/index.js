@@ -17,7 +17,7 @@ import materialTheme from "./materialTheme";
 //CoVo javascript imports
 import {
   setCoVoArrivalPlace,
-  setCovoDeparturePlace,
+  setDeparturePlaceTextbox,
   setSubDepartureRdvPoint,
   setDepartureTimestamp,
   setReadyToPush
@@ -67,8 +67,8 @@ class AddTrip extends Component {
       <div className="add-trip">
         <TextField
           outlined
-          value={this.props.newTripInfo.covoDeparturePlace}
-          onChange={this.props.onCovoDeparturePlaceChange}
+          value={this.props.newTripInfo.departurePlaceTextbox}
+          onChange={this.props.onDeparturePlaceTextboxChange}
           label="Departure"
         />
         <TextField
@@ -161,8 +161,8 @@ const mapDispatchToProps = dispatch => {
     onCovoArrivalPlaceChange: event => {
       dispatch(setCoVoArrivalPlace(event.target.value));
     },
-    onCovoDeparturePlaceChange: event => {
-      dispatch(setCovoDeparturePlace(event.target.value));
+    onDeparturePlaceTextboxChange: event => {
+      dispatch(setDeparturePlaceTextbox(event.target.value));
     },
     onSubDepartureRdvPointChange: event => {
       dispatch(setSubDepartureRdvPoint(event.target.value));

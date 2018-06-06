@@ -10,7 +10,7 @@ import {
   SET_USER_SIGNED_STATE,
   SET_FROM_ADDRESS,
   //newTripInfo related
-  SET_NEW_COVO_DEPARTURE_PLACE,
+  SET_NEW_DEPARTURE_PLACE_TEXT,
   SET_NEW_COVO_ARRIVAL_PLACE,
   SET_NEW_SUB_DEPARTURE_RDV_POINT,
   SET_NEW_DEPARTURE_TIMESTAMP,
@@ -88,9 +88,9 @@ function newTripInfo(state = initialState.newTripInfo, action) {
       return Object.assign({}, state, {
         covoArrivalPlace: action.covoArrivalPlace
       });
-    case SET_NEW_COVO_DEPARTURE_PLACE:
+    case SET_NEW_DEPARTURE_PLACE_TEXT:
       return Object.assign({}, state, {
-        covoDeparturePlace: action.covoDeparturePlace
+        departurePlaceTextbox: action.departurePlaceTextbox
       });
     case SET_NEW_SUB_DEPARTURE_RDV_POINT:
       return Object.assign({}, state, {

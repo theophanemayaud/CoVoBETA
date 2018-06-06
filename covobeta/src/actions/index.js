@@ -12,7 +12,7 @@ export const SET_USER_SIGNED_STATE = "SET_USER_SIGNED_STATE";
 
 //New trip info
 export const SET_NEW_COVO_ARRIVAL_PLACE = "SET_NEW_COVO_ARRIVAL_PLACE";
-export const SET_NEW_COVO_DEPARTURE_PLACE = "SET_NEW_COVO_DEPARTURE_PLACE";
+export const SET_NEW_DEPARTURE_PLACE_TEXT = "SET_NEW_DEPARTURE_PLACE_TEXT";
 export const SET_NEW_SUB_DEPARTURE_RDV_POINT =
   "SET_NEW_SUB_DEPARTURE_RDV_POINT";
 export const SET_NEW_DEPARTURE_TIMESTAMP = "SET_NEW_DEPARTURE_TIMESTAMP";
@@ -66,8 +66,8 @@ export function setUserSignedState(isSignedIn) {
 export function setCoVoArrivalPlace(covoArrivalPlace) {
   return { type: SET_NEW_COVO_ARRIVAL_PLACE, covoArrivalPlace };
 }
-export function setCovoDeparturePlace(covoDeparturePlace) {
-  return { type: SET_NEW_COVO_DEPARTURE_PLACE, covoDeparturePlace };
+export function setDeparturePlaceTextbox(departurePlaceTextbox) {
+  return { type: SET_NEW_DEPARTURE_PLACE_TEXT, departurePlaceTextbox };
 }
 export function setSubDepartureRdvPoint(subDepartureRdvPoint) {
   return { type: SET_NEW_SUB_DEPARTURE_RDV_POINT, subDepartureRdvPoint };

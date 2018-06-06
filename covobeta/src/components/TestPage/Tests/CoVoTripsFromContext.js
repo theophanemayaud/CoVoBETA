@@ -16,7 +16,7 @@ import { MuiThemeProvider, createMuiTheme } from "material-ui";
 //CoVo javascript imports
 import {setCoVoArrivalPlace
 ,
-setCovoDeparturePlace, setSubDepartureRdvPoint,setDepartureTimestamp} from "../../../actions";
+setDeparturePlaceTextbox, setSubDepartureRdvPoint,setDepartureTimestamp} from "../../../actions";
 //Content imports
 
 //Temporary or unclassified imports
@@ -74,8 +74,8 @@ class CoVoTripsFromContext extends Component {
       <div className="add-trip">
         <TextField
           outlined
-          value={this.props.newTripInfo.covoDeparturePlace}
-          onChange={this.props.onCovoDeparturePlaceChange}
+          value={this.props.newTripInfo.departurePlaceTextbox}
+          onChange={this.props.onDeparturePlaceTextboxChange}
           label="Departure"
         />
         <TextField
@@ -136,8 +136,8 @@ const mapDispatchToProps = dispatch => {
     onCovoArrivalPlaceChange: event => {
             dispatch(setCoVoArrivalPlace(event.target.value));
     },
-    onCovoDeparturePlaceChange: event => {
-            dispatch(setCovoDeparturePlace(event.target.value));
+    onDeparturePlaceTextboxChange: event => {
+            dispatch(setDeparturePlaceTextbox(event.target.value));
     },
     onSubDepartureRdvPointChange: event => {
             dispatch(setSubDepartureRdvPoint(event.target.value));
