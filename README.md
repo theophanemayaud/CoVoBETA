@@ -8,6 +8,9 @@ Below you'll find some useful info, mostly for myself at first.
 
 ## Table of Contents
 
+* [Firestore stuff](#firestore-stuff)
+  * [Timestamp](#timestamp)
+  * [Places](#places)
 * [Images in react](#images-in-react)
 * [Router component for react](#router-component-for-react)
 * [Code snippets](#code-snippets)
@@ -15,7 +18,19 @@ Below you'll find some useful info, mostly for myself at first.
   * [Reference commit in .md](#commit-md)
 * [Redux in CoVo](#redux-in-covo)
 
-  ## Images in react
+## Firestore stuff
+
+### Timestamp
+
+The firestore timestamp is just and object with .seconds and .miliseconds properties, so in order to use as a date, need to create new Date(timestamp.seconds\*1000) and then use that new date.
+
+### Places
+
+CoVo will have a firestore collection with all places used, sorted by geolocation.
+There will be small squares, and places will be grouped if they are within the same square. There are then collections for each squares of sub places, with descriptions, photos of the meeting point.
+Thus, with google maps we can get the location of the place, and identify the correct CoVo square. Then make the user select an existing meeting place or create a new one.
+
+## Images in react
 
 Either require first like `import logo from "./../../logo.png";'`
 Or also just do like `src={"images/logo.png"}` so just the brackets.
@@ -51,6 +66,8 @@ Here are some code samples to copy and paste in order to save time re thinking t
 import React, { Component } from "react";
 
 //Installed dependencies imports
+//import PropTypes from "prop-types";
+//import { connect } from "react-redux";
 
 //CoVo javascript imports
 
@@ -60,13 +77,38 @@ import "./EmptyComponent.css";
 //Temporary or unclassified imports
 
 //Descriptions of props, what it does, and what it affects
+/*General description :
+* Props :
+ ** ...(props and descriptions)
+* Needs to ready from store :
+* Store actions needed :
+* Affects
+ ** return: ...
+ ** ...
+ **/
 //Beginning of implementation
 class EmptyComponent extends Component {
+  //static contextTypes = {
+  //  store: PropTypes.object.isRequired
+  //};
   render() {
-    return <div className="empty-component">Empty data</div>;
+    return <div className="empty-component">In EmptyComponent</div>;
   }
 }
 
+/*const mapStateToProps = state => ({
+  exampleProp: state.exampleStatePart
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    examplePropFunction: () => {
+      dispatch(exampleStoreAction(false));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmptyComponent);*/
 export default EmptyComponent;
 ```
 

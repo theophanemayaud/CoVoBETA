@@ -13,7 +13,8 @@ import {
   SET_NEW_COVO_DEPARTURE_PLACE,
   SET_NEW_COVO_ARRIVAL_PLACE,
   SET_NEW_SUB_DEPARTURE_RDV_POINT,
-  SET_NEW_DEPARTURE_TIMESTAMP
+  SET_NEW_DEPARTURE_TIMESTAMP,
+  SET_READY_TO_PUSH
 } from "../actions";
 
 var initialState = {
@@ -33,10 +34,13 @@ var initialState = {
     accessToken: null
   },
   newTripInfo: {
-    covoArrivalPlace: "",
+    departurePlaceTextbox: "",
     covoDeparturePlace: "",
     subDepartureRdvPoint: "",
-    departureTimestamp: new Date()
+    arrivalPlaceTextbox: "",
+    covoArrivalPlace: "",
+    departureTimestamp: new Date(),
+    readyToPush: false
   },
   utils: {
     toAddress: "",
@@ -95,6 +99,10 @@ function newTripInfo(state = initialState.newTripInfo, action) {
     case SET_NEW_DEPARTURE_TIMESTAMP:
       return Object.assign({}, state, {
         departureTimestamp: action.departureTimestamp
+      });
+    case SET_READY_TO_PUSH:
+      return Object.assign({}, state, {
+        readyToPush: action.readyToPush
       });
     default:
       return state;

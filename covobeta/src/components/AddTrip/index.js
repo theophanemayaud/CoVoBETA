@@ -19,9 +19,11 @@ import {
   setCoVoArrivalPlace,
   setCovoDeparturePlace,
   setSubDepartureRdvPoint,
-  setDepartureTimestamp
+  setDepartureTimestamp,
+  setReadyToPush
 } from "../../actions";
 import DisplayTrips from "./DisplayTrips.js";
+import PushTripToFirestore from "./../PushTripToFirestore";
 
 //Content imports
 import "./AddTrip.css";
@@ -97,9 +99,10 @@ class AddTrip extends Component {
             />
           </MuiPickersUtilsProvider>
         </MuiThemeProvider>
-        <Button raised onClick={this.saveToFirestore}>
+        <Button raised onClick={this.props.setReadyToPush}>
           Save to firestore
         </Button>
+        <PushTripToFirestore />
         <div>
           <Button
             raised
@@ -115,6 +118,32 @@ class AddTrip extends Component {
         <div>
           <Button raised onClick={() => console.log(this.props)}>
             Log props
+          </Button>
+          <Button
+            raised
+            onClick={() => {
+              console.log(this.props.newTripInfo.departureTimestamp);
+              const depTstp = new Date(
+                this.props.newTripInfo.departureTimestamp
+              );
+              console.log(depTstp);
+              console.log(depTstp.getTime());
+            }}
+          >
+            Print chosen time timestamp
+          </Button>
+          <Button
+            raised
+            onClick={() => {
+              console.log(this.props.covo_trips[0].departure_timestamp.seconds);
+              const timestamp = new Date(
+                this.props.covo_trips[0].departure_timestamp.seconds * 1000
+              );
+              console.log(timestamp);
+              console.log(timestamp.getTime());
+            }}
+          >
+            Print first trip timestamp
           </Button>
         </div>
       </div>
@@ -140,6 +169,9 @@ const mapDispatchToProps = dispatch => {
     },
     onDepartureTimestampChange: date => {
       dispatch(setDepartureTimestamp(date));
+    },
+    setReadyToPush: () => {
+      dispatch(setReadyToPush(true));
     }
   };
 };

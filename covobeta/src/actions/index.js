@@ -16,6 +16,7 @@ export const SET_NEW_COVO_DEPARTURE_PLACE = "SET_NEW_COVO_DEPARTURE_PLACE";
 export const SET_NEW_SUB_DEPARTURE_RDV_POINT =
   "SET_NEW_SUB_DEPARTURE_RDV_POINT";
 export const SET_NEW_DEPARTURE_TIMESTAMP = "SET_NEW_DEPARTURE_TIMESTAMP";
+export const SET_READY_TO_PUSH = "SET_READY_TO_PUSH";
 
 /*
  * other constants
@@ -73,4 +74,7 @@ export function setSubDepartureRdvPoint(subDepartureRdvPoint) {
 }
 export function setDepartureTimestamp(departureTimestamp) {
   return { type: SET_NEW_DEPARTURE_TIMESTAMP, departureTimestamp };
+}
+export function setReadyToPush(readyToPush) {
+  return { type: SET_READY_TO_PUSH, readyToPush };
 }
