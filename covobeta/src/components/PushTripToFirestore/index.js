@@ -59,7 +59,7 @@ class PushTripToFirestore extends Component {
         return (
           <div>{this.bareSnackbar("Please choose sub departure point")}</div>
         );
-      } else if (this.props.newTripInfo.covoArrivalPlace === "") {
+      } else if (this.props.newTripInfo.arrivalPlaceTextbox === "") {
         return <div>{this.bareSnackbar("Please choose an arrival place")}</div>;
       } else if (this.props.newTripInfo.departureTimestamp === "") {
         return <div>{this.bareSnackbar("Please choose a departure time")}</div>;
@@ -81,7 +81,7 @@ const mapDispatchToProps = dispatch => {
     unsetReadyToPush: () => {
       dispatch(setReadyToPush(false));
     }
-    /*onCovoArrivalPlaceChange: event => {
+    /*onArrivalPlaceTextboxChange: event => {
       dispatch(setCoVoArrivalPlace(event.target.value));
     },
     onDeparturePlaceTextboxChange: event => {

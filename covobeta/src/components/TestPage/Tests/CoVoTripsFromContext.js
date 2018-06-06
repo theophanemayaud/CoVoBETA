@@ -80,8 +80,8 @@ class CoVoTripsFromContext extends Component {
         />
         <TextField
           outlined
-          value={this.props.newTripInfo.covoArrivalPlace}
-          onChange={this.props.onCovoArrivalPlaceChange}
+          value={this.props.newTripInfo.arrivalPlaceTextbox}
+          onChange={this.props.onArrivalPlaceTextboxChange}
           label="Destination"
         />
         <TextField
@@ -133,7 +133,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCovoArrivalPlaceChange: event => {
+    onArrivalPlaceTextboxChange: event => {
             dispatch(setCoVoArrivalPlace(event.target.value));
     },
     onDeparturePlaceTextboxChange: event => {
