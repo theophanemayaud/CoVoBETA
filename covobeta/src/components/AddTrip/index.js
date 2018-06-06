@@ -18,7 +18,7 @@ import materialTheme from "./materialTheme";
 import {
   setCoVoArrivalPlace,
   setDeparturePlaceTextbox,
-  setSubDepartureRdvPoint,
+  setSubDepartureRdvText,
   setDepartureTimestamp,
   setReadyToPush
 } from "../../actions";
@@ -79,8 +79,8 @@ class AddTrip extends Component {
         />
         <TextField
           outlined
-          value={this.props.newTripInfo.subDepartureRdvPoint}
-          onChange={this.props.onSubDepartureRdvPointChange}
+          value={this.props.newTripInfo.subDepartureRdvText}
+          onChange={this.props.onSubDepartureRdvTextChange}
           label="Precise RDV point"
         />
         <MuiThemeProvider theme={materialTheme}>
@@ -164,8 +164,8 @@ const mapDispatchToProps = dispatch => {
     onDeparturePlaceTextboxChange: event => {
       dispatch(setDeparturePlaceTextbox(event.target.value));
     },
-    onSubDepartureRdvPointChange: event => {
-      dispatch(setSubDepartureRdvPoint(event.target.value));
+    onSubDepartureRdvTextChange: event => {
+      dispatch(setSubDepartureRdvText(event.target.value));
     },
     onDepartureTimestampChange: date => {
       dispatch(setDepartureTimestamp(date));

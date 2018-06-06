@@ -13,8 +13,7 @@ export const SET_USER_SIGNED_STATE = "SET_USER_SIGNED_STATE";
 //New trip info
 export const SET_NEW_ARRIVAL_PLACE_TEXT = "SET_NEW_ARRIVAL_PLACE_TEXT";
 export const SET_NEW_DEPARTURE_PLACE_TEXT = "SET_NEW_DEPARTURE_PLACE_TEXT";
-export const SET_NEW_SUB_DEPARTURE_RDV_POINT =
-  "SET_NEW_SUB_DEPARTURE_RDV_POINT";
+export const SET_NEW_SUB_DEPARTURE_RDV_TEXT = "SET_NEW_SUB_DEPARTURE_RDV_TEXT";
 export const SET_NEW_DEPARTURE_TIMESTAMP = "SET_NEW_DEPARTURE_TIMESTAMP";
 export const SET_READY_TO_PUSH = "SET_READY_TO_PUSH";
 
@@ -69,8 +68,8 @@ export function setCoVoArrivalPlace(arrivalPlaceTextbox) {
 export function setDeparturePlaceTextbox(departurePlaceTextbox) {
   return { type: SET_NEW_DEPARTURE_PLACE_TEXT, departurePlaceTextbox };
 }
-export function setSubDepartureRdvPoint(subDepartureRdvPoint) {
-  return { type: SET_NEW_SUB_DEPARTURE_RDV_POINT, subDepartureRdvPoint };
+export function setSubDepartureRdvText(subDepartureRdvText) {
+  return { type: SET_NEW_SUB_DEPARTURE_RDV_TEXT, subDepartureRdvText };
 }
 export function setDepartureTimestamp(departureTimestamp) {
   return { type: SET_NEW_DEPARTURE_TIMESTAMP, departureTimestamp };

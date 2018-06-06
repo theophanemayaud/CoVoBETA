@@ -12,7 +12,7 @@ import {
   //newTripInfo related
   SET_NEW_DEPARTURE_PLACE_TEXT,
   SET_NEW_ARRIVAL_PLACE_TEXT,
-  SET_NEW_SUB_DEPARTURE_RDV_POINT,
+  SET_NEW_SUB_DEPARTURE_RDV_TEXT,
   SET_NEW_DEPARTURE_TIMESTAMP,
   SET_READY_TO_PUSH
 } from "../actions";
@@ -36,7 +36,6 @@ var initialState = {
   newTripInfo: {
     departurePlaceTextbox: "",
     covoDeparturePlace: "",
-    subDepartureRdvPoint: "",
     subDepartureRdvText: "",
     covoSubDepartureRdv: "",
     arrivalPlaceTextbox: "",
@@ -94,9 +93,9 @@ function newTripInfo(state = initialState.newTripInfo, action) {
       return Object.assign({}, state, {
         departurePlaceTextbox: action.departurePlaceTextbox
       });
-    case SET_NEW_SUB_DEPARTURE_RDV_POINT:
+    case SET_NEW_SUB_DEPARTURE_RDV_TEXT:
       return Object.assign({}, state, {
-        subDepartureRdvPoint: action.subDepartureRdvPoint
+        subDepartureRdvText: action.subDepartureRdvText
       });
     case SET_NEW_DEPARTURE_TIMESTAMP:
       return Object.assign({}, state, {
