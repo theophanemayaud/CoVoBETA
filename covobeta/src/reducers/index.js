@@ -37,6 +37,8 @@ var initialState = {
     departurePlaceTextbox: "",
     covoDeparturePlace: "",
     subDepartureRdvPoint: "",
+    subDepartureRdvText: "",
+    covoSubDepartureRdv: "",
     arrivalPlaceTextbox: "",
     covoArrivalPlace: "",
     departureTimestamp: new Date(),
