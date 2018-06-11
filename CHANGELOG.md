@@ -12,6 +12,7 @@
   * trying to get trip push to work in AddTrip - it now displays
   * chose time is a string making possible to create a date and then call .getTime() to get timestamp in miliseconds, whereas firestore timestamp is just an object with .seconds and .miliseconds, so have to create time = new Date(.seconds\*1000) and then print date with just time
   * adding PushTripToFirestore component to verify info and push new trip info, or to return error message
+  * need new logic for new trip and covo places, in order to identify groups and all. Added info to readme, will add component to choose a place. It must makes user search with text through google places, get the coordinates, calculate the covo place and put it in the state
 
 * Working on AddTrip which should upload trip to cloud from Props
 

@@ -8,10 +8,8 @@ import { Button } from "rmwc/Button";
 //date time picker
 import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
 import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
-import TimePicker from "material-ui-pickers/TimePicker";
-import DatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
-import { MuiThemeProvider, createMuiTheme } from "material-ui";
+import { MuiThemeProvider } from "material-ui";
 import materialTheme from "./materialTheme";
 
 //CoVo javascript imports
@@ -24,6 +22,7 @@ import {
 } from "../../actions";
 import DisplayTrips from "./DisplayTrips.js";
 import PushTripToFirestore from "./../PushTripToFirestore";
+import CoVoPlaceChooser from "./../CoVoPlaceChooser";
 
 //Content imports
 import "./AddTrip.css";
@@ -65,31 +64,37 @@ class AddTrip extends Component {
 
     return (
       <div className="add-trip">
-        <TextField
-          outlined
-          value={this.props.newTripInfo.departurePlaceTextbox}
-          onChange={this.props.onDeparturePlaceTextboxChange}
-          label="Departure"
+        <CoVoPlaceChooser
+          boxName="Departure"
+          boxContent={this.props.newTripInfo.departurePlaceTextbox}
+          boxContentChange={this.props.onDeparturePlaceTextboxChange}
+          onCoVoPlaceChosen={() =>
+            console.log("Departure place has been chosen")
+          }
         />
-        <TextField
-          outlined
-          value={this.props.newTripInfo.arrivalPlaceTextbox}
-          onChange={this.props.onArrivalPlaceTextboxChange}
-          label="Destination"
+        <CoVoPlaceChooser
+          boxName="Destination"
+          boxContent={this.props.newTripInfo.arrivalPlaceTextbox}
+          boxContentChange={this.props.onArrivalPlaceTextboxChange}
+          onCoVoPlaceChosen={() =>
+            console.log("Destination place has been chosen")
+          }
         />
-        <TextField
-          outlined
-          value={this.props.newTripInfo.subDepartureRdvText}
-          onChange={this.props.onSubDepartureRdvTextChange}
-          label="Precise RDV point"
+        <CoVoPlaceChooser
+          boxName="Precise RDV point"
+          boxContent={this.props.newTripInfo.subDepartureRdvText}
+          boxContentChange={this.props.onSubDepartureRdvTextChange}
+          onCoVoPlaceChosen={() =>
+            console.log("Destination place has been chosen")
+          }
         />
+
         <MuiThemeProvider theme={materialTheme}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DateTimePicker
               autoOk
               ampm={false}
               disablePast
-              autoSubmit
               value={this.props.newTripInfo.departureTimestamp}
               onChange={this.props.onDepartureTimestampChange}
               label="Moment of departure"

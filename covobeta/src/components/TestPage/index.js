@@ -8,9 +8,10 @@ import React, { Component } from "react";
 import "./TestPage.css";
 
 //Temporary or unclassified imports
-import AddTrip from "../AddTrip";
+//import AddTrip from "../AddTrip";
 //import CoVoTripsFromContext from "./Tests/CoVoTripsFromContext.js";
-import CoVoTrips from "./Tests/CoVoTrips";
+//import CoVoTrips from "./Tests/CoVoTrips";
+import CoVoDynamicMenu from "./Tests/CoVoDynamicMenu";
 
 //Descriptions of props, what it does, and what it affects
 //Beginning of implementation
@@ -24,7 +25,11 @@ class TestPage extends Component {
         {/*<CoVoTrips />*/}
         {/*<CoVoTripsFromContext />*/}
         {/*<AddTrip />*/}
-        <AddTrip />
+        <div className="test-content">
+          <CoVoDynamicMenu />
+          <CoVoDynamicMenu />
+          <CoVoDynamicMenu />
+        </div>
       </div>
     );
   }

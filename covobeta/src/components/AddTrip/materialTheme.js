@@ -1,4 +1,4 @@
-import { MuiThemeProvider, createMuiTheme } from "material-ui";
+import { createMuiTheme } from "material-ui";
 
 const materialTheme = createMuiTheme({
   overrides: {

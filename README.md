@@ -80,7 +80,7 @@ import "./EmptyComponent.css";
 /*General description :
 * Props :
  ** ...(props and descriptions)
-* Needs to ready from store :
+* Needs to read from store :
 * Store actions needed :
 * Affects
  ** return: ...

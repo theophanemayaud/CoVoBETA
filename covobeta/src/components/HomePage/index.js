@@ -7,6 +7,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 import { connect } from "react-redux";
+import { TextField } from "rmwc/TextField";
 
 //CoVo components imports
 import { setFromAddress } from "../../actions";
@@ -44,10 +45,11 @@ class HomePage extends Component {
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
               <div>
-                <input
+                <TextField
                   {...getInputProps({
-                    placeholder: "Search Places ...",
-                    className: "location-search-input"
+                    label: "Search Places ...",
+                    className: "location-search-input",
+                    outlined: true
                   })}
                 />
                 <div className="autocomplete-dropdown-container">
