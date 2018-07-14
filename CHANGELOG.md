@@ -2,6 +2,12 @@
 
 ## :arrow_down: v0.0.2 Starting work on adding trip
 
+* Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
+
+  * About covo places :
+    * so, covo places will be 10mx10m squares at the equator. There are 360deg for ~40 000 000 m or 0.00009degree per 10m at the equator. Round that to 0.0001 deg making 11.1111m at the equator.
+    * so geocoordinates are +90 (north) -90 south, +180 (east) -180 (west), there will be from 0 to +90 : 90/.0001=900 000 covo places north and south, times 180/.0001=1 800 000 east and west.
+
 * Now will work on pushing to firebase.
 
   * worked a little on javascript firestore/firebase in db, it loads.

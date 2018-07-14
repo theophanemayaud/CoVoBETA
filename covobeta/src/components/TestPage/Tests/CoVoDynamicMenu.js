@@ -17,6 +17,7 @@ import {
   ListItemMeta
 } from "rmwc/List";
 import Popover from "material-ui/Popover";
+import Autocomplete from "react-autocomplete";
 
 //CoVo components imports
 import { setFromAddress } from "../../../actions";
@@ -35,18 +36,19 @@ class CoVoDynamicMenu extends Component {
       loginPopoverIsOpen: false
     };
   }
-  handleSelect = address => {
-    geocodeByAddress(address)
+  handleSelect = value => {
+    this.props.fromAddressChange(value);
+    /*geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log("Success", latLng))
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error("Error", error));*/
   };
   onError = (status, clearSuggestions) => {
     this.setState({ googleApiReturnText: status });
     clearSuggestions();
   };
-  inputAdressChange = address => {
-    this.props.fromAddressChange(address);
+  inputAdressChange = e => {
+    this.props.fromAddressChange(e.target.value);
     this.setState({ googleApiReturnText: "" });
     this.setState({ loginPopoverIsOpen: true });
   };
@@ -54,6 +56,51 @@ class CoVoDynamicMenu extends Component {
   render() {
     return (
       <div className="covo-dynamic-menu">
+        <Autocomplete
+          getItemValue={item => item.label}
+          menuStyle={{
+            borderRadius: "3px",
+            boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
+            background: "rgba(44, 44, 44, 0)",
+            padding: "2px 0",
+            fontSize: "90%",
+            position: "fixed",
+            overflow: "auto",
+            maxHeight: "50%" // TODO: don't cheat, let it flow to the bottom
+          }}
+          items={[{ label: "apple" }, { label: "banana" }, { label: "pear" }]}
+          renderItem={(item, isHighlighted) => (
+            <div
+              style={{
+                background: isHighlighted ? "lightgray" : "white"
+              }}
+            >
+              {item.label}
+            </div>
+          )}
+          value={this.props.fromAddress}
+          onChange={this.inputAdressChange}
+          onSelect={this.handleSelect}
+          autoHighlight
+          selectOnBlur
+          renderInput={props => {
+            return (
+              <div ref={props.ref}>
+                <input
+                  onFocus={props.onFocus}
+                  onBlur={props.onBlur}
+                  onChange={props.onChange}
+                  onClick={props.onClick}
+                  onKeyDown={props.onKeyDown}
+                  value={props.value}
+                  label="Search Places ..."
+                  outlined
+                />
+                {console.log(props)}
+              </div>
+            );
+          }}
+        />
         <PlacesAutocomplete
           value={this.props.fromAddress}
           onChange={this.inputAdressChange}
@@ -72,7 +119,7 @@ class CoVoDynamicMenu extends Component {
                 })}
               />
               <Popover
-                open={this.state.loginPopoverIsOpen}
+                open={false}
                 onClose={() => this.setState({ loginPopoverIsOpen: false })}
                 anchorOrigin={{
                   vertical: "top",
