@@ -8,7 +8,7 @@
     - so, covo places will be 10mx10m squares at the equator. There are 360deg for ~40 000 000 m or 0.00009degree per 10m at the equator. Round that to 0.0001 deg making 11.1111m at the equator.
     - so geocoordinates are +90 (north) -90 south, +180 (east) -180 (west), there will be from 0 to +90 : 90/.0001=900 000 covo places north and south, times 180/.0001=1 800 000 east and west.
     - upon getting degree coordinates from google, do a **divide by 0.0001 round down with Math.floor(number)**, and there you have it. For neg num though, floor will bring it down as well -2.2->-3
-    - sort covo places by latitude collections with sub longitude collections for each : will get to it ([](https://github.com/CoVoCre/CoVoBETA/commit/))
+    - sort covo places by latitude collections with sub longitude collections for each : will get to it ([ad59caff](https://github.com/CoVoCre/CoVoBETA/commit/ad59caffcc2bc088c9500976ee465e94cebe76bb))
 
 - Now will work on pushing to firebase.
 
