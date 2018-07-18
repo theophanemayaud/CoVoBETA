@@ -163,14 +163,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onArrivalPlaceTextboxChange: event => {
-      dispatch(setCoVoArrivalPlace(event.target.value));
+    onArrivalPlaceTextboxChange: value => {
+      dispatch(setCoVoArrivalPlace(value));
     },
-    onDeparturePlaceTextboxChange: event => {
-      dispatch(setDeparturePlaceTextbox(event.target.value));
+    onDeparturePlaceTextboxChange: value => {
+      dispatch(setDeparturePlaceTextbox(value));
     },
-    onSubDepartureRdvTextChange: event => {
-      dispatch(setSubDepartureRdvText(event.target.value));
+    onSubDepartureRdvTextChange: value => {
+      dispatch(setSubDepartureRdvText(value));
     },
     onDepartureTimestampChange: date => {
       dispatch(setDepartureTimestamp(date));
@@ -181,4 +181,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTrip);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddTrip);

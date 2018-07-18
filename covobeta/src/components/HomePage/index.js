@@ -11,6 +11,7 @@ import { TextField } from "rmwc/TextField";
 
 //CoVo components imports
 import { setFromAddress } from "../../actions";
+import CoVoPlaceChooser from "../CoVoPlaceChooser";
 
 //Content imports
 import "./HomePage.css";
@@ -19,11 +20,8 @@ import "./HomePage.css";
 
 //Beginning of implementation
 class HomePage extends Component {
-  handleSelect = address => {
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log("Success", latLng))
-      .catch(error => console.error("Error", error));
+  handleSelect = () => {
+    console.log("Place was selected on HomePage");
   };
 
   render() {
@@ -37,6 +35,12 @@ class HomePage extends Component {
         <Button raised className="mdc-theme--secondary-bg		">
           Default
         </Button>
+        <CoVoPlaceChooser
+          boxName="Departure"
+          boxContent={this.props.fromAddress}
+          boxContentChange={this.props.fromAddressChange}
+          onCoVoPlaceChosen={this.handleSelect}
+        />
         <div>
           <PlacesAutocomplete
             value={this.props.fromAddress}
@@ -96,4 +100,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);

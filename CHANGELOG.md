@@ -2,6 +2,15 @@
 
 ## :arrow_down: v0.0.2 Starting work on adding trip
 
+- Starting again with AddTrip :
+
+  - ToDo component connecting to firestore and redux store and connecting the other two
+  - ToDo component that renders choosing a place
+    - will be CoVoPlaceChooser component -
+    - done for now, puts in the adress. Would need the covoplace
+  - ToDoLATER : component that renders choosing a detailed place
+  - ToDo component that pushes to firestore after checking the data is good
+
 - Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
 
   - About covo places :

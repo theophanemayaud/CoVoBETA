@@ -1,11 +1,23 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 //Installed dependencies imports
-import PropTypes from "prop-types";
-//import { connect } from "react-redux";
+import PlacesAutocomplete /*, {
+  geocodeByAddress,
+  getLatLng
+} */ from "react-places-autocomplete";
 import { TextField } from "rmwc/TextField";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryText,
+  ListItemGraphic,
+  ListItemMeta
+} from "rmwc/List";
 
-//CoVo javascript imports
+//CoVo components imports
+//import { setFromAddress } from "../../actions";
 
 //Content imports
 import "./CoVoPlaceChooser.css";
@@ -17,8 +29,8 @@ import "./CoVoPlaceChooser.css";
 * Props :
  ** boxName : name of the textbox
  ** boxContent : text in the boxName
- ** boxContentChange : function to call when there is some new text
- ** onCoVoPlaceChosen : function to call to set the covoPlace
+ ** boxContentChange(text) : function to call when there is some new text
+ ** onCoVoPlaceChosen(text) : function to call to set the covoPlace // temporarily just text
 * Needs to read from store :
 * Store actions needed :
 * Affects
@@ -27,32 +39,141 @@ import "./CoVoPlaceChooser.css";
  **/
 //Beginning of implementation
 class CoVoPlaceChooser extends Component {
-  static contextTypes = {
-    store: PropTypes.object.isRequired
+  static propTypes = {
+    boxName: PropTypes.string,
+    boxContent: PropTypes.string.isRequired,
+    boxContentChange: PropTypes.func.isRequired,
+    onCoVoPlaceChosen: PropTypes.func.isRequired
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      googleApiReturnText: ""
+    };
+  }
+
+  handleSelect = value => {
+    this.props.boxContentChange(value);
+    this.props.onCoVoPlaceChosen();
+    /*geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log("Success", latLng))
+      .catch(error => console.error("Error", error));*/
+  };
+  onError = (status, clearSuggestions) => {
+    this.setState({ googleApiReturnText: status });
+    clearSuggestions();
+  };
+
+  inputAdressChange = value => {
+    this.props.boxContentChange(value);
+    this.setState({ googleApiReturnText: "" });
+  };
+
   render() {
     return (
-      <TextField
-        outlined
-        value={this.props.boxContent}
-        onChange={this.props.boxContentChange}
-        label={this.props.boxName}
-      />
+      <div className="covo-dynamic-menu">
+        <PlacesAutocomplete
+          value={this.props.boxContent}
+          onChange={this.inputAdressChange}
+          onSelect={this.handleSelect}
+          onError={this.onError}
+          debounce={0}
+          highlightFirstSuggestion={true}
+        >
+          {({
+            getInputProps,
+            suggestions,
+            loading,
+            getSuggestionItemProps
+          }) => (
+            <div>
+              <TextField
+                {...getInputProps({
+                  label: this.props.boxName,
+                  className: "location-search-input",
+                  outlined: true
+                })}
+              />
+              <div
+                style={{
+                  backgroundColor: "#f2f2f2",
+                  position: "absolute",
+                  zIndex: "99"
+                }}
+              >
+                {this.state.googleApiReturnText.length > 0 && (
+                  <div>{this.state.googleApiReturnText}</div>
+                )}
+                <List twoLine>
+                  {suggestions.map(suggestion => {
+                    return (
+                      <ListItem {...getSuggestionItemProps(suggestion)} ripple>
+                        <ListItemGraphic>
+                          {(() => {
+                            if (
+                              (suggestion.types.length > 1 ||
+                                suggestion.types[0] !== "establishment") &&
+                              suggestion.types[0] !== "neighborhood" &&
+                              suggestion.types[0] !== "natural_feature" &&
+                              suggestion.types[0] !== "transit_station" &&
+                              suggestion.types[0] !== "route" &&
+                              suggestion.types[0] !== "country"
+                            ) {
+                              console.log(
+                                "Types : " +
+                                  suggestion.types.map((type, index) => {
+                                    return index + " : " + type;
+                                  }) +
+                                  " : " +
+                                  suggestion.description
+                              );
+                            }
+                            switch (suggestion.types[0]) {
+                              case "neighborhood":
+                                return "terrain";
+                              case "natural_feature":
+                                return "terrain";
+                              case "transit_station":
+                                return "train";
+                              case "route":
+                                return "person_pin_circle";
+                              case "country":
+                                return "star_border";
+                              default:
+                                return "place";
+                            }
+                          })()}
+                        </ListItemGraphic>
+                        <ListItemText>
+                          {suggestion.formattedSuggestion.mainText}
+                        </ListItemText>
+                        <ListItemSecondaryText>
+                          {suggestion.formattedSuggestion.secondaryText}
+                        </ListItemSecondaryText>
+                        <ListItemMeta
+                          onClick={e => {
+                            e.stopPropagation();
+                            window.open(
+                              "https://www.google.com/maps/search/?api=1&query=CoVo&query_place_id=" +
+                                suggestion.placeId,
+                              "_blank"
+                            );
+                          }}
+                        >
+                          info
+                        </ListItemMeta>
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </div>
+            </div>
+          )}
+        </PlacesAutocomplete>
+      </div>
     );
   }
 }
 
-/*const mapStateToProps = state => ({
-  exampleProp: state.exampleStatePart
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    examplePropFunction: () => {
-      dispatch(exampleStoreAction(false));
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CoVoPlaceChooser);*/
 export default CoVoPlaceChooser;
