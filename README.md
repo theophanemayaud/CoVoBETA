@@ -8,15 +8,16 @@ Below you'll find some useful info, mostly for myself at first.
 
 ## Table of Contents
 
-* [Firestore stuff](#firestore-stuff)
-  * [Timestamp](#timestamp)
-  * [Places](#places)
-* [Images in react](#images-in-react)
-* [Router component for react](#router-component-for-react)
-* [Code snippets](#code-snippets)
-  * [Template component](#template-component)
-  * [Reference commit in .md](#commit-md)
-* [Redux in CoVo](#redux-in-covo)
+- [Firestore stuff](#firestore-stuff)
+  - [Timestamp](#timestamp)
+  - [Places](#places)
+  - [Trips](#trips)
+- [Images in react](#images-in-react)
+- [Router component for react](#router-component-for-react)
+- [Code snippets](#code-snippets)
+  - [Template component](#template-component)
+  - [Reference commit in .md](#commit-md)
+- [Redux in CoVo](#redux-in-covo)
 
 ## Firestore stuff
 
@@ -29,6 +30,32 @@ The firestore timestamp is just and object with .seconds and .miliseconds proper
 CoVo will have a firestore collection with all places used, sorted by geolocation.
 There will be small squares, and places will be grouped if they are within the same square. There are then collections for each squares of sub places, with descriptions, photos of the meeting point.
 Thus, with google maps we can get the location of the place, and identify the correct CoVo square. Then make the user select an existing meeting place or create a new one.
+Covo places will be 10mx10m squares at the equator. There are 360deg for ~40 000 000 m or 0.00009degree per 10m at the equator. Round that to 0.0001 deg making 11.1111m at the equator.
+Gocoordinates are +90 (north) -90 south, +180 (east) -180 (west), there will be from 0 to +90 : 90/.0001=900 000 covo places north and south, times 180/.0001=1 800 000 east and west.
+Upon getting degree coordinates from google, do a **divide by 0.0001 round down with Math.floor(number)**, and there you have it. For neg num though, floor will bring it down as well -2.2->-3
+
+```
+covo_latitudes (from -900 000:southpole to +900 000:northpole)
+  covo_longitudes (from -1 800 000:west to +1 800 000:east)
+    covo_rdv_points (auto id)
+      gmaps_id (optional text)
+      rdv_name (optional text for the first rdv point at least)
+      rdv_description (optional text for the first rdv point at least)
+      rdv_adress (text, optional for the first rdv point at least)
+```
+
+### trips
+
+Trips will contain info on the trips and link to drivers - passengers - arrival - destination - and waypoints places
+
+```
+covo_trips (with auto ids)
+  departure_timestamp (timestamp)
+  approx_duration (number)
+  covo_waypoints [{lat:, long, rdv_point_id}] (in order of passing through)
+  pay {currency: , trip_part: [0iscostofwholetrip]}
+  riders [{rider_type: , user_id: , departure_point {lat:, long:, rdv_id}, arrival_point: {lat:, long:, rdv_id}}]
+```
 
 ## Images in react
 
