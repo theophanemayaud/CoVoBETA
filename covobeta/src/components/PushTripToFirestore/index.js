@@ -36,6 +36,44 @@ class PushTripToFirestore extends Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
+  static defaultProps = {};
+  static propTypes = {
+    departureTimestamp: PropTypes.instanceOf(Date).isRequired,
+    approxDuration: PropTypes.number.isRequired,
+    waypoints: PropTypes.shape({
+      lat: PropTypes.number,
+      long: PropTypes.number,
+      rdvId: PropTypes.string
+    }).isRequired,
+    pay: PropTypes.shape({
+      currency: PropTypes.string,
+      trip_part: PropTypes.arrayOf(
+        PropTypes.shape({
+          lat: PropTypes.number,
+          long: PropTypes.number,
+          rdvId: PropTypes.string
+        })
+      )
+    }).isRequired,
+    riders: propTypes.arrayOf(
+      PropTypes.shape({
+        riderType: PropTypes.string,
+        userId: PropTypes.string,
+        departurePoint: PropTypes.shape({
+          lat: PropTypes.number,
+          long: PropTypes.number,
+          rdvId: PropTypes.string
+        }),
+        arrivalPoint: PropTypes.shape({
+          lat: PropTypes.number,
+          long: PropTypes.number,
+          rdvId: PropTypes.string
+        })
+      })
+    ).isRequired,
+    onPushSuccess: PropTypes.func
+  };
+
   bareSnackbar = snackText => {
     return (
       <div>
@@ -96,6 +134,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  PushTripToFirestore
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PushTripToFirestore);

@@ -51,7 +51,7 @@ Trips will contain info on the trips and link to drivers - passengers - arrival 
 ```
 covo_trips (with auto ids)
   departure_timestamp (timestamp)
-  approx_duration (number)
+  approx_duration (decimal number)
   covo_waypoints [{lat:, long, rdv_point_id}] (in order of passing through)
   pay {currency: , trip_part: [0iscostofwholetrip]}
   riders [{rider_type: , user_id: , departure_point {lat:, long:, rdv_id}, arrival_point: {lat:, long:, rdv_id}}]

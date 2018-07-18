@@ -10,6 +10,7 @@
     - done for now, puts the adress. Would need the covoplace
   - ToDoLATER : component that renders choosing a detailed place
   - ToDo component that pushes to firestore after checking the data is good
+    - working on that, for now not doing any validation
 
 - Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
 
