@@ -33,84 +33,93 @@ empty firestore new trip info if successful
     bottom: 40px;*/
 //Beginning of implementation
 class PushTripToFirestore extends Component {
-  static contextTypes = {
-    store: PropTypes.object.isRequired
-  };
-  static defaultProps = {};
-  static propTypes = {
-    departureTimestamp: PropTypes.instanceOf(Date).isRequired,
-    approxDuration: PropTypes.number.isRequired,
-    waypoints: PropTypes.shape({
-      lat: PropTypes.number,
-      long: PropTypes.number,
-      rdvId: PropTypes.string
-    }).isRequired,
-    pay: PropTypes.shape({
-      currency: PropTypes.string,
-      trip_part: PropTypes.arrayOf(
-        PropTypes.shape({
-          lat: PropTypes.number,
-          long: PropTypes.number,
-          rdvId: PropTypes.string
-        })
-      )
-    }).isRequired,
-    riders: propTypes.arrayOf(
-      PropTypes.shape({
-        riderType: PropTypes.string,
-        userId: PropTypes.string,
-        departurePoint: PropTypes.shape({
-          lat: PropTypes.number,
-          long: PropTypes.number,
-          rdvId: PropTypes.string
-        }),
-        arrivalPoint: PropTypes.shape({
-          lat: PropTypes.number,
-          long: PropTypes.number,
-          rdvId: PropTypes.string
-        })
-      })
-    ).isRequired,
-    onPushSuccess: PropTypes.func
-  };
-
-  bareSnackbar = snackText => {
-    return (
-      <div>
-        <Snackbar
-          className="snackbar-lifted"
-          show={true}
-          message={snackText}
-          onHide={this.props.unsetReadyToPush}
-          timeout={2000}
-        />
-      </div>
-    );
-  };
-  render() {
-    if (this.props.newTripInfo.readyToPush === false) {
-      return null;
-    } else if (this.props.newTripInfo.readyToPush === true) {
-      if (this.props.newTripInfo.departurePlaceTextbox === "") {
-        return <div>{this.bareSnackbar("Please choose departure place")}</div>;
-      } else if (this.props.newTripInfo.subDepartureRdvText === "") {
-        return (
-          <div>{this.bareSnackbar("Please choose sub departure point")}</div>
-        );
-      } else if (this.props.newTripInfo.arrivalPlaceTextbox === "") {
-        return <div>{this.bareSnackbar("Please choose an arrival place")}</div>;
-      } else if (this.props.newTripInfo.departureTimestamp === "") {
-        return <div>{this.bareSnackbar("Please choose a departure time")}</div>;
-      } else {
-        return <div>{this.bareSnackbar("Trip looks ok to be firestored")}</div>;
-      }
-    } else {
-      return <div>{this.bareSnackbar("A problem occured")}</div>;
-    }
-  }
+	static defaultProps = {};
+	static propTypes = {
+		readyToPush: PropTypes.bool.isRequired,
+		departureTimestamp: PropTypes.instanceOf(Date).isRequired,
+		approxDuration: PropTypes.number.isRequired,
+		waypoints: PropTypes.objectOf(
+			PropTypes.shape({
+				text: PropTypes.string,
+				lat: PropTypes.number,
+				long: PropTypes.number,
+				rdvId: PropTypes.string
+			})
+		).isRequired,
+		pay: PropTypes.shape({
+			currency: PropTypes.string,
+			trip_part: PropTypes.object
+		}),
+		riders: PropTypes.objectOf(
+			PropTypes.shape({
+				riderType: PropTypes.string,
+				departurePoint: PropTypes.shape({
+					lat: PropTypes.number,
+					long: PropTypes.number,
+					rdvId: PropTypes.string
+				}),
+				arrivalPoint: PropTypes.shape({
+					lat: PropTypes.number,
+					long: PropTypes.number,
+					rdvId: PropTypes.string
+				})
+			})
+		).isRequired,
+		onPushResult: PropTypes.func
+		/* one arguments : isError ? bool true or false*/
+	};
+	bareESnackbar = (snackText) => {
+		this.props.onPushResult(true);
+		return (
+			<Snackbar
+				show
+				style={{ zIndex: 99 }}
+				message={snackText}
+				alignStart
+				timeout={2000}
+			/>
+		);
+	};
+	bareSnackbar = (snackText) => {
+		this.props.onPushResult(false);
+		return (
+			<Snackbar
+				show
+				style={{ zIndex: 99 }}
+				message={snackText}
+				alignStart
+				timeout={2000}
+			/>
+		);
+	};
+	render() {
+		if (this.props.readyToPush === false) {
+			return null;
+		} else if (this.props.readyToPush === true) {
+			if (this.props.waypoints.dep.text === "") {
+				return <div>{this.bareESnackbar("Please choose departure place")}</div>;
+			} else if (this.props.waypoints.dep.rdvId === "") {
+				return (
+					<div>{this.bareESnackbar("Please choose sub departure point")}</div>
+				);
+			} else if (this.props.waypoints.arrival.text === "") {
+				return (
+					<div>{this.bareESnackbar("Please choose an arrival place")}</div>
+				);
+			} else if (this.props.newTripInfo.departureTimestamp === "") {
+				return (
+					<div>{this.bareESnackbar("Please choose a departure time")}</div>
+				);
+			} else {
+				return <div>{this.bareSnackbar("Trip looks ok to be firestored")}</div>;
+			}
+		} else {
+			return <div>{this.bareESnackbar("A problem occured")}</div>;
+		}
+	}
 }
 
-const mapStateToProps = state => ({
+/*const mapStateToProps = state => ({
   newTripInfo: state.newTripInfo
 });
 
@@ -130,11 +139,13 @@ const mapDispatchToProps = dispatch => {
     },
     onDepartureTimestampChange: date => {
       dispatch(setDepartureTimestamp(date));
-    }*/
+    }
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PushTripToFirestore);
+)(PushTripToFirestore);*/
+
+export default PushTripToFirestore;

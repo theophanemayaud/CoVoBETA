@@ -10,7 +10,14 @@
     - done for now, puts the adress. Would need the covoplace
   - ToDoLATER : component that renders choosing a detailed place
   - ToDo component that pushes to firestore after checking the data is good
-    - working on that, for now not doing any validation
+    - working on that, for now not doing any validation, as PushTripToFirestore
+      - added proptypes to PushTripToFirestore
+      - needed actions :
+        - createNewTripWaypoint (provided the waypoint key should create it)
+        - updateNewTripWaypointText (provided key and text)
+      - note : be careful of testing wether object exists before trying to access property, create if doesn't exist, and only access once it is done creating (careful of state updates)
+      - added onBlur to TextInput in CoVoPlaceChooser to empty error when loosing focus
+      - using PropTypes.objectOf({...}) to specify props with objects having varying number of the same properies instead of arrays and PropTypes.arrayOf
 
 - Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
 

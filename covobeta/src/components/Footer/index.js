@@ -13,18 +13,20 @@ import "./Footer.css";
 
 //Beginning of implementation
 class Footer extends Component {
-  render() {
-    return (
-      <div id="covo-footer">
-        <div align="center">
-          <Link to="/">
-            <div className="homepage-link">CoVo 0.1.0 </div>
-            <div id="footer-timestamp">build at {data.latest}</div>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div id="covo-footer">
+				<div align="center">
+					<Link to="/">
+						<div className="homepage-link">CoVo 0.1.0 </div>
+					</Link>
+					<Link to="/test">
+						<div id="footer-timestamp">build at {data.latest}</div>
+					</Link>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default Footer;

@@ -52,9 +52,18 @@ Trips will contain info on the trips and link to drivers - passengers - arrival 
 covo_trips (with auto ids)
   departure_timestamp (timestamp)
   approx_duration (decimal number)
-  covo_waypoints [{lat:, long, rdv_point_id}] (in order of passing through)
-  pay {currency: , trip_part: [0iscostofwholetrip]}
-  riders [{rider_type: , user_id: , departure_point {lat:, long:, rdv_id}, arrival_point: {lat:, long:, rdv_id}}]
+  covo_waypoints: {
+    dep: { text: "", lat: null, long: null, rdvId: "" },
+    arrival: { text: "", lat: null, long: null, rdvId: "" }
+  }, (in order of passing through)
+  pay {currency: , trip_part: { completeJourney: null, aToB: null }}
+  riders {riderUID1:{rider_type: ,
+                    departure_point {lat:, long:, rdv_id},
+                    arrival_point: {lat:, long:, rdv_id}},
+          riderUID2:{rider_type: ,
+                    departure_point {lat:, long:, rdv_id},
+                    arrival_point: {lat:, long:, rdv_id}},
+          riderUID3...}
 ```
 
 ## Images in react
@@ -70,11 +79,11 @@ Available components :
 
 ```js
 import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Switch,
+	Redirect
 } from "react-router-dom";
 ```
 
@@ -115,12 +124,12 @@ import "./EmptyComponent.css";
  **/
 //Beginning of implementation
 class EmptyComponent extends Component {
-  //static contextTypes = {
-  //  store: PropTypes.object.isRequired
-  //};
-  render() {
-    return <div className="empty-component">In EmptyComponent</div>;
-  }
+	//static contextTypes = {
+	//  store: PropTypes.object.isRequired
+	//};
+	render() {
+		return <div className="empty-component">In EmptyComponent</div>;
+	}
 }
 
 /*const mapStateToProps = state => ({
