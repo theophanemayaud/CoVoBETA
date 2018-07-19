@@ -18,6 +18,9 @@
       - note : be careful of testing wether object exists before trying to access property, create if doesn't exist, and only access once it is done creating (careful of state updates)
       - added onBlur to TextInput in CoVoPlaceChooser to empty error when loosing focus
       - using PropTypes.objectOf({...}) to specify props with objects having varying number of the same properies instead of arrays and PropTypes.arrayOf
+      - gmaps places with callback to enable offline coding
+        link of build time to test
+      - prepared in test calling of PushTripToFirestore in order to work on it more
 
 - Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
 
