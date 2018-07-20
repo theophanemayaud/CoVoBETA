@@ -2,8 +2,11 @@ import React, { Component } from "react";
 
 //Installed dependencies imports
 import { Button } from "rmwc/Button";
+import { Icon } from "rmwc/Icon";
+import GoogleMapReact from "google-map-react";
 
 //CoVo javascript imports
+import { covoCoordToRealCoord } from "../../businessFunctions/coVoPlaces";
 
 //Content imports
 import "./TestPage.css";
@@ -24,8 +27,8 @@ let initialState = {
 	departureTimestamp: new Date(),
 	approxDuration: 0,
 	waypoints: {
-		dep: { text: "", lat: null, long: null, rdvId: "" },
-		arrival: { text: "", lat: null, long: null, rdvId: "" }
+		dep: { text: "", covoLat: 0, covoLong: 0, rdvGmapsId: "" },
+		arrival: { text: "", covoLat: 0, covoLong: 0, rdvGmapsId: "" }
 	},
 	pay: {
 		currency: "EUR",
@@ -35,13 +38,13 @@ let initialState = {
 		ZYFID: {
 			riderType: "seriouslyfun",
 			departurePoint: {
-				lat: 0,
-				long: 0,
+				covoLat: 0,
+				covoLong: 0,
 				rdvId: "dearyDepartureID"
 			},
 			arrivalPoint: {
-				lat: 0,
-				long: 0,
+				covoLat: 0,
+				covoLong: 0,
 				rdvId: "dearyArrivalID"
 			}
 		}
@@ -70,8 +73,20 @@ class TestPage extends Component {
 		this.setState({ waypoints: newWaypoints });
 	};
 
-	testOnCoVoPlaceChosen = () => {
-		console.log("Chose a place");
+	testOnCoVoPlaceChosen = (
+		waypointKey,
+		{ covoLat, covoLong },
+		gmapsPlaceId
+	) => {
+		let newWaypoint = {
+			...this.state.waypoints[waypointKey],
+			covoLat,
+			covoLong,
+			rdvGmapsId: gmapsPlaceId
+		};
+		this.setState({
+			waypoints: { ...this.state.waypoints, [waypointKey]: newWaypoint }
+		});
 	};
 
 	render() {
@@ -84,26 +99,44 @@ class TestPage extends Component {
 				{/*<CoVoTripsFromContext />*/}
 				{/*<AddTrip />*/}
 				{/*<CoVoDynamicMenu />*/}
-				{/*boxName : name of the textbox
-        ** boxContent : text in the boxName
-        ** boxContentChange(text) : function to call when there is some new text
-        ** onCoVoPlaceChosen(text)*/}
 				<div className="test-content">
 					<CoVoPlaceChooser
 						boxName="Departure"
 						boxContent={this.state.waypoints["dep"].text}
-						boxContentChange={(value) => {
+						onBoxContentChange={(value) => {
 							this.testBoxContentChange(value, "dep");
 						}}
-						onCoVoPlaceChosen={this.testOnCoVoPlaceChosen}
+						placeLat={this.state.waypoints["dep"].lat}
+						placeLong={this.state.waypoints["dep"].long}
+						onCoVoPlaceChosen={(
+							{ covoLat, covoLong },
+							gmapsPlaceId
+						) =>
+							this.testOnCoVoPlaceChosen(
+								"dep",
+								{ covoLat, covoLong },
+								gmapsPlaceId
+							)
+						}
 					/>
 					<CoVoPlaceChooser
 						boxName="Arrival"
 						boxContent={this.state.waypoints["arrival"].text}
-						boxContentChange={(value) => {
+						onBoxContentChange={(value) => {
 							this.testBoxContentChange(value, "arrival");
 						}}
-						onCoVoPlaceChosen={this.testOnCoVoPlaceChosen}
+						placeLat={this.state.waypoints["arrival"].lat}
+						placeLong={this.state.waypoints["arrival"].long}
+						onCoVoPlaceChosen={(
+							{ covoLat, covoLong },
+							gmapsPlaceId
+						) =>
+							this.testOnCoVoPlaceChosen(
+								"arrival",
+								{ covoLat, covoLong },
+								gmapsPlaceId
+							)
+						}
 					/>
 					<PushTripToFirestore
 						readyToPush={this.state.readyToPush}
@@ -115,13 +148,82 @@ class TestPage extends Component {
 						onPushResult={this.onPushResult}
 					/>
 				</div>
-				<Button onClick={() => console.log(this.state)}> Log state </Button>
-				<Button onClick={() => console.log(this.state.departureTimestamp)}>
-					Log departureTimestamp
+				<Button onClick={() => console.log(this.state)}>
+					Log state
 				</Button>
 				<Button onClick={() => this.setState({ readyToPush: true })}>
 					Set readyToPush=true
 				</Button>
+				<div>
+					<div style={{ height: "50vh", width: "80%" }}>
+						<GoogleMapReact
+							bootstrapURLKeys={{
+								key: "AIzaSyBleDs9DsB9YqfrmxffcvgFuHEeh_lshP4"
+							}}
+							center={{
+								lat: covoCoordToRealCoord({
+									covoLat:
+										this.state.waypoints.dep.covoLat / 2 +
+										this.state.waypoints.arrival.covoLat /
+											2,
+									covoLong: 0
+								}).lat,
+								lng: covoCoordToRealCoord({
+									covoLat: 0,
+									covoLong:
+										this.state.waypoints.dep.covoLong / 2 +
+										this.state.waypoints.arrival.covoLong /
+											2
+								}).long
+							}}
+							zoom={1}
+						>
+							<Icon
+								lat={
+									covoCoordToRealCoord({
+										covoLat: this.state.waypoints.dep
+											.covoLat,
+										covoLong: 0
+									}).lat
+								}
+								lng={
+									covoCoordToRealCoord({
+										covoLat: 0,
+										covoLong: this.state.waypoints.dep
+											.covoLong
+									}).long
+								}
+								text={"Kreyser Avrora"}
+								strategy="ligature"
+								title="Departure"
+								style={{ color: "green" }}
+							>
+								flight_takeoff
+							</Icon>
+							<Icon
+								lat={
+									covoCoordToRealCoord({
+										covoLat: this.state.waypoints.arrival
+											.covoLat,
+										covoLong: 0
+									}).lat
+								}
+								lng={
+									covoCoordToRealCoord({
+										covoLat: 0,
+										covoLong: this.state.waypoints.arrival
+											.covoLong
+									}).long
+								}
+								strategy="ligature"
+								title="Arrival"
+								style={{ color: "red" }}
+							>
+								flight_landing
+							</Icon>
+						</GoogleMapReact>
+					</div>
+				</div>
 			</div>
 		);
 	}

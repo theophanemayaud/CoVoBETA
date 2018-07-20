@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 //Installed dependencies imports
-import PlacesAutocomplete /*, {
-  geocodeByAddress,
-  getLatLng
-} */ from "react-places-autocomplete";
+import PlacesAutocomplete, {
+	geocodeByAddress,
+	geocodeByPlaceId,
+	getLatLng
+} from "react-places-autocomplete";
 import { TextField } from "rmwc/TextField";
 import {
 	List,
@@ -15,6 +16,9 @@ import {
 	ListItemGraphic,
 	ListItemMeta
 } from "rmwc/List";
+
+//CoVo javascript imports
+import { realCoordToCoVoCoord } from "../../businessFunctions/coVoPlaces";
 
 //CoVo components imports
 //import { setFromAddress } from "../../actions";
@@ -29,7 +33,7 @@ import "./CoVoPlaceChooser.css";
 * Props :
  ** boxName : name of the textbox
  ** boxContent : text in the boxName
- ** boxContentChange(text) : function to call when there is some new text
+ ** onBoxContentChange(text) : function to call when there is some new text
  ** onCoVoPlaceChosen(text) : function to call to set the covoPlace // temporarily just text
 * Needs to read from store :
 * Store actions needed :
@@ -42,7 +46,9 @@ class CoVoPlaceChooser extends Component {
 	static propTypes = {
 		boxName: PropTypes.string,
 		boxContent: PropTypes.string.isRequired,
-		boxContentChange: PropTypes.func.isRequired,
+		placeLat: PropTypes.oneOfType([PropTypes.number, PropTypes.any]),
+		placeLong: PropTypes.oneOfType([PropTypes.number, PropTypes.any]),
+		onBoxContentChange: PropTypes.func.isRequired,
 		onCoVoPlaceChosen: PropTypes.func.isRequired
 	};
 	constructor(props) {
@@ -52,21 +58,50 @@ class CoVoPlaceChooser extends Component {
 		};
 	}
 
-	handleSelect = (value) => {
-		this.props.boxContentChange(value);
-		this.props.onCoVoPlaceChosen();
-		/*geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log("Success", latLng))
-      .catch(error => console.error("Error", error));*/
+	handleSelect = (value, placeId) => {
+		this.props.onBoxContentChange(value);
+		let coord = { lat: null, long: null };
+		let covoCoord = { covoLat: null, covoLong: null };
+		geocodeByAddress(value)
+			.then((results) => getLatLng(results[0]))
+			.then((latLong) => {
+				coord.lat = latLong.lat;
+				coord.long = latLong.lng;
+				covoCoord = realCoordToCoVoCoord(coord);
+				this.props.onCoVoPlaceChosen(covoCoord, placeId);
+			})
+			.catch((error) => {
+				console.error("Error", error);
+				if (
+					(coord.lat === null || coord.long === null) &&
+					placeId !== null
+				) {
+					geocodeByPlaceId(placeId)
+						.then((results) => getLatLng(results[0]))
+						.then((latLong) => {
+							coord.lat = latLong.lat;
+							coord.long = latLong.lng;
+							covoCoord = realCoordToCoVoCoord(coord);
+							this.props.onCoVoPlaceChosen(covoCoord, placeId);
+						})
+						.catch((error) => {
+							console.error("Error", error);
+							this.props.onCoVoPlaceChosen(
+								{ covoLat: 0, covoLong: 0 },
+								""
+							);
+						});
+				}
+			});
 	};
+
 	onError = (status, clearSuggestions) => {
 		this.setState({ googleApiReturnText: status });
 		clearSuggestions();
 	};
 
 	inputAdressChange = (value) => {
-		this.props.boxContentChange(value);
+		this.props.onBoxContentChange(value);
 		this.setState({ googleApiReturnText: "" });
 	};
 
@@ -79,7 +114,7 @@ class CoVoPlaceChooser extends Component {
 					onSelect={this.handleSelect}
 					onError={this.onError}
 					debounce={0}
-					highlightFirstSuggestion={true}
+					highlightFirstSuggestion
 					googleCallbackName="gmapsInitOne"
 				>
 					{({
@@ -94,7 +129,10 @@ class CoVoPlaceChooser extends Component {
 									label: this.props.boxName,
 									className: "location-search-input",
 									outlined: true,
-									onBlur: () => this.setState({ googleApiReturnText: "" })
+									onBlur: () =>
+										this.setState({
+											googleApiReturnText: ""
+										})
 								})}
 							/>
 							<div
@@ -105,14 +143,26 @@ class CoVoPlaceChooser extends Component {
 								}}
 							>
 								{(() => {
-									if (this.state.googleApiReturnText.length > 0) {
-										return <div>{this.state.googleApiReturnText}</div>;
+									if (
+										this.state.googleApiReturnText.length >
+										0
+									) {
+										return (
+											<div>
+												{this.state.googleApiReturnText}
+											</div>
+										);
 									}
 								})()}
 								<List twoLine>
 									{suggestions.map((suggestion) => {
 										return (
-											<ListItem {...getSuggestionItemProps(suggestion)} ripple>
+											<ListItem
+												{...getSuggestionItemProps(
+													suggestion
+												)}
+												ripple
+											>
 												<ListItemGraphic>
 													{(() => {
 														/* Code to log new specific icons to add
@@ -134,7 +184,9 @@ class CoVoPlaceChooser extends Component {
                                   suggestion.description
                               );
                             }*/
-														switch (suggestion.types[0]) {
+														switch (
+															suggestion.types[0]
+														) {
 															case "neighborhood":
 																return "terrain";
 															case "natural_feature":
@@ -151,10 +203,18 @@ class CoVoPlaceChooser extends Component {
 													})()}
 												</ListItemGraphic>
 												<ListItemText>
-													{suggestion.formattedSuggestion.mainText}
+													{
+														suggestion
+															.formattedSuggestion
+															.mainText
+													}
 												</ListItemText>
 												<ListItemSecondaryText>
-													{suggestion.formattedSuggestion.secondaryText}
+													{
+														suggestion
+															.formattedSuggestion
+															.secondaryText
+													}
 												</ListItemSecondaryText>
 												<ListItemMeta
 													onClick={(e) => {

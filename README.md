@@ -8,16 +8,16 @@ Below you'll find some useful info, mostly for myself at first.
 
 ## Table of Contents
 
-- [Firestore stuff](#firestore-stuff)
-  - [Timestamp](#timestamp)
-  - [Places](#places)
-  - [Trips](#trips)
-- [Images in react](#images-in-react)
-- [Router component for react](#router-component-for-react)
-- [Code snippets](#code-snippets)
-  - [Template component](#template-component)
-  - [Reference commit in .md](#commit-md)
-- [Redux in CoVo](#redux-in-covo)
+-   [Firestore stuff](#firestore-stuff)
+    -   [Timestamp](#timestamp)
+    -   [Places](#places)
+    -   [Trips](#trips)
+-   [Images in react](#images-in-react)
+-   [Router component for react](#router-component-for-react)
+-   [Code snippets](#code-snippets)
+    -   [Template component](#template-component)
+    -   [Reference commit in .md](#commit-md)
+-   [Redux in CoVo](#redux-in-covo)
 
 ## Firestore stuff
 
@@ -53,16 +53,16 @@ covo_trips (with auto ids)
   departure_timestamp (timestamp)
   approx_duration (decimal number)
   covo_waypoints: {
-    dep: { text: "", lat: null, long: null, rdvId: "" },
-    arrival: { text: "", lat: null, long: null, rdvId: "" }
+    dep: { text: "", lat: null, long: null, rdvId // rdvGmapsId for now : "" },
+    arrival: { text: "", lat: null, long: null, rdvId // rdvGmapsId for now : "" }
   }, (in order of passing through)
   pay {currency: , trip_part: { completeJourney: null, aToB: null }}
   riders {riderUID1:{rider_type: ,
-                    departure_point {lat:, long:, rdv_id},
-                    arrival_point: {lat:, long:, rdv_id}},
+                    departure_point {covoLat:, covoLong:, rdv_id},
+                    arrival_point: {covoLat:, covoLong:, rdv_id}},
           riderUID2:{rider_type: ,
-                    departure_point {lat:, long:, rdv_id},
-                    arrival_point: {lat:, long:, rdv_id}},
+                    departure_point {covoLat:, covoLong:, rdv_id},
+                    arrival_point: {covoLat:, covoLong:, rdv_id}},
           riderUID3...}
 ```
 

@@ -2,12 +2,7 @@ import React, { Component } from "react";
 
 //Installed dependencies imports
 import { Button } from "rmwc/Button";
-import PlacesAutocomplete, {
-	geocodeByAddress,
-	getLatLng
-} from "react-places-autocomplete";
 import { connect } from "react-redux";
-import { TextField } from "rmwc/TextField";
 
 //CoVo components imports
 import { setFromAddress } from "../../actions";
@@ -38,50 +33,10 @@ class HomePage extends Component {
 				<CoVoPlaceChooser
 					boxName="Departure"
 					boxContent={this.props.fromAddress}
-					boxContentChange={this.props.fromAddressChange}
+					onBoxContentChange={this.props.fromAddressChange}
 					onCoVoPlaceChosen={this.handleSelect}
 				/>
-				<div>
-					<PlacesAutocomplete
-						value={this.props.fromAddress}
-						onChange={this.props.fromAddressChange}
-						onSelect={this.handleSelect}
-						googleCallbackName="gmapsInitTwo"
-					>
-						{({ getInputProps, suggestions, getSuggestionItemProps }) => (
-							<div>
-								<TextField
-									{...getInputProps({
-										label: "Search Places ...",
-										className: "location-search-input",
-										outlined: true
-									})}
-								/>
-								<div className="autocomplete-dropdown-container">
-									{suggestions.map((suggestion) => {
-										const className = suggestion.active
-											? "suggestion-item--active"
-											: "suggestion-item";
-										// inline style for demonstration purpose
-										const style = suggestion.active
-											? { backgroundColor: "#f12e2e", cursor: "pointer" }
-											: { backgroundColor: "#4ccaf2", cursor: "pointer" };
-										return (
-											<div
-												{...getSuggestionItemProps(suggestion, {
-													className,
-													style
-												})}
-											>
-												<span>{suggestion.description}</span>
-											</div>
-										);
-									})}
-								</div>
-							</div>
-						)}
-					</PlacesAutocomplete>
-				</div>
+
 				<div>
 					<button onClick={() => console.log(this.props)}>Log props</button>
 				</div>

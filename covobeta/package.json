@@ -22,6 +22,7 @@
     "date-fns": "^2.0.0-alpha.7",
     "firebase": "^4.13.1",
     "firebaseui": "^2.6.0",
+    "google-map-react": "^1.0.5",
     "material-ui": "1.0.0-beta.32",
     "material-ui-icons": "^1.0.0-beta.17",
     "material-ui-pickers": "^1.0.0-rc.7",
@@ -44,10 +45,8 @@
     "typeface-roboto": "^0.0.50"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p create-timestamp watch-css start-js",
     "startw": "npm-run-all -p create-timestamp-win watch-css start-js",
@@ -56,8 +55,7 @@
     "buildw": "npm-run-all create-timestamp-win build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "create-timestamp":
-      "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'",
+    "create-timestamp": "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'",
     "create-timestamp-win": "date-time-stamp.bat"
   },
   "devDependencies": {
