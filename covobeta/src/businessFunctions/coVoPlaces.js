@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 
 export const covoCoordToRealCoord = ({ covoLat, covoLong }) => {
 	if (
-		-1800000 < covoLat &&
-		covoLat < 1800000 &&
-		-900000 < covoLong &&
-		covoLong < 900000
+		-900000 < covoLat &&
+		covoLat < 900000 &&
+		-1800000 < covoLong &&
+		covoLong < 1800000
 	) {
 		let lat = covoLat * 0.0001;
 		let long = covoLong * 0.0001;
@@ -20,7 +20,7 @@ covoCoordToRealCoord.propTypes = {
 };
 
 export const realCoordToCoVoCoord = ({ lat, long }) => {
-	if (-180 < lat && lat < 180 && -90 < long && long < 90) {
+	if (-90 < lat && lat < 90 && -180 < long && long < 180) {
 		let covoLat = Math.floor(lat / 0.0001);
 		let covoLong = Math.floor(long / 0.0001);
 		return { covoLat, covoLong };
