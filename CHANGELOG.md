@@ -22,6 +22,7 @@
         link of build time to test
       - prepared in test calling of PushTripToFirestore in order to work on it more
       - PushTripToFirestore does existing checks well, is stateless and shows popup
+      - will verify that all props are being checked, and will work on actually pushing to firestore (maybe will need to pull info from firebase first, like rider id or other...)
 
 - Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
 
