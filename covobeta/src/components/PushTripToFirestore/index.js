@@ -2,11 +2,10 @@ import React, { Component } from "react";
 
 //Installed dependencies imports
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { Snackbar } from "rmwc/Snackbar";
 
 //CoVo javascript imports
-import { setReadyToPush } from "./../../actions";
+
 //Content imports
 import "./PushTripToFirestore.css";
 
@@ -36,7 +35,7 @@ class PushTripToFirestore extends Component {
 	static defaultProps = {};
 	static propTypes = {
 		readyToPush: PropTypes.bool.isRequired,
-		departureTimestamp: PropTypes.instanceOf(Date).isRequired,
+		departureTimestamp: PropTypes.string.isRequired,
 		approxDuration: PropTypes.number.isRequired,
 		waypoints: PropTypes.objectOf(
 			PropTypes.shape({
@@ -48,8 +47,8 @@ class PushTripToFirestore extends Component {
 		).isRequired,
 		pay: PropTypes.shape({
 			currency: PropTypes.string,
-			trip_part: PropTypes.object
-		}),
+			trip_part: PropTypes.objectOf(PropTypes.number)
+		}).isRequired,
 		riders: PropTypes.objectOf(
 			PropTypes.shape({
 				riderType: PropTypes.string,
@@ -69,24 +68,26 @@ class PushTripToFirestore extends Component {
 		/* one arguments : isError ? bool true or false*/
 	};
 	bareESnackbar = (snackText) => {
-		this.props.onPushResult(true);
+		console.log("PushTripToFirestore error");
 		return (
 			<Snackbar
 				show
 				style={{ zIndex: 99 }}
 				message={snackText}
+				onHide={() => this.props.onPushResult(true)}
 				alignStart
 				timeout={2000}
 			/>
 		);
 	};
 	bareSnackbar = (snackText) => {
-		this.props.onPushResult(false);
+		console.log("PushTripToFirestore success");
 		return (
 			<Snackbar
 				show
 				style={{ zIndex: 99 }}
 				message={snackText}
+				onHide={() => this.props.onPushResult(false)}
 				alignStart
 				timeout={2000}
 			/>
@@ -98,15 +99,17 @@ class PushTripToFirestore extends Component {
 		} else if (this.props.readyToPush === true) {
 			if (this.props.waypoints.dep.text === "") {
 				return <div>{this.bareESnackbar("Please choose departure place")}</div>;
-			} else if (this.props.waypoints.dep.rdvId === "") {
+			} /*else if (this.props.waypoints.dep.rdvId === "") {
 				return (
 					<div>{this.bareESnackbar("Please choose sub departure point")}</div>
 				);
-			} else if (this.props.waypoints.arrival.text === "") {
+			} */ else if (
+				this.props.waypoints.arrival.text === ""
+			) {
 				return (
 					<div>{this.bareESnackbar("Please choose an arrival place")}</div>
 				);
-			} else if (this.props.newTripInfo.departureTimestamp === "") {
+			} else if (this.props.departureTimestamp === "") {
 				return (
 					<div>{this.bareESnackbar("Please choose a departure time")}</div>
 				);

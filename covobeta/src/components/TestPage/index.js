@@ -27,8 +27,25 @@ let initialState = {
 		dep: { text: "", lat: null, long: null, rdvId: "" },
 		arrival: { text: "", lat: null, long: null, rdvId: "" }
 	},
-	pay: { currency: "euro", trip_part: [] },
-	riders: []
+	pay: {
+		currency: "EUR",
+		trip_part: { completeJourney: null, aToB: null }
+	},
+	riders: {
+		ZYFID: {
+			riderType: "seriouslyfun",
+			departurePoint: {
+				lat: 0,
+				long: 0,
+				rdvId: "dearyDepartureID"
+			},
+			arrivalPoint: {
+				lat: 0,
+				long: 0,
+				rdvId: "dearyArrivalID"
+			}
+		}
+	}
 };
 //Beginning of implementation
 class TestPage extends Component {
@@ -36,37 +53,23 @@ class TestPage extends Component {
 		super(props);
 		this.state = JSON.parse(JSON.stringify(initialState));
 	}
+
 	onPushResult = (isError) => {
 		console.log("In onPushResult with isError:" + isError);
-		console.log(initialState);
 		if (!isError) {
 			console.log("resetState");
 			this.setState(JSON.parse(JSON.stringify(initialState)));
 		}
+		console.log("setting readyToPush to false");
 		this.setState({ readyToPush: false });
 	};
+
 	testBoxContentChange = (value, pointKey) => {
 		let newWaypoints = Object.assign({}, this.state.waypoints);
 		newWaypoints[pointKey].text = value;
 		this.setState({ waypoints: newWaypoints });
 	};
-	/*
-  testBoxContentChange = (value, pointIndex) => {
-    const newWaypoints = this.state.waypoints.map((waypoint, index) => {
-      console.log("Waypoint nb : " + index + " is : ");
-      console.log(waypoint);
-      if (index === pointIndex) {
-        return { ...waypoint, text: value };
-      } else {
-        return { ...waypoint };
-      }
-    });
-    console.log("Unchanged waypoints : ");
-    console.log(this.state.waypoints);
-    console.log("newWaypoints : ");
-    console.log(newWaypoints);
-    this.setState({ waypoints: newWaypoints });
-  };*/
+
 	testOnCoVoPlaceChosen = () => {
 		console.log("Chose a place");
 	};
@@ -104,37 +107,18 @@ class TestPage extends Component {
 					/>
 					<PushTripToFirestore
 						readyToPush={this.state.readyToPush}
-						departureTimestamp={new Date()}
-						approxDuration={0}
-						waypoints={{
-							dep: { text: "", lat: 0, long: 0, rdvID: "" },
-							arrival: { text: "", lat: 0, long: 0, rdvID: "" }
-						}}
-						pay={{
-							currency: "EUR",
-							trip_part: { completeJourney: null, aToB: null }
-						}}
-						riders={{
-							ZYFID: {
-								riderType: "seriouslyfun",
-								departurePoint: {
-									lat: 0,
-									long: 0,
-									rdvId: "dearyDepartureID"
-								},
-								arrivalPoint: {
-									lat: 0,
-									long: 0,
-									rdvId: "dearyArrivalID"
-								}
-							}
-						}}
-						onPushResult={(result) => {
-							console.log("pushResult isError:" + result);
-						}}
+						departureTimestamp={this.state.departureTimestamp}
+						approxDuration={this.state.approxDuration}
+						waypoints={this.state.waypoints}
+						pay={this.state.pay}
+						riders={this.state.riders}
+						onPushResult={this.onPushResult}
 					/>
 				</div>
 				<Button onClick={() => console.log(this.state)}> Log state </Button>
+				<Button onClick={() => console.log(this.state.departureTimestamp)}>
+					Log departureTimestamp
+				</Button>
 				<Button onClick={() => this.setState({ readyToPush: true })}>
 					Set readyToPush=true
 				</Button>

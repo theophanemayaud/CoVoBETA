@@ -21,6 +21,7 @@
       - gmaps places with callback to enable offline coding
         link of build time to test
       - prepared in test calling of PushTripToFirestore in order to work on it more
+      - PushTripToFirestore does existing checks well, is stateless and shows popup
 
 - Taking a step back, will start new approach : build piece by piece with faked till realized connection points to other pieces
 
