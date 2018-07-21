@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { save, load } from "redux-localstorage-simple";
 ////stuff for firebase
 import { reduxFirestore } from "redux-firestore";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/firestore";
 
 //Content imports
