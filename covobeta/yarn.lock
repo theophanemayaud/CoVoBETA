@@ -8199,7 +8199,7 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
-rmwc@^1.0.2:
+rmwc@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/rmwc/-/rmwc-1.2.1.tgz#7a69b87f80c7af67cc849f07716bec8c8ec7192c"
   dependencies:
