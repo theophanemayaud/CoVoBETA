@@ -23,6 +23,8 @@
 		"firebase": "^4.13.1",
 		"firebaseui": "^2.6.0",
 		"google-map-react": "^1.0.5",
+		"material-design-icons": "^3.0.1",
+		"material-design-icons-iconfont": "^3.0.3",
 		"material-ui": "1.0.0-beta.32",
 		"material-ui-icons": "^1.0.0-beta.17",
 		"material-ui-pickers": "^1.0.0-rc.7",
@@ -45,6 +47,7 @@
 		"typeface-roboto": "^0.0.50"
 	},
 	"scripts": {
+		"analyze": "source-map-explorer build/static/js/main.*",
 		"build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
 		"watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
 		"start-js": "react-scripts start",
@@ -61,6 +64,7 @@
 	"devDependencies": {
 		"firebase-tools": "^3.17.4",
 		"flow-bin": "^0.64.0",
-		"redux-devtools-extension": "^2.13.2"
+		"redux-devtools-extension": "^2.13.2",
+		"source-map-explorer": "^1.5.0"
 	}
 }

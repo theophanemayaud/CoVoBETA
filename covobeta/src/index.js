@@ -14,6 +14,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 
 //Content imports
+import "material-design-icons/iconfont/material-icons.css";
 import "./index.css";
 import "typeface-roboto";
 
@@ -37,12 +38,12 @@ const createStoreWithMiddleware = applyMiddleware(
 
 //Stuff for firebase (firestore)
 const firebaseConfig = {
-  apiKey: "AIzaSyCYpY7U9OHt3KWPuUr9Bsxp7MlX4JPJ9AY",
-  authDomain: "covo-io.firebaseapp.com",
-  databaseURL: "https://covo-io.firebaseio.com",
-  projectId: "covo-io",
-  storageBucket: "covo-io.appspot.com",
-  messagingSenderId: "701812569579"
+	apiKey: "AIzaSyCYpY7U9OHt3KWPuUr9Bsxp7MlX4JPJ9AY",
+	authDomain: "covo-io.firebaseapp.com",
+	databaseURL: "https://covo-io.firebaseio.com",
+	projectId: "covo-io",
+	storageBucket: "covo-io.appspot.com",
+	messagingSenderId: "701812569579"
 }; // config from Firebase Console
 // Initialize firebase instance
 firebase.initializeApp(firebaseConfig, "index");
@@ -57,26 +58,31 @@ firestore.settings(settings);
     creation of the Redux store.*/
 //const store = createStoreWithMiddleware(reducer, load(), composeWithDevTools());
 const store = createStore(
-  rootReducer,
-  load({
-    states: ["uiState", "userInfoAndSettings", "newTripInfo", "utils"]
-  }),
-  composeWithDevTools(
-    reduxFirestore(firebase),
-    applyMiddleware(
-      save({
-        states: ["uiState", "userInfoAndSettings", "newTripInfo", "utils"]
-      })
-    )
-    // firebase instance as first argument
-    // other store enhancers if any
-  )
+	rootReducer,
+	load({
+		states: ["uiState", "userInfoAndSettings", "newTripInfo", "utils"]
+	}),
+	composeWithDevTools(
+		reduxFirestore(firebase),
+		applyMiddleware(
+			save({
+				states: [
+					"uiState",
+					"userInfoAndSettings",
+					"newTripInfo",
+					"utils"
+				]
+			})
+		)
+		// firebase instance as first argument
+		// other store enhancers if any
+	)
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById("root")
 );
 registerServiceWorker();
