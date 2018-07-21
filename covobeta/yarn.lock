@@ -5976,7 +5976,7 @@ map-stream@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194"
 
-material-components-web@^0.37.0:
+material-components-web@0.37.x:
   version "0.37.1"
   resolved "https://registry.yarnpkg.com/material-components-web/-/material-components-web-0.37.1.tgz#d3c0e3e078bf97d69d1f45b533a38dc8d476bc7d"
   dependencies:
@@ -8266,13 +8266,13 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
-rmwc@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/rmwc/-/rmwc-1.8.0.tgz#717c9781d539dadf3cb97c00c40e00d995059185"
+rmwc@1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/rmwc/-/rmwc-1.8.3.tgz#9d56244e27348e7fecb068711304d2ada8398551"
   dependencies:
     classnames "^2.2.5"
     hyperform "^0.9.9"
-    material-components-web "^0.37.0"
+    material-components-web "0.37.x"
     mutation-observer "^1.0.3"
     prop-types "^15.6.1"
 

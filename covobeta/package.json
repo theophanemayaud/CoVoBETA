@@ -42,7 +42,7 @@
 		"redux": "^3.7.2",
 		"redux-firestore": "^0.4.3",
 		"redux-localstorage-simple": "^2.0.0",
-		"rmwc": "1.8.0",
+		"rmwc": "1.8.3",
 		"typeface-roboto": "^0.0.50"
 	},
 	"scripts": {
