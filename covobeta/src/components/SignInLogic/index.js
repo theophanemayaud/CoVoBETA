@@ -109,8 +109,8 @@ class SignInLogic extends React.Component {
 			}
 		],
 		// Required to enable one-tap sign-up credential helper.
-		/* Disabled untill production credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,*/
-		credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+		/* To disable change GOOGLE_YOLO to NONE */
+		credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
 
 		// Sets the `signedIn` state property to `true` once signed in.
 		callbacks: {
