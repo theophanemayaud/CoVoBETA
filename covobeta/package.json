@@ -1,6 +1,6 @@
 {
 	"name": "covo",
-	"version": "0.0.2",
+	"version": "0.0.1",
 	"description": "Site de covoyajage en cours de construction",
 	"main": "index.js",
 	"private": true,
@@ -45,6 +45,9 @@
 		"typeface-roboto": "^0.0.50"
 	},
 	"scripts": {
+		"release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+		"release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+		"release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
 		"analyze": "source-map-explorer build/static/js/main.*",
 		"build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
 		"watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
