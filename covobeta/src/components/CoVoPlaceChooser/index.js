@@ -115,7 +115,7 @@ class CoVoPlaceChooser extends Component {
 					onError={this.onError}
 					debounce={0}
 					highlightFirstSuggestion
-					googleCallbackName="gmapsInitOne"
+					googleCallbackName="gmapsApiLoadedCallback"
 				>
 					{({
 						getInputProps,
