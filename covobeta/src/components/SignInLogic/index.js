@@ -30,43 +30,13 @@ const config = {
 firebase.initializeApp(config);
 
 class SignInLogic extends React.Component {
-	/*  state = {
-    signedIn: false, // Local signed-in state.
-    displayName: null,
-    email: null,
-    emailVerified: null,
-    phoneNumber: null,
-    photoURL: null,
-    uid: null,
-    accessToken: null,
-    providerData: null
-  };*/
 	componentDidMount() {
-		/*var tempsignInLogicState = JSON.parse(
-      localStorage.getItem("signInLogicState") || "{}"
-    );
-
-    this.setState(tempsignInLogicState);*/
-
 		//now set stuff to get names and all
 
 		firebase.auth().onAuthStateChanged(
 			(user) => {
 				if (user) {
 					// User is signed in.
-					/*user.getIdToken().then(accessToken => {
-            this.setState({
-              displayName: user.displayName,
-              email: user.email,
-              emailVerified: user.emailVerified,
-              phoneNumber: user.phoneNumber,
-              photoURL: user.photoURL,
-              uid: user.uid,
-              accessToken: accessToken,
-              providerData: user.providerData
-            });
-          });
-        }*/
 					this.props.setUserInfoAndSettings(user);
 				}
 			},
@@ -109,8 +79,8 @@ class SignInLogic extends React.Component {
 			}
 		],
 		// Required to enable one-tap sign-up credential helper.
-		/* To disable change GOOGLE_YOLO to NONE */
-		credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+		/* To enable/disable switch GOOGLE_YOLO and NONE */
+		credentialHelper: firebaseui.auth.CredentialHelper.NONE,
 
 		// Sets the `signedIn` state property to `true` once signed in.
 		callbacks: {

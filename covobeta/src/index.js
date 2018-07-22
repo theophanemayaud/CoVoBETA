@@ -15,7 +15,6 @@ import "firebase/firestore";
 
 //Content imports
 import "material-design-icons/iconfont/material-icons.css";
-import "./index.css";
 import "typeface-roboto";
 
 /**CoVo javascript imports
