@@ -7917,9 +7917,9 @@ redux-firestore@^0.5.7:
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
-redux-localstorage-simple@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/redux-localstorage-simple/-/redux-localstorage-simple-2.0.0.tgz#dd5fc755e59d7e784c320616d8c6d741bcc1dfe8"
+redux-localstorage-simple@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/redux-localstorage-simple/-/redux-localstorage-simple-2.1.3.tgz#8152034812fe152abaf55a2a70bf21a1ffb496af"
   dependencies:
     object-merge "2.5.1"
 
