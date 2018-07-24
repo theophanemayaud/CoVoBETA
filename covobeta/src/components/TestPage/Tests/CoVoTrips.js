@@ -7,11 +7,11 @@ class CoVoTrips extends Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
-  componentWillMount() {
-    /*const { firestore } = this.context.store;
-    firestore.get("covo_trips");*/
-    // does not work    this.context.store.get("covo_trips");
-  }
+  /*componentWillMount() {
+    const { firestore } = this.context.store;
+    firestore.get("covo_trips");
+    does not work    this.context.store.get("covo_trips");
+}*/
   tripDate(departure_timestamp) {
     var date_and_time = new Date(departure_timestamp.seconds * 1000);
     var date_and_time_string = date_and_time.toString();
@@ -22,7 +22,7 @@ class CoVoTrips extends Component {
     console.log(this.props);
 
     const { firestore } = this.context.store;
-    const CovoTripsShown = firestore => {
+    const CovoTripsShown = (firestore) => {
       if (typeof this.props.covo_trips !== "undefined") {
         return (
           <div>
@@ -63,6 +63,6 @@ class CoVoTrips extends Component {
   }
 }
 
-export default connect(state => ({
+export default connect((state) => ({
   covo_trips: state.firestore.ordered.covo_trips
 }))(CoVoTrips);
