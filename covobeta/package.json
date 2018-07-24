@@ -59,6 +59,7 @@
     "create-timestamp-win": "date-time-stamp.bat"
   },
   "devDependencies": {
+    "@firebase/app-types": "^0.3.2",
     "babel-eslint": "^7.2.3",
     "eslint": "^4.1.1",
     "eslint-config-react-app": "^2.1.0",
