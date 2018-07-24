@@ -1,0 +1,21 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "space-before-function-paren": "off",
+    "indent": ["error", 2],
+    "max-len": [
+      "error",
+      80,
+      {
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "react/prop-types": "off",
+    "no-unused-expressions": "off",
+    "prefer-reflect": "off"
+  }
+}

@@ -1,72 +1,71 @@
 {
-	"name": "covo",
-	"version": "0.0.1",
-	"description": "Site de covoyajage en cours de construction",
-	"main": "index.js",
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CoVoCre/CoVoBETA.git"
-	},
-	"author": "CoVo Creator",
-	"license": "SEE LICENSE IN 'license.file'",
-	"bugs": {
-		"url": "https://github.com/CoVoCre/CoVoBETA/issues"
-	},
-	"homepage": "https://covo.io",
-	"engines": {
-		"node": ">=6.11.1"
-	},
-	"dependencies": {
-		"@firebase/app-types": "^0.1.0",
-		"date-fns": "^2.0.0-alpha.7",
-		"firebase": "^5.3.0",
-		"firebaseui": "^3.1.1",
-		"google-map-react": "^1.0.5",
-		"material-design-icons": "^3.0.1",
-		"material-ui": "1.0.0-beta.32",
-		"material-ui-icons": "^1.0.0-beta.17",
-		"material-ui-pickers": "^1.0.0-rc.7",
-		"node-sass-chokidar": "^0.0.3",
-		"npm-run-all": "^4.1.2",
-		"prop-types": "^15.6.1",
-		"react": "16.4.1",
-		"react-dom": "^16.2.0",
-		"react-firebaseui": "^3.0.4",
-		"react-places-autocomplete": "^7.0.1",
-		"react-redux": "^5.0.7",
-		"react-redux-firebase": "^2.1.0",
-		"react-router-dom": "^4.2.2",
-		"react-scripts": "1.1.4",
-		"redux": "4.0.0",
-		"redux-firestore": "^0.4.3",
-		"redux-localstorage-simple": "^2.0.0",
-		"rmwc": "1.8.3",
-		"typeface-roboto": "^0.0.50"
-	},
-	"scripts": {
-		"release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
-		"release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
-		"release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
-		"analyze": "source-map-explorer build/static/js/main.*",
-		"build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-		"watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-		"start-js": "react-scripts start",
-		"start": "npm-run-all -p create-timestamp watch-css start-js",
-		"startw": "npm-run-all -p create-timestamp-win watch-css start-js",
-		"build-js": "react-scripts build",
-		"build": "npm-run-all create-timestamp build-css build-js",
-		"buildw": "npm-run-all create-timestamp-win build-css build-js",
-		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject",
-		"create-timestamp": "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'",
-		"create-timestamp-win": "date-time-stamp.bat"
-	},
-	"devDependencies": {
-		"firebase-tools": "^3.17.4",
-		"flow-bin": "^0.64.0",
-		"generate-changelog": "^1.7.1",
-		"redux-devtools-extension": "^2.13.2",
-		"source-map-explorer": "^1.5.0"
-	}
+  "name": "covo",
+  "version": "0.0.1",
+  "description": "Site de covoyajage en cours de construction",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoVoCre/CoVoBETA.git"
+  },
+  "author": "CoVo Creator",
+  "license": "SEE LICENSE IN 'license.file'",
+  "bugs": {
+    "url": "https://github.com/CoVoCre/CoVoBETA/issues"
+  },
+  "homepage": "https://covo.io",
+  "engines": {
+    "node": ">=6.11.1"
+  },
+  "dependencies": {
+    "@firebase/app-types": "^0.1.0",
+    "date-fns": "^2.0.0-alpha.7",
+    "firebase": "^5.3.0",
+    "firebaseui": "^3.1.1",
+    "google-map-react": "^1.0.5",
+    "material-design-icons": "^3.0.1",
+    "material-ui": "1.0.0-beta.32",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "material-ui-pickers": "^1.0.0-rc.7",
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.2",
+    "prop-types": "^15.6.1",
+    "react": "16.4.1",
+    "react-dom": "^16.2.0",
+    "react-firebaseui": "^3.0.4",
+    "react-places-autocomplete": "^7.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "redux": "4.0.0",
+    "redux-firestore": "^0.5.7",
+    "redux-localstorage-simple": "^2.0.0",
+    "rmwc": "1.8.3",
+    "typeface-roboto": "^0.0.50"
+  },
+  "scripts": {
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p create-timestamp watch-css start-js",
+    "startw": "npm-run-all -p create-timestamp-win watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all create-timestamp build-css build-js",
+    "buildw": "npm-run-all create-timestamp-win build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "create-timestamp": "bash -c 'current_date=$( date \"+%y/%m/%d at %H:%M:%S\") && current_date={-latest-:-${current_date}-} && current_date=${current_date//-/\\\"} && echo $current_date > src/timestamp.json && exit'",
+    "create-timestamp-win": "date-time-stamp.bat"
+  },
+  "devDependencies": {
+    "firebase-tools": "^3.17.4",
+    "flow-bin": "^0.64.0",
+    "generate-changelog": "^1.7.1",
+    "redux-devtools-extension": "^2.13.5",
+    "source-map-explorer": "^1.5.0"
+  }
 }

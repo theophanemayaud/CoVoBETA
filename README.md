@@ -8,16 +8,16 @@ Below you'll find some useful info, mostly for myself at first.
 
 ## Table of Contents
 
--   [Firestore stuff](#firestore-stuff)
-    -   [Timestamp](#timestamp)
-    -   [Places](#places)
-    -   [Trips](#trips)
--   [Images in react](#images-in-react)
--   [Router component for react](#router-component-for-react)
--   [Code snippets](#code-snippets)
-    -   [Template component](#template-component)
-    -   [Reference commit in .md](#commit-md)
--   [Redux in CoVo](#redux-in-covo)
+- [Firestore stuff](#firestore-stuff)
+  - [Timestamp](#timestamp)
+  - [Places](#places)
+  - [Trips](#trips)
+- [Images in react](#images-in-react)
+- [Router component for react](#router-component-for-react)
+- [Code snippets](#code-snippets)
+  - [Template component](#template-component)
+  - [Reference commit in .md](#commit-md)
+- [Redux in CoVo](#redux-in-covo)
 
 ## Firestore stuff
 
@@ -53,17 +53,22 @@ covo_trips (with auto ids)
   departure_timestamp (timestamp)
   approx_duration (decimal number)
   covo_waypoints: {
-    dep: { text: "", lat: null, long: null, rdvId // rdvGmapsId for now : "" },
-    arrival: { text: "", lat: null, long: null, rdvId // rdvGmapsId for now : "" }
+    dep: { text: "", covo_lat: null, covo_long: null, covo_rdv_id // rdvGmapsId for now : "" },
+    arrival: { text: "", covo_lat: null, covo_long: null, covo_rdv_id // rdvGmapsId for now : "" }
   }, (in order of passing through)
-  pay {currency: , trip_part: { completeJourney: null, aToB: null }}
+  pay {currency: , trip_parts: { complete_journey: null, (dep_covo_rdv_id_arrival_covo_rdv_id): null }}
   riders {riderUID1:{rider_type: ,
-                    departure_point {covoLat:, covoLong:, rdv_id},
-                    arrival_point: {covoLat:, covoLong:, rdv_id}},
+                    dep {covo_lat:, covo_long:, covo_rdv_id},
+                    arrival: {covo_lat:, covo_long:, covo_rdv_id}},
           riderUID2:{rider_type: ,
-                    departure_point {covoLat:, covoLong:, rdv_id},
-                    arrival_point: {covoLat:, covoLong:, rdv_id}},
+                    dep {covo_lat:, covo_long:, covo_rdv_id},
+                    arrival: {covo_lat:, covo_long:, covo_rdv_id}},
           riderUID3...}
+
+covo_lat (collec id from -1800000 to 1800000)
+  covo_long (collec id from -900000 to 900000)
+    covo_rdvs (collec automatic id)
+      covo_rdv_id (doc auto id)
 ```
 
 ## Images in react
@@ -79,11 +84,11 @@ Available components :
 
 ```js
 import {
-	BrowserRouter as Router,
-	Route,
-	Link,
-	Switch,
-	Redirect
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
 } from "react-router-dom";
 ```
 
@@ -124,12 +129,12 @@ import "./EmptyComponent.css";
  **/
 //Beginning of implementation
 class EmptyComponent extends Component {
-	//static contextTypes = {
-	//  store: PropTypes.object.isRequired
-	//};
-	render() {
-		return <div className="empty-component">In EmptyComponent</div>;
-	}
+  //static contextTypes = {
+  //  store: PropTypes.object.isRequired
+  //};
+  render() {
+    return <div className="empty-component">In EmptyComponent</div>;
+  }
 }
 
 /*const mapStateToProps = state => ({

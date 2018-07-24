@@ -18,16 +18,13 @@ import createCoVoStore from "./createCoVoStore";
 //Temporary or unclassified imports
 
 //Beginning of implementation
-/*    Saving to LocalStorage is achieved using Redux
-    middleware. The 'save' method is called by Redux
-    each time an action is handled by your reducer. */
 
 const store = createCoVoStore();
 
 ReactDOM.render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById("root")
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
 );
 registerServiceWorker();
