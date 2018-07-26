@@ -6,12 +6,11 @@ import { Icon } from "rmwc/Icon";
 import GoogleMapReact from "google-map-react";
 
 //CoVo javascript imports
-import { covoCoordToRealCoord } from "../../businessFunctions/coVoPlaces";
+import { covoCoordToRealCoord } from "../../../businessFunctions/coVoPlaces";
 
 //Content imports
-import "./TestPage.css";
-import PushTripToFirestore from "../PushTripToFirestore";
-import CoVoPlaceChooser from "../CoVoPlaceChooser";
+import PushTripToFirestore from "../../PushTripToFirestore";
+import CoVoPlaceChooser from "../../CoVoPlaceChooser";
 
 //Temporary or unclassified imports
 //import AddTrip from "../AddTrip";
@@ -51,7 +50,7 @@ let initialState = {
   }
 };
 //Beginning of implementation
-class TestPage extends Component {
+class ICoVoPlaceChooser extends Component {
   constructor(props) {
     super(props);
     this.state = JSON.parse(JSON.stringify(initialState));
@@ -91,10 +90,7 @@ class TestPage extends Component {
 
   render() {
     return (
-      <div className="test-page">
-        <div>Test content beneath</div>
-        <hr />
-        <hr />
+      <div style={{ width: "100%" }} className="i-covo-place-chooser">
         {/*<CoVoTrips />*/}
         {/*<CoVoTripsFromContext />*/}
         {/*<AddTrip />*/}
@@ -215,4 +211,4 @@ class TestPage extends Component {
   }
 }
 
-export default TestPage;
+export default ICoVoPlaceChooser;

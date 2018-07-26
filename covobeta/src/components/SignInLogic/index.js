@@ -43,7 +43,7 @@ class SignInLogic extends React.Component {
         }
       },
       function(error) {
-        console.log(error);
+        console.error("covo: " + error);
       }
     );
   }

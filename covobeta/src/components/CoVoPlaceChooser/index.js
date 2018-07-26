@@ -71,7 +71,7 @@ class CoVoPlaceChooser extends Component {
         this.props.onCoVoPlaceChosen(covoCoord, placeId);
       })
       .catch((error) => {
-        console.error("Error", error);
+        console.error("covo: Error", error);
         if ((coord.lat === null || coord.long === null) && placeId !== null) {
           geocodeByPlaceId(placeId)
             .then((results) => getLatLng(results[0]))
@@ -82,7 +82,7 @@ class CoVoPlaceChooser extends Component {
               this.props.onCoVoPlaceChosen(covoCoord, placeId);
             })
             .catch((error) => {
-              console.error("Error", error);
+              console.error("covo: Error", error);
               this.props.onCoVoPlaceChosen({ covoLat: 0, covoLong: 0 }, "");
             });
         }

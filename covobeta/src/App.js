@@ -31,7 +31,7 @@ class App extends Component {
               <Route path="/" exact component={HomePage} />
               <Route path="/index.html" exact component={HomePage} />
               <Route path="/forum" exact component={CoVoForum} />
-              <Route path="/test" exact component={TestPage} />
+              <Route path="/test" component={TestPage} />
               <Route component={PageNotFound} />
             </Switch>
           </CoVoPageContent>
