@@ -2,14 +2,20 @@
 <html lang="en">
 
 <head>
-  <!-- <script type="text/javascript">
-      function Redirect() {
-        window.location = "https://covo.io";
-      }
-    if (window.location == "https://covo-io.firebaseapp.com") {
-      Redirect();
+  <script type="text/javascript">
+    const isLocalhost = Boolean(
+      window.location.hostname === 'localhost' ||
+      // [::1] is the IPv6 localhost address.
+      window.location.hostname === '[::1]' ||
+      // 127.0.0.1/8 is considered localhost for IPv4.
+      window.location.hostname.match(
+        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+      )
+    );
+    if (!isLocalhost && window.location != "https://covo.io") {
+      window.location = "https://covo.io";
     }
-    </script> -->
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#1db6e7">
@@ -19,18 +25,26 @@
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <!-- Google Maps JavaScript -->
-  <script>
+  <script async defer>
     window.gmapsApiLoadedCallback = function () { };
+    function dynamicallyLoadScript() {
+      if (!window.google || !window.google.maps.places) {
+        console.log("Maps place API not loaded, retrying in 3 seconds...");
+        var script = document.createElement("script"); // Make a script DOM node
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBleDs9DsB9YqfrmxffcvgFuHEeh_lshP4&libraries=places&callback=gmapsApiLoadedCallback"; // Set it's src to the provided URL
+        document.head.appendChild(script); // Add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+        setTimeout(dynamicallyLoadScript, 3000); // if not loaded, check again in 3 sec
+      } else {
+        console.log("Maps place API is loaded !");
+      }
+    }
+    dynamicallyLoadScript();
   </script>
-  <!-- Google Maps JavaScript -->
+  <!-- Google Maps JavaScript 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBleDs9DsB9YqfrmxffcvgFuHEeh_lshP4&libraries=places&callback=gmapsApiLoadedCallback"></script>
-
+-->
   <title>CoVo</title>
 </head>
 
@@ -43,8 +57,6 @@
   </noscript>
   <div id="root"></div>
   <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
       The build step will place the bundled scripts into the <body> tag.
     -->
 </body>
