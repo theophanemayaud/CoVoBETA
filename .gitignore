@@ -5,13 +5,13 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/covobeta/node_modules
+/node_modules
 
 # testing
 /coverage
 
 # production
-/covobeta/build
+/build
 
 # misc
 .DS_Store
