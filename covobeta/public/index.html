@@ -24,6 +24,12 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+  <!-- Google Maps JavaScript -->
+  <script>
+    window.gmapsApiLoadedCallback = function () { };
+  </script>
+  <!-- Google Maps JavaScript -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBleDs9DsB9YqfrmxffcvgFuHEeh_lshP4&libraries=places&callback=gmapsApiLoadedCallback"></script>
 
   <title>CoVo</title>
 </head>
@@ -31,7 +37,7 @@
 <body>
   <noscript>
     You need to enable JavaScript to run this CoVo Web App.
-    <br> There won't be any problems, I promise ;)
+    <br> There shouldn't be any problems, I promise ;)
     <br> If you have some, though, please contact me at
     <a href="mailto:creator@covo.io">creator@covo.io</a>
   </noscript>
@@ -39,19 +45,10 @@
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
 
-<script>
-  window.gmapsApiLoadedCallback = function () { }
-</script>
-<!-- Google Maps JavaScript -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBleDs9DsB9YqfrmxffcvgFuHEeh_lshP4&libraries=places&callback=gmapsApiLoadedCallback"></script>
+
 
 </html>

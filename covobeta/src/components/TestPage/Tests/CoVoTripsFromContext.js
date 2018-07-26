@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 //Installed dependencies imports
 import { connect } from "react-redux";
@@ -8,15 +8,18 @@ import { Button } from "rmwc/Button";
 //date time picker
 import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
 import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
-import TimePicker from "material-ui-pickers/TimePicker";
-import DatePicker from "material-ui-pickers/DatePicker";
+//import TimePicker from "material-ui-pickers/TimePicker";
+//import DatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import { MuiThemeProvider, createMuiTheme } from "material-ui";
 
 //CoVo javascript imports
-import {setCoVoArrivalPlace
-,
-setDeparturePlaceTextbox, setSubDepartureRdvText,setDepartureTimestamp} from "../../../actions";
+import {
+  setCoVoArrivalPlace,
+  setDeparturePlaceTextbox,
+  setSubDepartureRdvText,
+  setDepartureTimestamp
+} from "../../../actions";
 //Content imports
 
 //Temporary or unclassified imports
@@ -125,29 +128,30 @@ class CoVoTripsFromContext extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   newTripInfo: state.newTripInfo,
   firestore: state.firestore,
   covo_trips: state.firestore.ordered.covo_places
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onArrivalPlaceTextboxChange: event => {
-            dispatch(setCoVoArrivalPlace(event.target.value));
+    onArrivalPlaceTextboxChange: (event) => {
+      dispatch(setCoVoArrivalPlace(event.target.value));
     },
-    onDeparturePlaceTextboxChange: event => {
-            dispatch(setDeparturePlaceTextbox(event.target.value));
+    onDeparturePlaceTextboxChange: (event) => {
+      dispatch(setDeparturePlaceTextbox(event.target.value));
     },
-    onSubDepartureRdvTextChange: event => {
-            dispatch(setSubDepartureRdvText(event.target.value));
+    onSubDepartureRdvTextChange: (event) => {
+      dispatch(setSubDepartureRdvText(event.target.value));
     },
-    onDepartureTimestampChange: date => {
-            dispatch(setDepartureTimestamp(date));
+    onDepartureTimestampChange: (date) => {
+      dispatch(setDepartureTimestamp(date));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  CoVoTripsFromContext
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoVoTripsFromContext);

@@ -113,8 +113,7 @@ class CoVoPlaceChooser extends Component {
         >
           {({
             getInputProps,
-            suggestions,
-            loading,
+            suggestions /*loading,*/,
             getSuggestionItemProps
           }) => (
             <div>
