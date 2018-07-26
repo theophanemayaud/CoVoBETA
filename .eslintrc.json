@@ -2,7 +2,7 @@
   "extends": "react-app",
   "rules": {
     "space-before-function-paren": "off",
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "max-len": [
       "error",
       80,
