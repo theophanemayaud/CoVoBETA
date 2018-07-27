@@ -24,23 +24,23 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
+            - covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
 #            - master-cache-{{ arch }}-{{ .Branch }}
 #            - master-cache
 
-      - run: cd covobeta && yarn install
+      - run: yarn install
 
       #save installs to cache for future use
       - save_cache:
-          key: covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "covobeta/yarn.lock" }}
+          key: covobeta-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
-            - covobeta/node_modules
+            - node_modules
 
       #build and see what happens... !!! !!!
-      - run: cd covobeta && CI="" && yarn build
+      - run: CI="" && yarn build
       - run:
            name: Deploy Master to Firebase
-           command: cd covobeta && ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 workflows:
   version: 2
