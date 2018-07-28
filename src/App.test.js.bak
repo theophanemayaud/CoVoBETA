@@ -1,0 +1,32 @@
+// From index.html
+import React from "react";
+
+//Installed dependencies imports
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
+
+//Content imports
+import "material-design-icons/iconfont/material-icons.css";
+import "typeface-roboto";
+
+/**CoVo javascript imports
+ ** (has to be after content imports here
+ ** because of material-components-web css) **/
+import App from "./App";
+import createCoVoStore from "./createCoVoStore";
+
+const store = createCoVoStore();
+
+//Beginning of test
+
+test("renders without crashing", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    div
+  );
+  ReactDOM.unmountComponentAtNode(div);
+});

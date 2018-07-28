@@ -1,6 +1,7 @@
 # personnal igores :
-/covobeta/src/**/*.css
-/covobeta/src/timestamp.json
+/src/**/*.css
+/src/timestamp.json
+/.vscode
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 

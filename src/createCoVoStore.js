@@ -7,15 +7,14 @@ import rootReducer from "./reducers";
 import { reduxFirestore } from "redux-firestore";
 import firebaseInit from "./firebaseInit";
 
-const firebase = firebaseInit();
-
-const rfConfig = { oneListenerPerPath: true };
-
 const createCoVoStore = () => {
+  const firebase = firebaseInit();
+
+  const rfConfig = { oneListenerPerPath: true };
+
   //const store = createStoreWithMiddleware(reducer, load(), composeWithDevTools());
   const store = createStore(
-    rootReducer /*Loading from LocalStorage happens during
-        creation of the Redux store.*/,
+    rootReducer, //Loading from LocalStorage happens during creation of the Redux store
     load({
       states: [
         "uiState",
@@ -23,7 +22,8 @@ const createCoVoStore = () => {
         "newTripInfo",
         "utils",
         "firestore.ordered"
-      ]
+      ],
+      disableWarnings: true // stop warnings on first website load because nothing yet in localstorage
     }),
     composeWithDevTools(
       // firebase instance as first argument

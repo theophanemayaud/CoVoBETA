@@ -27,7 +27,7 @@ const config = {
   storageBucket: "covo-io.appspot.com",
   messagingSenderId: "701812569579"
 };
-firebase.initializeApp(config);
+firebase.initializeApp(config, "SignInLogic");
 
 class SignInLogic extends React.Component {
   componentDidMount() {

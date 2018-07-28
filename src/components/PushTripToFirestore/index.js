@@ -68,7 +68,6 @@ class PushTripToFirestore extends Component {
     /* one arguments : isError ? bool true or false*/
   };
   bareESnackbar = (snackText) => {
-    console.error("covo: PushTripToFirestore error");
     return (
       <Snackbar
         show
@@ -81,7 +80,6 @@ class PushTripToFirestore extends Component {
     );
   };
   bareSnackbar = (snackText) => {
-    console.log("PushTripToFirestore success");
     return (
       <Snackbar
         show
