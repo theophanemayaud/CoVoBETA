@@ -7,12 +7,5 @@
       "path": "/Users/theophanemayaud/Internet/CoVoBETA-WIKI"
     }
   ],
-  "settings": {
-    "editor.tabSize": 2,
-    "prettier.tabWidth": 2,
-    "prettier.singleQuote": false,
-    "editor.insertSpaces": true,
-    "prettier.arrowParens": "always",
-    "eslint.packageManager": "yarn"
-  }
+  "settings": {}
 }
