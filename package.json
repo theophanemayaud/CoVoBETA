@@ -1,6 +1,6 @@
 {
   "name": "covo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Site de covoyajage en cours de construction",
   "main": "index.js",
   "private": true,
