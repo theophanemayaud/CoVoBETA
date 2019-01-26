@@ -18,6 +18,7 @@ Below you'll find some useful info, mostly for myself at first.
   - [Template component](#template-component)
   - [Reference commit in .md](#commit-md)
 - [Redux in CoVo](#redux-in-covo)
+- [Changelog for CoVoBETA](#changelog-for-covobeta)
 
 ## Firestore stuff
 
@@ -119,11 +120,11 @@ import "./EmptyComponent.css";
 
 //Descriptions of props, what it does, and what it affects
 /*General description :
-* Props :
+ * Props :
  ** ...(props and descriptions)
-* Needs to read from store :
-* Store actions needed :
-* Affects
+ * Needs to read from store :
+ * Store actions needed :
+ * Affects
  ** return: ...
  ** ...
  **/
@@ -165,3 +166,23 @@ devient
 ## Redux in CoVo
 
 Based on https://redux.js.org/introduction/examples#todos-with-undo
+
+## Changelog for CoVoBETA
+
+This project uses [generate-changelog](https://www.npmjs.com/package/generate-changelog) to manage versions and changes. Use the syntax type(category):comments
+Available types : breaking, build, ci, chore, docs, feat, fix, other, perf, refactor, revert, style, test
+CoVo categories : see below
+See [generate-changelog/useage](https://www.npmjs.com/package/generate-changelog#usage) for general guidelines.
+
+### Predefined types, use if one fits :
+
+#### Concerning dependencies, generally chore
+
+- dependencies updates : chore(update dependency)
+- adding dependencies : chore(added dependency)
+- removing dependencies : chore(removed dependecy)
+
+#### Concerning general/small code changes
+
+- no exact point, objective : refactor(|file name|component name|fonction name|)
+- fixing a small issue : fix(|file name|component name|fonction name|)
