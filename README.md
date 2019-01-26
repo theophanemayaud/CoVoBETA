@@ -170,8 +170,9 @@ Based on https://redux.js.org/introduction/examples#todos-with-undo
 ## Changelog for CoVoBETA
 
 This project uses [generate-changelog](https://www.npmjs.com/package/generate-changelog) to manage versions and changes. Use the syntax type(category):comments
-Available types : breaking, build, ci, chore, docs, feat, fix, other, perf, refactor, revert, style, test
-CoVo categories : see below
+Types we use (add new ones here if needed) : feat, chore, docs, refactor, other, tools,
+(Available types : breaking, build, ci, chore, docs, feat, fix, other, perf, refactor, revert, style, test)
+Categories we use : see below
 See [generate-changelog/useage](https://www.npmjs.com/package/generate-changelog#usage) for general guidelines.
 
 ### Predefined types, use if one fits :
