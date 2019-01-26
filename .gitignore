@@ -1,7 +1,7 @@
 # personnal igores :
-/src/**/*.css
-/src/*.css
-/src/timestamp.json
+src/**/*.css
+src/*.css
+src/timestamp.json
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
@@ -24,3 +24,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
